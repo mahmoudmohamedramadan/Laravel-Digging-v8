@@ -7,7 +7,7 @@ use App\{Models\User, Mail\FirstMail};
 
 class MailController extends Controller
 {
-    /* there are two different syntaxes in Laravel for sending mail: `classic` and `mailable`. NOTE that the `mailable` syntax is the preferred */
+    /* There are two different syntaxes in Laravel for sending mail: `classic` and `mailable`. NOTE that the `mailable` syntax is the preferred */
 
     public function index()
     {
@@ -21,7 +21,7 @@ class MailController extends Controller
 
         Mail::to($user)->send(new FirstMail($user));
 
-        /* or you can use the below form */
+        /* You can use the below form */
         // Mail::to($user)
         //     ->cc(User::find(2))
         //     ->bcc(User::find(1))

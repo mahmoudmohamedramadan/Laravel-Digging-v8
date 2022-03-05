@@ -7,7 +7,7 @@ use App\{Models\User, Models\Post, Http\Controllers\Controller};
 
 class PostController extends Controller
 {
-    /* here in case of you want to check the authorization for every resource controller's methods [index, create, store, show, edit, update, destroy] you can refactoring your code via using `authorizeResource` method in constructor */
+    /* In case of you want to check the authorization for every resource controller's methods [index, create, store, show, edit, update, destroy] you can refactoring your code via using `authorizeResource` method in constructor */
     public function __construct()
     {
         // $this->authorizeResource(Post::class, 'post');
@@ -22,13 +22,13 @@ class PostController extends Controller
     {
         $posts = Post::get();
 
-        /* `valueOrFail` gets a single column's value from the first result of a query or throws an exception */
+        /* `valueOrFail` method gets a single column's value from the first result of a query or throws an exception */
         // return Post::where('id', 1)->valueOrFail('title');
 
-        /* you can call your accessor in pascal case */
+        /* You can call your accessor in pascal case */
         // $posts->UserWithBody;
 
-        /* you can call your accessor also in snack case */
+        /* You can call your accessor also in snack case */
         // $posts->user_with_body;
 
         /* The `chunk` method will retrieve a subset of Eloquent models, passing them to a closure for processing. Since only the current chunk of Eloquent models is retrieved at a time, the `chunk` method will provide significantly reduced memory usage when working with a large number of models */
@@ -42,7 +42,7 @@ class PostController extends Controller
         //     $posts->each()->update(['user_id' => 1]);
         // }, 'id');
 
-        /* fore more info watch this video: https://youtu.be/aQCHmB4Uh0Q */
+        // For more info watch this video: https://youtu.be/aQCHmB4Uh0Q
 
         /* The `lazy` method works similarly to the `chunk` method in the sense that, behind the scenes, it executes the query in `chunks`. However, instead of passing each `chunk` directly into a callback as is, the `lazy` method returns a flattened `LazyCollection` of Eloquent models, which lets you interact with the results as a single stream */
         $posts = $posts->lazy();
@@ -68,7 +68,7 @@ class PostController extends Controller
             return View::make('post.create', ['users' => $users]);
         }
 
-        /* you can also pass an array in the first argument of the `first` method and that means give me the first view */
+        /* You can also pass an array in the first argument of the `first` method and that means give me the first view */
         return View::first(['post.create'], ['users' => $users]);
 
         return view('post.create', ['users' => $users]);
@@ -85,7 +85,7 @@ class PostController extends Controller
         try {
             $validate = $this->vaidateInput($request);
 
-            /* you can also save using the below form */
+            /* You can also save using the below form */
             $postModel = '\App\Models\Post';
             $post_id = $postModel::insertGetId($validate);
 
@@ -108,19 +108,19 @@ class PostController extends Controller
         // $clonedPost = $post->replicate();
         // $clonedPost->title = 'title_value';
 
-        /* you can also use the below form */
+        /* You can also use the below form */
         // $clonedPost = $post->replicate()->fill(['title' => 'title_value']);
 
         /* To exclude one or more attributes from being replicated to the new model, you may pass an array to the `replicate` method */
         // $clonedPost = $post->replicate(['title']);
 
-        /* you should save the replicated post */
+        /* You should save the replicated post */
         // $clonedPost->save();
 
         /* If you already have a model instance, you may use the `fill` method to populate it with an array of attributes */
         // $post->fill(['title' => 'Save Title Using `fill` method']);
 
-        /* to solve that problem of relationship replication use: `bkwld/cloner` package
+        /* To solve that problem of relationship replication use: `bkwld/cloner` package
         > NOTE that in case of `belongsTo` relationship, the relationship will be replicated also, otherwise you need to add `cloneable_relations` attribute */
 
         return view('post.show', ['post' => $post, 'users' =>  User::get(), 'comments' => $post->comments]);
@@ -153,10 +153,10 @@ class PostController extends Controller
         //     }
         // });
 
-        /* authorize method allows you to check user authorization by passed the key which custome added with custome condition in AuthServiceProvider also there is another way to check authorization */
+        /* `authorize` method allows you to check user authorization by passed the key which custom added with custom condition in `AuthServiceProvider` also there is another way to check authorization */
         // $this->authorize('update-post', $post);
 
-        /* the difference between `authorize` and `authorizeForUser` that `authorizeForUser` we passed any user we want but `authorize` always check for authenticated user */
+        /* The difference between `authorize` and `authorizeForUser` that `authorizeForUser` we passed any user we want BUT `authorize` always check for authenticated user */
         $this->authorizeForUser(auth()->user(), 'update-post', $post);
         $validate = $this->vaidateInput($request);
         $post->update($validate);

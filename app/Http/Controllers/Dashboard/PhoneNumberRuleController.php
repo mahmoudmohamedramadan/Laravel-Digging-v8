@@ -18,7 +18,7 @@ class PhoneNumberRuleController extends Controller
             'number' => new PhoneNumberRule,
         ]);
 
-        /* another form to call the custom rule and in this case you may need to pass some parameters */
+        // Another form to call the custom rule and in this case you may need to pass some parameters
         // $request->validate([
         //     'number' => new PhoneNumberRule(),
         // ]);
