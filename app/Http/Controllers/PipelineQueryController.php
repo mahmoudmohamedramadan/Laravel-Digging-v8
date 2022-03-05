@@ -7,11 +7,11 @@ use Illuminate\Pipeline\Pipeline;
 
 class PipelineQueryController extends Controller
 {
-    /* `pipeline` as a defination NOT exists in Laravel BUT Laravel use it in `app\Kernel` and from its name we can guess that there a pipe gives another pipe something */
+    /* `pipeline` as a definition NOT exists in Laravel BUT Laravel use it in `app\Kernel` and from its name we can guess that there a pipe gives another pipe something */
     public function searchQuery()
     {
         /* `query` method allows us to create a query builder */
-        $pipeline = app(Pipeline::class)
+        return app(Pipeline::class)
             ->send(User::query())
             ->through([
                 \App\Pipelines\ProductFilter::class,
@@ -19,7 +19,5 @@ class PipelineQueryController extends Controller
             ])
             ->thenReturn()
             ->get();
-
-        return $pipeline;
     }
 }

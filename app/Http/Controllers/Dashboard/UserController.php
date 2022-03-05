@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rules\Password;
+use Illuminate\{Http\Request, Validation\Rules\Password};
 use App\{Models\User, Scopes\GlobalScope, Http\Controllers\Controller};
 use Illuminate\Support\{MessageBag, Facades\Hash, Facades\Cache, Facades\Validator};
 

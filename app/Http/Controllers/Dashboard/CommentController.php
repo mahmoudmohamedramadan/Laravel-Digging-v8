@@ -11,7 +11,7 @@ class CommentController extends Controller
     {
         /* `hasValidSignature` method exists in `Kernel.php` Middleware */
         if ($request->hasValidSignature()) {
-            /* `away` redirects you to a domain outside of your application */
+            /* `away` method used to redirects you to a domain outside of your application */
             return redirect()->away('https://google.com');
         }
     }
@@ -23,7 +23,6 @@ class CommentController extends Controller
      */
     public function index()
     {
-        /* `ScopedComments` is a local scope */
         $comments = Comment::ScopedComments(0, 0)->get();
 
         return view('comment.index', ['comments' => $comments]);
@@ -71,11 +70,7 @@ class CommentController extends Controller
             // do something here...
         }
 
-        $request->merge([
-            'post_id' => $post->id,
-            'user_id' => $request->user_id,
-            'body' => $request->input('body')
-        ]);
+        $request->merge(['post_id' => $post->id, 'user_id' => $request->user_id, 'body' => $request->input('body')]);
 
         $validator = $this->validateInputs($request);
         Comment::create($validator);
@@ -93,9 +88,7 @@ class CommentController extends Controller
      */
     public function update(Request $request, Post $post, Comment $comment)
     {
-        $post->comments->find($comment->id)->update([
-            'body' => $request->body
-        ]);
+        $post->comments->find($comment->id)->update(['body' => $request->body]);
 
         return redirect()->back();
     }
@@ -116,10 +109,6 @@ class CommentController extends Controller
 
     private function validateInputs($request)
     {
-        return $request->validate([
-            'post_id' => 'required',
-            'user_id' => 'required',
-            'body' => 'required|max:255'
-        ]);
+        return $request->validate(['post_id' => 'required', 'user_id' => 'required', 'body' => 'required|max:255']);
     }
 }

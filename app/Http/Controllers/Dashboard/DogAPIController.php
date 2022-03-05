@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Models\Dog;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\{Models\Dog, Http\Controllers\Controller};
 
 class DogAPIController extends Controller
 {
