@@ -9,7 +9,7 @@ class StorageController extends Controller
 {
     public function storagePutManualFiles()
     {
-        /* `get` function used to retrieve the passed file name from storage/public */
+        /* `get` method used to retrieve the passed file name from `storage/public` */
         // $file = Storage::disk('public')->get('test_02.png');
 
         /* `put` method allows you pass the file name in the first parameter and the content file in the second parameter */
@@ -18,9 +18,9 @@ class StorageController extends Controller
         return Storage::disk('public')->put(md5($requestFile->getClientOriginalName()) . '.' . $requestFile->getClientOriginalExtension(), file_get_contents($requestFile));
 
         if (Storage::exists('public/test_02.png')) {
-            /* `getVisivbility` function allows you to get a visibility for a specific file in `app/storage` if public or private */
+            /* `getVisivbility` method allows you to get a visibility for a specific file in `app/storage` if public or private */
             if (Storage::getVisibility('public/test_02.png') == 'private') {
-                /* `setVisibility` allows you to set specific file in `app/storage` to visibility value [public, private] */
+                /* `setVisibility` method allows you to set specific file in `app/storage` to visibility value (public, private) */
                 Storage::setVisibility('public/test_02.png', 'public');
             }
         }
@@ -46,16 +46,16 @@ class StorageController extends Controller
         /* `allFiles` method allows you to return an array of files in specific folder with it's subfolders */
         // Storage::allFiles('public');
 
-        /* `directories` allows you to return an array of folders names in passed directory */
+        /* `directories` method allows you to return an array of folders names in passed directory */
         // Storage::directories('public');
 
-        /* `allDirectories` allows you to return an array of folders names in passed directory and all sub folders */
+        /* `allDirectories` method allows you to return an array of folders names in passed directory and all sub folders */
         // Storage::allDirectories('public');
 
-        /* `makeDirectory` allows you to create a new directory */
+        /* `makeDirectory` method allows you to create a new directory */
         // Storage::makeDirectory('newCreatedDirectory');
 
-        /* `deleteDirectory` allows you to delete a directory */
+        /* `deleteDirectory` method allows you to delete a directory */
         Storage::deleteDirectory('newCreatedDirectory');
     }
 
@@ -71,11 +71,11 @@ class StorageController extends Controller
         return 'NOT uploaded successfully or this file is already exists';
     }
 
-    /* if you'd prefer injecting an instance instead of using the File facade, typehint or inject `Illuminate\Filesystem\Filesystem` and you'll have all the same methods available to you */
+    /* If you'd prefer injecting an instance instead of using the File facade, typehint or inject `Illuminate\Filesystem\Filesystem` and you'll have all the same methods available to you */
 
     public function updatePicture()
     {
-        /* we use `put` method to put a file named `user_1` [do NOT forget THE extension], and we grab our contents from the uploaded file. Every uploaded file is a descendant of the `SplFileInfo` class, which provides a `getRealPath` method that returns the tmp file path like so `C:\xampp\tmp\phpD91C.tmp` */
+        /* We use `put` method to put a file named `user_1` (do NOT forget THE extension), and we grab our contents from the uploaded file. Every uploaded file is a descendant of the `SplFileInfo` class, which provides a `getRealPath` method that returns the tmp file path like so `C:\xampp\tmp\phpD91C.tmp` */
         // Storage::put('user_1.png', file_get_contents(request()->file('img')->getRealPath()));
     }
 
