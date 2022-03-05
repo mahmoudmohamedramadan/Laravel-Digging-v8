@@ -23,11 +23,7 @@ class NestingAndRelationships
 
         return array_merge([
             'id' => $this->user->id,
-            'name' => sprintf(
-                '%s %s',
-                $this->user->name,
-                $this->user->email
-            ),
+            'name' => sprintf('%s %s', $this->user->name, $this->user->email),
             'commentsCount' => $this->user->comments->count(),
             'comments' => $append,
         ], $append);

@@ -15,11 +15,7 @@ class UserTransfomer
     {
         return [
             'id' => $this->user->id,
-            'name' => sprintf(
-                '%s %s',
-                $this->user->name,
-                $this->user->email
-            ),
+            'name' => sprintf('%s %s', $this->user->name, $this->user->email),
             'commentsCount' => $this->user->comments->count()
         ];
     }
