@@ -6,10 +6,10 @@ use App\Http\Controllers\{GeneralController, HasManyController, RequestControlle
 
 Route::apiResource('userApi', UserApiController::class);
 
-/* invokable controller allows you to call on magic method `__invok` once you call the controller */
+/* Invokable controller allows you to call on magic method `__invok` once you call the controller */
 Route::get('userI', UserInvokableController::class);
 
-/* `redirect` method allows you to redirect from one uri to other */
+/* `redirect` method redirects you from one URI to other */
 Route::redirect('redirectHome', '/home');
 
 Route::get('convert', function () {
@@ -29,7 +29,6 @@ Route::view('component', 'includes.passed_data');
 Route::get('collection', [CollectionController::class, 'index']);
 
 Route::get('helpers', [GeneralController::class, 'helper']);
-
 Route::get('locale', [GeneralController::class, 'localization']);
 
 Route::get('requestView', [RequestController::class, 'requestView']);
@@ -55,13 +54,13 @@ Route::get('custome_rule_custome_request', [PhoneNumberRuleController::class, 's
 Route::get('authInfo', function () {
     $user = User::first();
 
-    // goto Illuminate\Contracts\Auth\Authenticatable for more info
+    // goto `Illuminate\Contracts\Auth\Authenticatable` for more info
     return $user->getAuthIdentifierName();
     return $user->getAuthIdentifier();
     return $user->getAuthPassword();
 });
 
-/* laravel will resolve this function if your url NOT match any route */
+/* Laravel will resolve this function if your URL NOT match any route */
 Route::fallback(function () {
     abort(404);
 });
