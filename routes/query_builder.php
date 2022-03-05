@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PipelineQueryController;
-use App\Http\Controllers\QueryBuilderController;
+use App\Http\Controllers\{PipelineQueryController, QueryBuilderController};
 
 Route::get('query', [QueryBuilderController::class, 'index']);
 
