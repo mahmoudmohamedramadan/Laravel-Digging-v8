@@ -69,6 +69,9 @@ Route::get('relationships', function () {
     /* You can also nest the criteria(dot notation), the next example says "I want a `phoneNumbers` relationship that belongs to one `user` relationship" */
     $users = User::has('phoneNumbers.user', 1)->get();
 
+    // You can get the SQL query from the Eloquent using `toSql` method
+    $usersSQL = User::has('phoneNumbers.user', 1)->toSql();
+
     /* If you want more power, use `whereHas` */
     // $users = User::whereHas('phoneNumbers')->get();
 
