@@ -95,7 +95,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/new_features.php'));
 
             Route::namespace($this->namespace)
-                ->group(base_path('routes/generators.php'));
+                ->group(base_path('routes/loops.php'));
         });
     }
 
