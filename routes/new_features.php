@@ -81,3 +81,10 @@ Route::redirect('from', 'to', 301);
 
 /* The below line is equivalent to the upper one */
 Route::permanentRedirect('from', 'to');
+
+Route::get('update_multi_user', function () {
+    // instead of looping through all users using `for` or `foreach` you can use `toQuery` method
+    \App\Models\User::get()->toQuery()->update([
+        'name' => 'Updated!'
+    ]);
+});
