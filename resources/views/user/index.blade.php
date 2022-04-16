@@ -40,20 +40,23 @@ JavaScript code generally) --}}
             <td>
                 ## `include` is used to include a view and in case it NOT exists will trigger an issue, and you can pass
                 data to view that will be included
-                @include('includes.form_delete',['buttonText' => 'Delete'])
+                @include('includes.form_delete', ['buttonWarningText' => 'Edit', 'buttonDangerText' => 'Delete'])
 
                 ## `includeWhen` used to include a view in a specific condition
-                @includeWhen(auth()->user()->email == 'admin@gmail.com','includes.form_delete')
+                @includeWhen(auth()->user()->email == 'admin@gmail.com', 'includes.form_delete', ['buttonWarningText' =>
+                'Edit', 'buttonDangerText' => 'Delete'])
 
                 ## `includeIf` will include the file if exists and in case NOT exist will NOT trigger any issues
                 @includeIf('includes.form_delete')
 
                 ## `includeUnless` is the opposite of the `includeWhen`
-                @includeUnless(auth()->user()->email =='admin@gmail.com','includes.form_delete')
+                @includeUnless(auth()->user()->email =='admin@gmail.com', 'includes.form_delete', ['buttonWarningText'
+                => 'Edit', 'buttonDangerText' => 'Delete'])
 
                 ## `includeFirst` directive take array of views as a first parameter and this directive take the first
                 view you can pass data also
-                @includeFirst(['includes.form_delete','test'],['buttonText' => 'Delete'])
+                @includeFirst(['includes.form_delete','test'], ['buttonWarningText' => 'Edit', 'buttonDangerText' =>
+                'Delete'])
             </td>
         </tr>
         @endforeach --}}
