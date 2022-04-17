@@ -95,7 +95,7 @@ Route::get('relationships', function () {
 
     /* You can access the `pivot_table` (category_product) using `pivot` keyword, NOTE that you can access `pivot` even if `categories` relationship NOT has a `withPivot` method */
     // foreach (\App\Models\Product::find(1)->categories as $category) {
-    //     dd($category->category_product_pivot_tabel->category_id);
+    //     dd($category->category_product_pivot_table->category_id);
     // }
 
     ##################################
