@@ -104,7 +104,7 @@ class RequestController extends Controller
         /* When you link the storage, the main `storage` in app folder will be binded with `storage` in public folder and do NOT try to delete file in binded folder (app/storage) because this will lead to ERROR */
         // $request->file->store('', 'public');
 
-        /* `store` will save files inside created users disk (created with filesystems.php) inside another folder ca led newFolder */
+        /* `store` will save files inside created `users` disk (created with filesystems.php) inside another folder called newFolder */
         // $request->file->store('/newFolder', 'users');
 
         /* `storeAs` accepts three parameters, The first one the folder and the second is the new name for the file(and do NOT forget the extension) and the third is the disk name */
