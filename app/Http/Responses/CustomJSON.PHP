@@ -14,7 +14,6 @@ class CustomJSON implements Responsable
 
     public function toResponse($request)
     {
-        return response(json_encode($this->users))
-            ->withHeaders(['Content-Type' => 'application/json']);
+        return response(json_encode($this->users))->withHeaders(['Content-Type' => 'application/json']);
     }
 }
