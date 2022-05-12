@@ -57,15 +57,14 @@ class ResponseController extends Controller
     {
         file_put_contents('D:\\indexDownload.txt', 'Welcome from indexDownload function');
 
-        /* `file` method response act as download except it allows the browser to display the file insead of forcing a download */
+        /* `file` method response acts as download except it allows the browser to display the file insead of forcing a download */
         return response()->file('D:\\indexDownload.txt');
     }
 
     public function indexJSON()
     {
         /* `json` method used to convert passed data to JSON and set Content-Type header to application/json */
-        // return response()
-        //     ->json(User::get(['name', 'email']));
+        // return response()->json(User::get(['name', 'email']));
 
         /* `setCallback` method used to categorize[set header to returned data] returned data, NOTE that `Callback` name must NOT contains whitespace */
         return response()->json(User::get(['name', 'email']))->setCallback('JSON');
