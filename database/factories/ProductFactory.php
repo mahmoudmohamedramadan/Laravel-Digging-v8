@@ -2,10 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\{
-    User,
-    Product,
-};
+use App\Models\{User, Product};
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProductFactory extends Factory
@@ -26,7 +23,7 @@ class ProductFactory extends Factory
     {
         return [
             'user_id' => User::inRandomOrder()->first(),
-            'name' => $this->faker->randomElements(['Milk', 'Corn', 'Water', 'Compouter', 'Tablet', 'Laptop', 'Sportswear', 'Footwear', 'Accessories', 'Nike', 'Puma', 'Beta', 'GAS', 'Infomercial Posters', 'Formative Posters', 'Show Posters', 'Show Posters']),
+            'name' => $this->faker->unique()->randomElement(['Milk', 'Corn', 'Water', 'Compouter', 'Tablet', 'Laptop', 'Sportswear', 'Footwear', 'Accessories', 'Nike', 'Puma', 'Beta', 'GAS', 'Infomercial Posters', 'Formative Posters', 'Show Posters', 'Show Posters']),
             'price' => $this->faker->numberBetween(100, 1000)
         ];
     }
