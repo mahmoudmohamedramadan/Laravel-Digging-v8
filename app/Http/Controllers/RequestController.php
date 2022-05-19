@@ -144,9 +144,9 @@ class RequestController extends Controller
         }
 
         /* `is` method return boolean indicating wheter or NOT, NOTE that the `*` means anything */
-        if ($request->is('*com')) {
-            dd('correct email');
-        }
+        $response = 'NOT INITIALIZED';
+        $response = $request->is('*com') ?: 'INVALID'; // This is good way to check about something
+        $response ??= $request->is('*com');           // But this is better way to check about something
 
         /* `ip` method returns the user's IP address like 127.0.0.1 */
         dump('Dear ' . $request->ip() . ', please enter valid url');
