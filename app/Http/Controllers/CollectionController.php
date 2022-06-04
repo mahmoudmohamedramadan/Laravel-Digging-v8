@@ -19,7 +19,7 @@ class CollectionController extends Controller
         echo '<pre>';
 
         dump('reject');
-        /* `reject` method will return the reverse of the inner condition, that means this will return the users which them name NOT start with `M` */
+        /* `reject` method will return the reverse of the inner condition, which means this will return the users which them name NOT start with `M` */
         $collect_reject = collect($items)->reject(function ($item) {
             return str_starts_with($item['name'], 'M');
         });
@@ -27,7 +27,7 @@ class CollectionController extends Controller
         print_r($collect_reject);
 
         dump('filter');
-        /* `filter` method will return the results depending on the condition, meaning this will return the member where the `member` equlas to 1 */
+        /* `filter` method will return the results depending on the condition,  which means this will return the member where the `member` equlas to 1 */
         $collect_filter = collect($items)->filter(function ($item) {
             return $item['member'] === 1;
         });

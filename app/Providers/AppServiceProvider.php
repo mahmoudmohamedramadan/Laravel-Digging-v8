@@ -48,7 +48,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        /* In Laravel, you can actually prevent lazy loading. This feature is incredibly useful because it can help to ensure that the relationships are eager loaded. As a result of this, it can improve performance and reduce the number of queries that are made to the database. It's super simple to prevent lazy loading. All we need to do is add the */
+        /* In Laravel, you can actually prevent lazy loading. This feature is incredibly useful because it can help you to ensure that the relationships are eager loaded. As a result of this, it can improve performance and reduce the number of queries that are made to the database. It's super simple to prevent lazy loading. All we need to do is add the */
         // User::preventsLazyLoading();
 
         /* Share method used to share value with key to all views which you have and to use it */
@@ -140,7 +140,7 @@ class AppServiceProvider extends ServiceProvider
             // $event->exception
         });
 
-        /* With a new laravel version comes and support `TailwindCSS` in UI so if you want to specify that you want to use `Bootstrap` write the below line */
+        /* With a new laravel version comes and support `Tailwind-CSS` in UI so if you want to specify that you want to use `Bootstrap` write the below line */
         Paginator::useBootstrap();
 
         /* If you want to override the pagination view do like so */
