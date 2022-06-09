@@ -105,7 +105,7 @@ class User extends Authenticatable implements HasLocalePreference
         // });
     }
 
-    /* Get the preffered language of the currently authenticated user via `locale` column */
+    /* Get the preferred language of the currently authenticated user via `locale` column */
     public function preferredLocale()
     {
         return $this->locale;
