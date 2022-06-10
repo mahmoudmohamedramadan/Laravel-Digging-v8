@@ -9,7 +9,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 
 class NotificationsGuide extends Notification implements ShouldQueue
 {
-    /* First, wr're going to pass relevant data into the constructor. Second, there's `via` method that allows us to define, for a given user, which notification channels to use ($notifiable represents whatever entities you want to notify in your syste) NOTE that every model will extends from `Authenticatable` will represents a `notifiable` instance also, NOTE that `Notifiable` trait that which NOT allow you to deal WITH `$notifiable` BUT is allow you to use some methods like `notify`, `markAsRead`,...etc. The thing that allows you to deal WITH `$notifiable` is to extends the `Authenticatable` parent class */
+    /* First, wr're going to pass relevant data into the constructor. Second, there's `via` method that allows us to define, for a given user, which notification channels to use ($notifiable represents whatever entities you want to notify in your system) NOTE that every model will extends from `Authenticatable` will represents a `notifiable` instance also, NOTE that `Notifiable` trait that which NOT allow you to deal WITH `$notifiable` BUT is allow you to use some methods like `notify`, `markAsRead`,...etc. The thing that allows you to deal WITH `$notifiable` is to extends the `Authenticatable` parent class */
 
     use Queueable;
 
