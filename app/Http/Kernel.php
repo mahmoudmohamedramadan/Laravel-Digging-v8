@@ -24,7 +24,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-        /* here we registered out middleware globaly or we can registered it for a specific route can be added as a middleware in `$routeMiddleware`, NOTE that to pass your parameters write `middlewareName: param_1, param_2`, NOTE also if you registered your custom middleware here you will have to pass all new parameters ($role, $view), so you should register it into the `$routeMiddleware` */
+        /* here we registered our middleware globally or we can register it for a specific route that can be added as middleware in `$routeMiddleware`, NOTE that to pass your parameters write `middlewareName: param_1, param_2`, NOTE also if you can register your custom middleware here you will have to pass all new parameters ($role, $view), so you should register it into the `$routeMiddleware` */
         // \App\Http\Middleware\CustomMiddleware::class,
     ];
 

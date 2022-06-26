@@ -83,7 +83,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         try {
-            $validate = $this->vaidateInput($request);
+            $validate = $this->validateInput($request);
 
             /* You can also save using the below form */
             $postModel = '\App\Models\Post';
@@ -158,7 +158,7 @@ class PostController extends Controller
 
         /* The difference between `authorize` and `authorizeForUser` that `authorizeForUser` we passed any user we want BUT `authorize` always check for authenticated user */
         $this->authorizeForUser(auth()->user(), 'update-post', $post);
-        $validate = $this->vaidateInput($request);
+        $validate = $this->validateInput($request);
         $post->update($validate);
 
         return redirect()->route('posts.index');
@@ -187,7 +187,7 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-    protected function vaidateInput($request)
+    protected function validateInput($request)
     {
         return $request->validate([
             'user_id' => 'required', 'title' => 'required|max:255', 'body' => 'required|max:255',
