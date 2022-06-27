@@ -104,7 +104,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        /* NOTE that when you replicate(duplicate) the post, you do NOT replicate the relationship also */
+        /* When you replicate (duplicate) the post, you do NOT replicate the relationship, NOTE also that the replication problem does when you replicates the parent instance then access its child relation */
         // $clonedPost = $post->replicate();
         // $clonedPost->title = 'title_value';
 
