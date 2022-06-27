@@ -85,7 +85,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         /* `firstOrCreate` method will attempt to find record using given key/value pairs, if this user not found a record will be inserted
-        NOTE that this method is look like `firstOrNew` but the difference that `firstOrNew` has not presisted yet in database and you should save it manually using `save` method */
+        NOTE that this method is look like `firstOrNew` but the difference that `firstOrNew` has not persisted yet in database and you should save it manually using `save` method */
         // $user = User::firstOrCreate($this->getUserData($request));
 
         // $user = User::firstOrNew(
