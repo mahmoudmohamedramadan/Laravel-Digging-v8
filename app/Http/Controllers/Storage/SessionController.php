@@ -27,7 +27,7 @@ class SessionController extends Controller
         /* `put` method stores the provided value in the session at the provided key */
         session()->put('$key', '$value');
 
-        /* `push` method allows you to add array value to the key while the `push` method will push a new value to exitance key of array */
+        /* `put` method allows you to add array value to the key while the `push` method will push a new value to exitance key of array */
         // session()->put('welcomeMsg', ['Welcome User!', 'Hola User!']);
         // session()->push('welcomeMsg', 'مرحبا');
 
