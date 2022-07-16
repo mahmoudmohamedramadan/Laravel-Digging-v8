@@ -104,10 +104,10 @@ class RequestController extends Controller
         /* When you link the storage, the main `storage` in app folder will be binded with `storage` in public folder and do NOT try to delete file in binded folder (app/storage) because this will lead to ERROR */
         // $request->file->store('', 'public');
 
-        /* `store` will save files inside created `users` disk (created with filesystems.php) inside another folder called newFolder */
+        /* `store` will save files inside created `users` disk (created in filesystems.php) inside another folder called newFolder */
         // $request->file->store('/newFolder', 'users');
 
-        /* `storeAs` accepts three parameters, The first one the folder and the second is the new name for the file(and do NOT forget the extension) and the third is the disk name */
+        /* `storeAs` accepts three parameters, The first one the folder and the second is the new name for the file (do NOT forget the extension) and the third is the disk name */
         // $request->file->storeAs('/newFolder', 'newName.png', 'users');
 
         // $request->file->storePublicly('publiclyFolder', 'users');
@@ -129,22 +129,22 @@ class RequestController extends Controller
         // dd($request->all());
         // dd(request()->all());
 
-        /* You may also print all the request info throught the below two lines */
+        /* You may also print all the request info through the below two lines */
         // dd(app(Request::class));
         // dd(app('request'));
 
-        /* `exists` method check if passed key exists in request or NOT */
+        /* `exists` method check if the passed key exists in the coming request or not */
         if (!$request->exists('email')) {
             dd('An error has occured, token does NOT sent');
         }
 
-        /* `path` method get url without domain EX: if you in `http://127.0.0.1:8000/users/3`, `path` method will return `users/3`, `url` method returns the url WITHOUT the query string, and `fullUrl` method return the url WITH a query string  */
+        /* `path` method get url without domain EX: if you in `http://127.0.0.1:8000/users/3`, `path` method will return `users/3`, `url` method returns the url WITHOUT the query string, and `fullUrl` method return the url WITH a query string */
         if (!str_contains($request->path(), 'requestMethods') and !str_contains($request->url(), 'requestMethods')) {
             return false;
         }
 
-        /* `is` method return boolean indicating wheter or NOT, NOTE that the `*` means anything */
         $response = 'NOT INITIALIZED';
+        /* `is` method return boolean indicating wheter or NOT, NOTE that the `*` means anything */
         $response = $request->is('*com') ?: 'INVALID'; // This is good way to check about something
         $response ??= $request->is('*com');           // But this is better way to check about something
 
