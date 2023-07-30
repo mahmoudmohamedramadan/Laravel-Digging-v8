@@ -61,7 +61,7 @@ class AuthServiceProvider extends ServiceProvider
         /* you can also define your gate without closure */
         Gate::define('delete-user', 'App\\Models\\User@checkAbility');
 
-        /* you can also pass the closure to point to specific method in the `CommentPolicy`(actually NOT exists) */
+        /* you can also pass the closure to point to specific method in the `CommentPolicy`(actually not exists) */
         // Gate::define('delete-user', [\App\Policies\CommentPolicy::class, 'create']);
 
         Gate::define('create-comment', function ($user, $comment) {

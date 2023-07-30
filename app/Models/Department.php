@@ -13,7 +13,7 @@ class Department extends Model
         'name',
     ];
 
-    /* `appends` property used to append accessor with returned data */
+    // `appends` property used to append an accessor with the returned data
     protected $appends = [
         'full_info'
     ];
@@ -34,7 +34,7 @@ class Department extends Model
     //     return $this->morphedByMany(User::class, 'departmentable');
     // }
 
-    /* `newCollection` is a function in a `Model` class that allows you to create a custom collection function */
+    /* `newCollection` is a method in a `Model` class that allows you to create your own collection method */
     public function newCollection(array $models = [])
     {
         return new DepartmentCollection($models);

@@ -16,7 +16,7 @@ class PhoneNumberRule implements Rule
         //
     }
 
-    /* in case of the validation which you need does NOT exists in laravel you can create a custom rule out of the box */
+    // in case of the validation which you need does not exists in laravel you can create a custom rule out of the box
 
     /**
      * Determine if the validation rule passes.

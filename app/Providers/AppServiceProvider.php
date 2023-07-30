@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\{Student, LocalClient, Macros\StrMacroable};
-use Illuminate\Support\{Str, Facades\DB, Facades\View, Facades\Blade, Facades\Queue, Facades\Storage, Facades\Response, ServiceProvider};
-use Illuminate\{Pagination\Paginator, Filesystem\Filesystem, Queue\Events\JobFailed, Database\Eloquent\Relations\Relation, Validation\Rules\Password};
+use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Support\{ServiceProvider, Facades\View};
+use Illuminate\Support\{Str, Facades\DB, Facades\Blade, Facades\Queue, Facades\Storage, Facades\Response};
+use Illuminate\{Pagination\Paginator, Filesystem\Filesystem, Queue\Events\JobFailed, Validation\Rules\Password};
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
             return new Student;
         });
 
-        /* the difference between `singleton` and `bind` is that `bind` every time I ask for something it will return a new instance, BUT WITH `singleton` it gives me one instance every time I asked for an instance */
+        /* the difference between `singleton` and `bind` is that `bind` every time I ask for something it will return a new instance, BUT with `singleton` it gives me one instance every time I asked for an instance */
         // $this->app->singleton('student', function() {
         //     return new Student;
         // });
@@ -37,7 +39,7 @@ class AppServiceProvider extends ServiceProvider
         // ]);
     }
 
-    /* if your service provider is only going to register binding in the container, but NOT perform any other bootstrapping, you can `defer` its registration, which means they won't run unless one of their binding is explicitly requested from the container, This can speed up your application's average time to bootstrap
+    /* if your service provider is only going to register binding in the container, but not perform any other bootstrapping, you can `defer` its registration, which means they won't run unless one of their binding is explicitly requested from the container, This can speed up your application's average time to bootstrap
 
     if you want to defer your service provider's registerations first implement the `Illuminate\Contracts\Support\DeferrableProvider` interface */
 
@@ -48,18 +50,18 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        /* In Laravel, you can actually prevent lazy loading. This feature is incredibly useful because it can help to ensure that the relationships are eager loaded. As a result of this, it can improve performance and reduce the number of queries that are made to the database. It's super simple to prevent lazy loading. All we need to do is add the */
+        /* In Laravel, you can actually prevent lazy loading. This feature is incredibly useful because it can help you to ensure that the relationships are eager loaded. As a result of this, it can improve performance and reduce the number of queries that are made to the database. It's super simple to prevent lazy loading. All we need to do is add the */
         // User::preventsLazyLoading();
 
         /* Share method used to share value with key to all views which you have and to use it */
         // View::share('users', User::get());
 
-        /* Composer method do what share method do but composer you specify the view whcih you wan to share this value */
+        /* Composer method do what share method do but composer you specify the view whcih you want to share this value */
         // View::composer('home', function ($view) {
         //     $view->with('users', User::get());
         // });
 
-        /* You can also use a class instead of a closure */
+        // You can also use a class instead of a closure
         // View::composer('home', UserComposer::class);
 
         /* The difference between `creators` are very similar to view `composers`; however, they are executed immediately after the view is instantiated instead of waiting until the view is about to render */
@@ -67,7 +69,7 @@ class AppServiceProvider extends ServiceProvider
         //     return $view->share('users', User::get());
         // });
 
-        /* You can also use a class instead of a closure */
+        // You can use a class instead of a closure
         // View::composer('home', UserCreator::class);
 
         // Blade::component('book-component', 'modal');
@@ -77,7 +79,7 @@ class AppServiceProvider extends ServiceProvider
             return auth()->guest();
         });
 
-        /* You can also pass anything for that directive */
+        // You can pass anything for that directive
         Blade::directive('welcomeUser', function ($welcomeString) {
             return $welcomeString;
         });
@@ -90,7 +92,7 @@ class AppServiceProvider extends ServiceProvider
         //     dump('user is created successfully');
         // });
 
-        /* In general view you can do it >> Modelname::eventName() */
+        // In general view you can do it >> Modelname::eventName()
         // \App\Models\User::saved(function($user) {});
         // \App\Models\User::saving(function($user) {});
         // \App\Models\User::updated(function($user) {});
@@ -98,7 +100,7 @@ class AppServiceProvider extends ServiceProvider
         // \App\Models\User::deleted(function($user) {});
         // \App\Models\User::deleting(function($user) {});
 
-        /* `restoring` and `restored` method are familier with `softDeletes` and when you try to restore deleted row these methods will be triggered */
+        /* `restoring` and `restored` methods are familier with `softDeletes` and when you try to restore deleted row these methods will be triggered */
         // \App\Models\User::restoring(function ($user) {
         //     dump('user is restoring now after SoftDeletes');
         // });
@@ -107,17 +109,17 @@ class AppServiceProvider extends ServiceProvider
         //     dump('user is restored successfully');
         // });
 
-        /* when you retrieved eloquent instance this function will be triggered */
+        // when you retrieved eloquent instance this function will be triggered
         // \App\Models\User::retrieved(function ($user) {
         //     dump($user);
         // });
 
-        /* Also here you can create your custom reponse using macros, Note that we actually does NOT have `customJSON` BUT whenever you call `customJSON` this closure will be returned */
+        /* Here you can create your custom reponse using macros, Note that: we actually does not have `customJSON` BUT whenever you call `customJSON` this closure will be triggered */
         Response::macro('customJSON', function ($users) {
             return response(json_encode($users))->withHeaders(['Content-Type' => 'application/json']);
         });
 
-        /* Here we will use the `mixin` feature in the `Macroable` trait */
+        // Here we will use the `mixin` feature in the `Macroable` trait
         Str::macro('customSplit', function ($str) {
             return 'ABC-' . substr($str, 0, 3) . '-' . substr($str, 3);
         });
@@ -140,7 +142,7 @@ class AppServiceProvider extends ServiceProvider
             // $event->exception
         });
 
-        /* With a new laravel version comes and support `TailwindCSS` in UI so if you want to specify that you want to use `Bootstrap` write the below line */
+        /* With a new laravel version comes and support `Tailwind-CSS` in UI so if you want to specify that you want to use `Bootstrap` write the below line */
         Paginator::useBootstrap();
 
         /* If you want to override the pagination view do like so */

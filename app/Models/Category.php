@@ -8,6 +8,8 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     /* If you need to customize the names of the columns used to store the timestamps, you may define `CREATED_AT` and `UPDATED_AT` constants on your model */
     // const CREATED_AT = 'creation_at';
     // const UPDATED_AT = 'updated_at';

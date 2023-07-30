@@ -40,7 +40,7 @@ class AddColumnToUsersTable extends Migration
             /* you can also specify a default value for `timestamp` while updating ONLY */
             // $table->timestamp('test_update_timestamp')->useCurrentOnUpdate();
 
-            /* when you specify the foreign key WITH constraints you can NOT delete the parent data WITHOUT deleting the child data at the first so, we can use `onDelete` method and pass the `cascade` attribute and then will delete the child data then the parent data, while `restrict` will NOT let you delete the parent model until you remove all the related child model */
+            /* when you specify the foreign key with constraints you can not delete the parent data WITHOUT deleting the child data at the first so, we can use `onDelete` method and pass the `cascade` attribute and then will delete the child data then the parent data, while `restrict` will not let you delete the parent model until you remove all the related child model */
             // $table->foreignId('foreign_id')->constrained()->onDelete('cascade');
             // $table->foreignId('foreign_id')->constrained()->cascadeOnDelete();
             // $table->foreignId('foreign_id')->constrained()->onDelete('restrict');

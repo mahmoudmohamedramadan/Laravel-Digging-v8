@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 
-class UserApiController extends Controller
+class UserAPIController extends Controller
 {
     /**
      * Display a listing of the resource.

@@ -12,7 +12,7 @@ you can also take a look this project image
 
 {{-- <img src="{{ asset('user_1.png') }}"> --}}
 
-{{-- Note that this lower way does NOT work WITH markdown files --}}
+{{-- Note that this lower way does not work with markdown files --}}
 {{-- <img src="{{ $message->embed(public_path('user_1.png')) }}"> --}}
 {{-- <img src="{{ $message->embedData(public_path('user_1.png')) }}"> --}}
 

@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rules\Password;
+use Illuminate\{Http\Request, Validation\Rules\Password};
 use App\{Models\User, Scopes\GlobalScope, Http\Controllers\Controller};
 use Illuminate\Support\{MessageBag, Facades\Hash, Facades\Cache, Facades\Validator};
 
@@ -18,13 +17,13 @@ class UserController extends Controller
     {
         // $users = User::where('email', 'like', '%.com%')->get();
 
-        /* when you try to get all users, the global scope will be called automatically */
+        // when you try to get all users, the global scope will be called automatically
         // $users = User::get();
 
         /* here we can return only these columns, NOTE that when you pass two parameters to pluck method will return an array with a key of second parameter and value of first one like this 1 => "Mahmoud Mohamed Ramadan" */
         // $users = User::all()->pluck('name', 'id');
 
-        /* we can pass columns name which we need only */
+        // we can pass columns name which we need only
         // $users = User::all(['id', 'name']);
 
         /* to remove global scope you can use three ways, the first one is to specify the name of the global scope */
@@ -38,7 +37,7 @@ class UserController extends Controller
 
         // $users = User::paginate(10);
 
-        /* you can also append some qurey string to the exists using `appends` method */
+        // you can also append some qurey string to the exists using `appends` method
         // $users->appends(['sort' => 'asc']);
 
         // $users = User::withoutGlobalScope(GlobalScope::class)->simplePaginate(10);
@@ -46,20 +45,20 @@ class UserController extends Controller
         /* The cursor is an encoded string containing the location that the next paginated query should start paginating and the direction that it should paginate */
         // $users = User::withoutGlobalScope(GlobalScope::class)->cursorPaginate(10);
 
-        /* to know more about the difference between `simplePagination` and `cursorPagination` https://dev.to/jackmarchant/offset-and-cursor-pagination-explained-b89 */
+        /* to know more about the difference between `simplePagination` and `cursorPagination`: https://dev.to/jackmarchant/offset-and-cursor-pagination-explained-b89 */
 
         /* `cursorPagination` How this is working,...Suppose you have 20 records and want to show 5, the system works from  top to bottom and then from bottom to top and so on? The first query will tell you, give me such and such, since the ID was less than 6, so he answers from the first 1 to 5, but I want to keep thinking about the last row I am standing in to answer from him, and he says I will answer from 1 to 6, but in descending order and my limit is 5 again, he will tell you So what do you say when it is greater than 5 and my limit is 5 and the order is ascending to the target? */
 
-        /* if you want to append a query string with the current page number use `withQueryString` */
+        // if you want to append a query string with the current page number use `withQueryString`
         // $users = User::withoutGlobalScope(GlobalScope::class)->paginate(10)->withQueryString();
 
-        /* the second one is to specify the name of global scopes */
+        // the second one is to specify the name of global scopes
         // $users = User::withoutGlobalScopes([GlobalScope::class])->get();
 
-        /* the third one is to remove all global scopes without passing the name of scopes */
+        // the third one is to remove all global scopes without passing the name of scopes
         // $users = User::withoutGlobalScopes()->get();
 
-        /* first param is the key and the second is time to leave[forgot] and the third is callback */
+        // first param is the key and the second is time to leave[forgot] and the third is callback
         // return Cache::remember('users', 20, function() {
         //     return User::get(['name']);
         // });
@@ -85,8 +84,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        /* `firstOrCreate` method will attempt to find record using given key/value pairs, if this user not found a record will be inserted
-        NOTE that this method is look like `firstOrNew` but the difference that `firstOrNew` has not presisted yet in database and you should save it manually using `save` method */
+        /* `firstOrCreate` method will attempt to find record using given key/value pairs, if this user not found a record will be inserted, NOTE that: this method is look like `firstOrNew` but the difference that `firstOrNew` has not persisted yet in database and you should save it manually using `save` method */
         // $user = User::firstOrCreate($this->getUserData($request));
 
         // $user = User::firstOrNew(
@@ -107,10 +105,10 @@ class UserController extends Controller
         // $user = User::make($this->getUserData($request));
         // $user->save();
 
-        /* you can use `firstOr` function to determine what the action will happen in case of the user doesn't exist */
+        // you can use `firstOr` function to determine what the action will happen in case of the user doesn't exist
         // return User::where('id', 1000)->firstOr(fn () => abort(404));
 
-        /* if the password input not exist so abort the request, `abort_unless` is opposite to `abbort_if` */
+        // if the password input not exist so abort the request, `abort_unless` is opposite to `abbort_if`
         abort_unless($request->has('password'), 404);
         // abort_if(!$request->has('password'), 405);
 
@@ -125,10 +123,10 @@ class UserController extends Controller
         // $bag = new MessageBag($validator);
 
         /* or you can send error messages ONLY */
-        $bag  = new MessageBag($validator->errors()->messages());
+        $bag = new MessageBag($validator->errors()->messages());
 
         if ($validator->fails()) {
-            /* So you can pass to `withErrors` method the MessageBag result */
+            // So you can pass to `withErrors` method the MessageBag result
             return back()->withErrors($bag, 'createUserErrors')->withInput();
 
             /* But what if you have two forms in one page like singin and singup how you can differentiate them ? To differentiate them pass the second paramter, the second one express about the name of MessageBag and to deal with this key(second parameter) in blade file use this line `$errors->messageBagName->first('inputName')` */
@@ -137,7 +135,7 @@ class UserController extends Controller
 
         $user = User::create($this->getUserData($request));
 
-        /* before embarking use action method, make sure that there is a route visit this controller and method */
+        // before embarking use action method, make sure that there is a route visit this controller and method
         // return redirect()->action('UserController@show', ['user' => $user->id]);
 
         /* tuple form */
@@ -165,10 +163,10 @@ class UserController extends Controller
     {
         return view('user.edit', ['user' => $user]);
 
-        /* `secure` method like `redirect()->to()` BUT in HTTPS connection */
+        // `secure` method like `redirect()->to()` BUT in HTTPS connection
         // return redirect()->secure('home');
 
-        /* `home` method redirects you to route named `home` */
+        // `home` method redirects you to route named `home`
         // return redirect()->home();
     }
 
@@ -197,7 +195,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        /* destroy method take an array of id's rows which you want to delete */
+        // destroy method take an array of id's rows which you want to delete
         // return User::destroy([20, 24]);
 
         /* now after we have added the `softDelete` trait and try to delete the user he will not delete permanently but the `deleted_at` column will be filled with the timestamp of the deletes time */
@@ -208,7 +206,7 @@ class UserController extends Controller
 
         return redirect('/users');
 
-        /* or you can redirect using `to` method */
+        // or you can redirect using `to` method
         // return redirect()->to('/users');
     }
 
@@ -248,17 +246,18 @@ class UserController extends Controller
      */
     public function restoreUser(Request $request)
     {
-        /* NOTE that we could NOT use route binding WITH `get` method because user is already deleted and we can NOT find him So, we used the `onlyTrashed` method to search in deleted users */
+        /* NOTE that we could not use route binding with `get` method because user is already deleted and we can not find him So, we used the `onlyTrashed` method to search in deleted users */
         $user = User::onlyTrashed()->get()->find($request->route()->parameter('user'));
 
-        /* now when we want to see the soft delete users write `withTrashed` */
+        // now when we want to see the soft delete users write `withTrashed`
         // return User::withTrashed()->get();
 
-        /* when we want to get trashed users only use `onlyTrashed` */
+        // when we want to get trashed users only use `onlyTrashed`
         // return User::onlyTrashed()->get();
 
-        if ($user->trashed()) { /* to check user if soft deleted or not use `trashed` method */
-            /* to restore soft deleted use `restore` method */
+        // to check user if soft deleted or not use `trashed` method
+        if ($user->trashed()) {
+            // to restore soft deleted use `restore` method
             $user->restore();
         }
 
@@ -276,7 +275,7 @@ class UserController extends Controller
         $user = User::onlyTrashed()->get()->find($request->route()->parameter('user'));
 
         if ($user->trashed()) {
-            /* `forceDelete` method used to delete user permentely */
+            // `forceDelete` method used to delete user permentely
             $user->forceDelete();
         }
 

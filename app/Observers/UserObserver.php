@@ -14,7 +14,7 @@ class UserObserver
      */
     public function created(User $user)
     {
-        /* do something here that wil be triggered when the user is created, NOTE that the `$user` parameter refers to the user that we've created */
+        /* do something here that wil be triggered when the user is created, NOTE: the `$user` parameter refers to the user that we've created */
         // dd("{$user->name} is created successfully!");
     }
 

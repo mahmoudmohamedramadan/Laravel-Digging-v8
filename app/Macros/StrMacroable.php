@@ -4,7 +4,7 @@ namespace App\Macros;
 
 class StrMacroable
 {
-    /* we'll NOT need to accepts the `$str` param in the function we just take whole the closure of the second param from the `macro` method */
+    /* We'll not need to accept the `$str` param in the function we just take whole the closure of the second param from the `macro` method */
     public function customSplitOne()
     {
         return function ($str) {

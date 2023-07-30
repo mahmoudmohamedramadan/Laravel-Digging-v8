@@ -1,11 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Custome Rule')
+@section('title', 'Custom Rule')
 
 @section('content')
-
-<form action="{{ url('custome_rule_custome_request') }}" method="POST">
-
+<form action="{{ url('custom-rule-custom-request') }}" method="POST">
+    
     <div class="row">
         <div class="col-md-6">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -38,5 +37,4 @@
         </div>
     </div>
 </form>
-
 @stop

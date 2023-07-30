@@ -15,8 +15,8 @@ class ExampleTest_12 extends TestCase
      */
     public function test_all_users_route_should_be_cahced()
     {
-        /* imagine we have a controller method that uses a facade that's NOT one of the fakable systems we've already covered; we want to test that controller method and assert that a certian facade call was made
-        ++++ Take a look at index method in UserController.php */
+        /* Imagine we have a controller method that uses a facade that's not one of the fakable systems we've already covered; we want to test that controller method and assert that a certian facade call was made
+        ++++ Take a look at `index` method in `UserController.php` */
 
         $user = User::factory()->create();
 
@@ -26,7 +26,7 @@ class ExampleTest_12 extends TestCase
 
         $this->get('users')->assertJsonFragment(['name' => $user->name]);
 
-        /* you can also use your facades as spies, which means you can set your assertions at the end and use `shouldHaveReceived` instead of `shouldReceive` */
+        /* You can also use your facades as spies, which means you can set your assertions at the end and use `shouldHaveReceived` instead of `shouldReceive` */
     }
 
     public function test_user_should_be_cached_after_visit()

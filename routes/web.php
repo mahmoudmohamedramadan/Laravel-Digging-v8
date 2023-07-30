@@ -2,14 +2,14 @@
 
 use App\Facades\StudentFacade;
 use App\Http\Resources\DogResource;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\{Auth, Http, Route};
-use App\Http\Controllers\{Dashboard\PostController, Dashboard\UserController, LoginController, Dashboard\CommentController, Dashboard\UserCommentsController};
+use App\Http\Controllers\Dashboard\{PostController, UserController, CommentController, UserCommentsController};
 
-/* `verify` that passed to `routes` method of the `Auth` used to enable Laravel's email verification service, which requires new users to verify email address to have access to dashboard, NOTE that there is a verified middleware in `\App\Http\Kernel.php` to check if the email is verified or NOT also in the routes method you can prevent user from `registration` and/or `password resetting ` */
+/* `verify` that passed to `routes` method of the `Auth` used to enable Laravel's email verification service, which requires new users to verify email address to have access to dashboard, NOTE that there is a verified middleware in `\App\Http\Kernel.php` to check if the email is verified or not also in the routes method you can prevent user from `registration` and/or `password resetting ` */
 
 Auth::routes(['verify' => false, 'register' => true, 'reset' => false]);
 
-/* add custom logout route */
 Route::get('logout', [LoginController::class, 'logout']);
 Route::get('logoutOtherDevices', function () {
     /* `logoutOtherDevices` method log the user out from all devices which he used to login and this method takes two parameters the first one the password of current user and second the attribute which you want to use it to pass attribute's value NOTE that after pass your password it'll be hashed again */
@@ -26,14 +26,14 @@ Route::view('/', 'welcome')->name('welcome');
 //     Route::post('/', [LoginController::class, 'login'])->name('users.login');
 // });
 
-/* You may use the `controller` method to define the common controller for all of the routes within the group */
+// You may use the `controller` method to define the common controller for all of the routes within the group
 Route::controller(LoginController::class)->group(function () {
     Route::get('/user/login', 'loginForm')->name('users.formLogin');
     Route::post('/user/login', 'login')->name('users.login');
 });
 
 Route::middleware('auth')->group(function () {
-    /* here we used the cutom gate that we created in `AuthServiceProvider` */
+    // here we used the cutom gate that we created in `AuthServiceProvider`
     Route::resource('users', UserController::class)->middleware('can:update-user');
     Route::resources([
         'posts' => PostController::class,
@@ -46,8 +46,8 @@ Route::middleware('auth')->group(function () {
     Route::group(['prefix' => 'posts/{post}/comments'], function () {
         Route::post('/', [CommentController::class, 'store'])->name('comments.store');
 
-        /* NOTE that we can pass to custom gate parameter like comment [`bounded route model`] after comma
-        BUT what if NOT required to pass a model instance like `create` So, you can pass a model like `Comment` */
+        /* NOTE that: we can pass to custom gate parameter like comment [`bounded route model`] after comma
+        BUT what if not required to pass a model instance like `create` So, you can pass a model like `Comment` */
         Route::get('create', function () {
             dd('create comment route');
         })->middleware('can:create-comment,App\\Models\\Comment');
@@ -76,7 +76,7 @@ Route::get('/redirect', function () {
         'scope' => '',
     ]);
 
-    /* NOTE that the url in the `redirect` was belongs to the service provider(http://laravel-digging.com/oauth/autorize) BUT NOT all websites uses passport package to redirect to `oauth/authorize` So you should always redirect client to your project which actually uses passport package */
+    /* NOTE that the url in the `redirect` was belongs to the service provider(http://laravel-digging.com/oauth/autorize) BUT not all websites uses passport package to redirect to `oauth/authorize` So you should always redirect client to your project which actually uses passport package */
     return redirect('http://laravel-digging.com/oauth/authorize?' . $query);
 });
 
@@ -94,19 +94,19 @@ Route::get('/passport/callback', function () {
 });
 
 Route::get('dogCollection', function () {
-    /* here we will call `DogResource` directly */
+    // here we will call `DogResource` directly
     // return new DogResource(\App\Models\Dog::find(1));
 
     /* here we will call `DogResource` directly, and the difference BETWEEN the below and the upper line is that in case we call `collection` we must pass an array BUT the upper line we must pass a model instance */
     return DogResource::collection(\App\Models\Dog::get());
 
-    /* also you can use the below line, and in that case the pagination data will be printed */
+    // You can use the below line, and in that case the pagination data will be printed
     // return DogResource::collection(\App\Models\Dog::paginate(10));
 
-    /* the below line is equal to the upper line */
+    // The below line is equal to the upper line
     // return new \App\Http\Resources\DogCollection(\App\Models\Dog::get());
 
-    /* you can do this form also */
+    // You can do this form also
     // return DogResource::collection(Post::get());
 });
 
@@ -115,9 +115,9 @@ Route::get('macroableStr', function () {
     return \Illuminate\Support\Str::customSplitOne('00064654654');
 });
 
-/* you can use this form in case you have many routes have the same closure */
+// You can use this form in case you have many routes have the same closure
 $facadeClosure = function () {
-    /* you can use `printStudenData` as if it is statically defined using facades */
+    // You can use `printStudenData` as if it is statically defined using facades
     return StudentFacade::printStudenData();
 };
 Route::get('customFacade', $facadeClosure);

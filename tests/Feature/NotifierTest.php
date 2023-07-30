@@ -18,9 +18,9 @@ class NotifierTest extends TestCase
      */
     public function test_notifier_admins()
     {
-        /* we have a class named `Notifier` that we're testing, it has a dependency named `SlackClient` that does something that we do NOT want it to do when we're running our tests, it sends actual Slack notifications.So we're going to mock it
+        /* We have a class named `Notifier` that we're testing, it has a dependency named `SlackClient` that does something that we do not want it to do when we're running our tests, it sends actual Slack notifications.So we're going to mock it
 
-        We use Mockery to get a mock of our `SlackClient` class. Of we do NOT care about what happens to that class--if it should simply exist to keep our tests from throwing errors-- we can just use `shouldIgnoreMissing` */
+        We use Mockery to get a mock of our `SlackClient` class. Of we do not care about what happens to that class--if it should simply exist to keep our tests from throwing errors-- we can just use `shouldIgnoreMissing` */
 
         $slackMock = Mockery::mock(new SlackClient())->shouldIgnoreMissing();
 
@@ -42,7 +42,7 @@ class NotifierTest extends TestCase
         $notifier = new Notifier($slackMock);
         $notifier->notifyAdmins('Test Message');
 
-        /* also a convenient shortcut to creating and binding a Mockery instance to the container */
+        // A convenient shortcut to creating and binding a Mockery instance to the container
         Mockery::mock(new SlackClient, function ($mock) {
             $mock->shouldReceive()->send();
         });

@@ -9,7 +9,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 
 class NotificationsGuide extends Notification implements ShouldQueue
 {
-    /* First, wr're going to pass relevant data into the constructor. Second, there's `via` method that allows us to define, for a given user, which notification channels to use ($notifiable represents whatever entities you want to notify in your syste) NOTE that every model will extends from `Authenticatable` will represents a `notifiable` instance also, NOTE that `Notifiable` trait that which NOT allow you to deal WITH `$notifiable` BUT is allow you to use some methods like `notify`, `markAsRead`,...etc. The thing that allows you to deal WITH `$notifiable` is to extends the `Authenticatable` parent class */
+    /* To begin with, we're going to pass the relevant data to the constructor. In addition, there is a `via` method that allows us to define which notification channels should be used [$notifiable represents whatever entities you want to notify in your system], NOTE that: every model will extends from `Authenticatable` will represents a `notifiable` instance, NOTE that also: `Notifiable` trait not allows you to deal with `$notifiable` but allows you to use some methods like `notify`, `markAsRead`,...etc. The thing that allows you to deal with `$notifiable` is to extends the `Authenticatable` parent class */
 
     use Queueable;
 
@@ -31,13 +31,13 @@ class NotificationsGuide extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        /* here you can return an array directly */
+        // Here you can return an array directly
         // return ['mail'];
 
-        /* or use the method in you notifiable model, NOTE that this method exists in a `User` model */
+        /* You can use the methods in you notifiable model, NOTE that: this method exists in a `User` model */
         return $notifiable->notifiableMethods();
 
-        /* you can use `pascal` case Or `snake` case */
+        // You can use `pascal` case Or `snake` case
         return $notifiable->notifiable_methods;
     }
 
@@ -49,7 +49,7 @@ class NotificationsGuide extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        /* you can also change the style of the default template to be an `error` message, which uses a bit of different language and change the primary button to red just add a call to the `error` */
+        /* You can change the style of the default template to be an `error` message, which uses a bit of different language and change the primary button to red just add a call to the `error` */
         return (new MailMessage)
             ->markdown('vendor.notifications.email', ['user' => $notifiable->name])
             ->error();

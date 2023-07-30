@@ -57,7 +57,7 @@
             <input type="password" class="form-control" name="password">
             {{-- you can also specify the name of the `Error Bag` by passing the second parameter of the `error`
             directive --}}
-            @error('empasswordail', 'createUserErrors')
+            @error('password', 'createUserErrors')
             <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>

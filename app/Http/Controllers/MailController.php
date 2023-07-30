@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Mail;
-use App\{Models\User, Mail\FirstMail};
+use App\{Models\User, Mail\GettingStarted};
 
 class MailController extends Controller
 {
-    /* there are two different syntaxes in Laravel for sending mail: `classic` and `mailable`. NOTE that the `mailable` syntax is the preferred */
+    /* There are two different syntaxes in Laravel for sending mail: `classic` and `mailable`. NOTE that the `mailable` syntax is the preferred */
 
     public function index()
     {
@@ -19,13 +19,13 @@ class MailController extends Controller
 
         $user = User::findOrFail(1);
 
-        Mail::to($user)->send(new FirstMail($user));
+        Mail::to($user)->send(new GettingStarted($user));
 
-        /* or you can use the below form */
+        // You can write syntax like so:
         // Mail::to($user)
         //     ->cc(User::find(2))
         //     ->bcc(User::find(1))
-        //     ->send(new FirstMail($user));
+        //     ->send(new GettingStarted($user));
 
         return 'done...';
     }

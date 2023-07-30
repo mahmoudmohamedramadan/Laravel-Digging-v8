@@ -1,9 +1,6 @@
 <?php
 
-use App\Models\{
-    Dog,
-    User,
-};
+use App\Models\{Dog, User};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\DogAPIController;
@@ -13,8 +10,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('sendHeader', function () {
-    /* any request to GitHub's API will return headrs detailing the current user's rate limiting status
-    x-ratelimit-limit: 5000 */
+    /* Any request to GitHub's API will return headrs detailing the current user's rate limiting status
+    `x-ratelimit-limit: 5000` */
     return response(Dog::get())->header('X-Greatness-Index', '12');
 });
 
@@ -23,12 +20,13 @@ Route::get('readHeader', function (Request $request) {
 });
 
 Route::get('sortAPI', function (Request $request) {
-    /* there isn't ant api tool for sorting */
+    // There is not any api tool for sorting
     // $sortColumn = $request->input('sort', 'id');
     // $sortDirection = str_starts_with($sortColumn, '-') ? 'desc' : 'asc';
 
     // return Dog::orderBy($sortColumn, $sortDirection)->paginate(10);
-    /* multiple sort key */
+
+    // Multiple sort key
     $sorts = explode(', ', $request->input('sort', 'id'));
 
     $query = Dog::query();
@@ -60,7 +58,6 @@ Route::get('transformer/users/{userId}', function ($userId) {
 });
 
 Route::get('nestingAndRelationships/users/{userId}', function ($userId) {
-    /* read this https://apisyouwonthate.com/ */
     explode(', ', request()->input('include', ''));
 
     return new App\NestingAndRelationships(User::findOrFail($userId));

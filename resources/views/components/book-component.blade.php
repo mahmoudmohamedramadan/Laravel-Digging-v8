@@ -4,7 +4,7 @@
         iusto placeat atque? Voluptatem nobis numquam quasi accusamus velit ex illum voluptatibus adipisci a.</h3>
 
     {{ $slot }}
-    {{ $tcustomeSlot }}
+    {{ $tcustomSlot }}
 </div>
 
 @modal

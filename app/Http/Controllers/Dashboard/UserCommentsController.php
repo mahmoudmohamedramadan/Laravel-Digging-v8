@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 class UserCommentsController extends Controller
 {
     /**
-     * Show the commect for the given user id
+     * Show the comments of the given user id.
      *
      * @param  \App\models\User  $user
      * @param  \App\models\Comment  $comment

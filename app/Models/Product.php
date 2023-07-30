@@ -8,6 +8,8 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     /* By default eloquent loads relationships using `lazy loading`, this means When accessing Eloquent relationships as properties, the related models are "lazy loaded". This means the relationship data is not actually loaded until you first access the property */
 
     // $products = \App\Models\Product::get();
@@ -26,9 +28,9 @@ class Product extends Model
     {
         /* `withTimestamps` used with the`belongsToMany` relationship not with the `hasMany` and it will show the timestamps of the pivot table and the `withPivot` will return the pivot table data of the specific product, via `as` method you can change the intermediate table name NOTE that also the default name of the intermediate table name is `pivot` */
         return $this->belongsToMany(Category::class, 'category_product', 'product_id', 'category_id')
-            ->as('category_product_pivot_tabel')
+            ->as('category_product_pivot_table')
             ->withTimestamps()
-            ->withPivot('product_id')
+            ->withPivot('product_id', 'status')
             ->wherePivot('id', '>', 0)
             ->wherePivotNotNull('created_at');
 

@@ -22,7 +22,7 @@ class ExampleTest_8 extends TestCase
             return $job;
         });
 
-        /* assert a job was NOT dispathced */
+        // Asserts a job was not dispathced
         Bus::assertNotDispatched(TestJob::class);
     }
 
@@ -35,13 +35,13 @@ class ExampleTest_8 extends TestCase
             return $job;
         });
 
-        /* assert a job was pushed to a given queue named `queue-name` */
+        // Asserts a job was pushed to a given queue named `queue-name`
         Queue::assertPushedOn('queue-name', TestJob::class);
 
-        /* assert a job was pushed twice */
+        // Asserts a job was pushed twice
         Queue::assertPushed(TestJob::class, 2);
 
-        /* assert a job was NOT pushed */
+        // Asserts a job was not pushed
         Queue::assertNotPushed(TestJob::class);
     }
 }

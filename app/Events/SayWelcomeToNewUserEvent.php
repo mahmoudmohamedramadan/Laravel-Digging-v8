@@ -7,7 +7,7 @@ use Illuminate\{Queue\SerializesModels, Foundation\Events\Dispatchable, Contract
 
 class SayWelcomeToNewUserEvent
 {
-    /* `Dispatchable` allows you to dispatch this event */
+    // `Dispatchable` allows you to dispatch this event
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $userId;

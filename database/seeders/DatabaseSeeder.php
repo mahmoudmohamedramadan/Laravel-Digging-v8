@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
         /* `call` method used to method to run a specific seeder class also, allowing you to control the seeding order */
         $this->call(UserSeeder::class);
 
-        /* you can also pass an array WITH seeders classes to the `call` method */
+        /* you can also pass an array with seeders classes to the `call` method */
         // $this->call([
         //     UserSeeder::class,
         //     PostSeeder::class,

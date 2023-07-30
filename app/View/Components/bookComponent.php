@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class bookComponent extends Component
+class BookComponent extends Component
 {
     /**
      * Create a new component instance.

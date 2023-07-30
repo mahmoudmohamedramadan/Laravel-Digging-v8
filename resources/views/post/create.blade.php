@@ -13,7 +13,9 @@
     @if (session()->has('success'))
     <div class="flex justify-center">
         <div class="col-md-6">
-            <button class="btn btn-lg btn-block btn-outline-success mb-2">{{ session()->get('success') }}</button>
+            <button class="btn btn-lg btn-block btn-outline-success mb-2">
+                {{ session()->get('success') }}
+            </button>
         </div>
     </div>
     @endif

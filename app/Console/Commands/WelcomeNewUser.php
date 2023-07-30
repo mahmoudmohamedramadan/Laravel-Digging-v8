@@ -2,26 +2,26 @@
 
 namespace App\Console\Commands;
 
-use App\{Models\User, Mail\WelcomeNewUserMail};
 use Illuminate\{Console\Command, Support\Facades\Mail};
+use App\{Models\User, Mail\WelcomeNewUser as WelcomeNewUserMail};
 
 class WelcomeNewUser extends Command
 {
-    /* If you want to write a signature while writing the command artisan write `--command=your_signature` */
+    // If you want to write a signature while creating the command class pass the next option `--command=your_signature`
 
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'mail:newuser {userId}';
+    protected $signature = 'new-user:welcome {userId}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'This command for welcome every new user via email';
+    protected $description = 'Greeting the new user with the given id via email';
 
     /**
      * Create a new command instance.
@@ -33,8 +33,6 @@ class WelcomeNewUser extends Command
         parent::__construct();
     }
 
-    /* When you run signature the handle method will triggered */
-
     /**
      * Execute the console command.
      *
@@ -43,7 +41,7 @@ class WelcomeNewUser extends Command
     public function handle()
     {
         // User::get()->each(function ($user) {
-        //     Mail::to($user)->send(new WelcomeNewUserMail);
+        //     Mail::to($user)->send(new WelcomeNewUser);
         // });
 
         // Mail::send('view_file', ['your_data'], function ($message) {
@@ -53,12 +51,9 @@ class WelcomeNewUser extends Command
 
         $userId = $this->argument('userId');
 
-        Mail::to(User::findOrFail($userId))->send(new WelcomeNewUserMail(User::find($userId)->name));
+        Mail::to(User::findOrFail($userId))
+            ->send(new WelcomeNewUserMail(User::find($userId)->name));
 
-        if (!Mail::failures()) {
-            return $this->info('email sent successfully');
-        }
-
-        return $this->warn('An error happens while sending the email');
+        return $this->warn('An error happens while sending the email!');
     }
 }

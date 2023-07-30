@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\{Model, Factories\HasFactory};
 
 class Admin extends Model
 {
-    /* Each method in `CheckAuthenticatedUser` trait and its name was `boot{TraitName}` will be auto-called as a `boot` */
+    /* Each method in the `CheckAuthenticatedUser` trait and its name was `boot{TraitName}` will be auto-called as a `boot` */
     use HasFactory, CheckAuthenticatedUser;
 
     protected $guarded = [];
 
-    /* the way of using trait's method is equal to this method */
+    // The way of using trait's method is equal to this method
     protected static function boot()
     {
         parent::boot();

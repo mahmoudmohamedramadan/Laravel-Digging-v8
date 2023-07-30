@@ -9,9 +9,9 @@ class CommentController extends Controller
 {
     public function __construct(Request $request)
     {
-        /* `hasValidSignature` method exists in `Kernel.php` Middleware */
+        // `hasValidSignature` method exists in `Kernel.php` Middleware
         if ($request->hasValidSignature()) {
-            /* `away` redirects you to a domain outside of your application */
+            // `away` method used to redirects you to a domain outside of your application
             return redirect()->away('https://google.com');
         }
     }
@@ -23,7 +23,6 @@ class CommentController extends Controller
      */
     public function index()
     {
-        /* `ScopedComments` is a local scope */
         $comments = Comment::ScopedComments(0, 0)->get();
 
         return view('comment.index', ['comments' => $comments]);
@@ -36,20 +35,20 @@ class CommentController extends Controller
      */
     public function create()
     {
-        /* `allows` method check if the current user has ability to createa comment, NOTE that you are NOT required to pass the currently authenticated user because Laravel do that automatically */
+        /* `allows` method check if the current user has ability to createa comment, NOTE that you are not required to pass the currently authenticated user because Laravel do that automatically */
         if (Gate::allows('create-comment')) {
             dd('welcome authorized user!');
         }
 
-        /* Laravel allows you to perform these types of "inline" authorization checks via the `allowIf` and `denyIf` */
+        // Laravel allows you to perform these types of "inline" authorization checks via the `allowIf` and `denyIf`
         // Gate::allowIf(fn () => auth()->id() == 1);
 
-        /* `denies` method check if the current user has NOT ability to update the user */
+        // `denies` method check if the current user has not ability to update the user
         // if (Gate::denies('create-comment')) {
         //     dd($user);
         // }
 
-        /* `forUser` method check if the ability for a given user is denies or NOT */
+        // `forUser` method check if the ability for a given user is denies or not
         // if (Gate::forUser($user)->denies('create-comment')) {
         //     dd($user);
         // }
@@ -66,16 +65,12 @@ class CommentController extends Controller
      */
     public function store(Request $request, Post $post)
     {
-        /* `can` method exists in the `Authorizable` trait which exists in `Authenticatable` class */
+        // `can` method exists in the `Authorizable` trait which exists in `Authenticatable` class
         if (auth()->user()->can('store-comment', $post)) {
             // do something here...
         }
 
-        $request->merge([
-            'post_id' => $post->id,
-            'user_id' => $request->user_id,
-            'body' => $request->input('body')
-        ]);
+        $request->merge(['post_id' => $post->id, 'user_id' => $request->user_id, 'body' => $request->input('body')]);
 
         $validator = $this->validateInputs($request);
         Comment::create($validator);
@@ -93,9 +88,7 @@ class CommentController extends Controller
      */
     public function update(Request $request, Post $post, Comment $comment)
     {
-        $post->comments->find($comment->id)->update([
-            'body' => $request->body
-        ]);
+        $post->comments->find($comment->id)->update(['body' => $request->body]);
 
         return redirect()->back();
     }
@@ -114,12 +107,14 @@ class CommentController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * Validate the inputs data.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
     private function validateInputs($request)
     {
-        return $request->validate([
-            'post_id' => 'required',
-            'user_id' => 'required',
-            'body' => 'required|max:255'
-        ]);
+        return $request->validate(['post_id' => 'required', 'user_id' => 'required', 'body' => 'required|max:255']);
     }
 }

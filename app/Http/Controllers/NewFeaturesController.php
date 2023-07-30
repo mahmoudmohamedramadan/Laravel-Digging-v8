@@ -14,7 +14,7 @@ class NewFeaturesController extends Controller
      */
     public function index()
     {
-        /* The `retry` function attempts to execute the given callback until the given maximum attempt threshold is met. If the callback does not throw an exception, its return value will be returned. If the callback throws an exception, it will automatically be retried. If the maximum attempt count is exceeded, the exception will be thrown, NOTE that you can pass in the third paramter a closure  to manually calculate the number of milliseconds to sleep in between attempts and optionally pass a closure in the fourth parameter and accept the `$exception` */
+        /* The `retry` method attempts to execute the given callback until the given maximum attempt threshold is met. If the callback does not throw an exception, its return value will be returned. If the callback throws an exception, it will automatically be retried. If the maximum attempt count is exceeded, the exception will be thrown, NOTE that you can pass in the third paramter a closure  to manually calculate the number of milliseconds to sleep in between attempts and optionally pass a closure in the fourth parameter and accept the `$exception` */
         return retry(5, function () {
             // Attempt 5 times while resting 100ms in between attempts...
             return User::get();
@@ -39,9 +39,11 @@ class NewFeaturesController extends Controller
      */
     public function store(Request $request)
     {
-        /* If ou want check something in the request, instead of using multiple `if` you can use any scenairo of these */
+        /* If you want check something in the request, instead of using multiple `if` you can use any scenairo of these */
 
-        /* First you can use switvh case */
+        $model = '';
+
+        // First you can use switch case
         switch($request->url()) {
             case '/users/create': $model = '\\App\\Models\\User';
             case '/dogs/create': $model = '\\App\\Models\\Dog';
@@ -51,13 +53,13 @@ class NewFeaturesController extends Controller
             // insert your data here...
         ]);
 
-        /* Second is a new syntax in PHP */
+        // Second is a new syntax in PHP
         match($request->url()) {
             '/users/create' => '\\App\\Models\\User',
             '/dogs/create' => '\\App\\Models\\Dog',
         };
 
-        /* For more info visit: https://www.stitcher.io/blog/php-8-match-or-switch */
+        // for more info visit: https://www.stitcher.io/blog/php-8-match-or-switch
     }
 
     /**

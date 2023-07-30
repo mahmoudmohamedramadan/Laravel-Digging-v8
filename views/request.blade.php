@@ -3,7 +3,6 @@
 @section('title', 'Request Page')
 
 @push('scripts')
-
 <script>
     $(document).ready(() => {
             $('#post-form').on('submit', (e) => {
@@ -20,8 +19,7 @@
                     success: function(data) {
                         if (data.success) {
                             $('#messageAlertPost').attr('class', 'btn btn-lg btn-block btn-outline-success');
-                        }
-                        else {
+                        } else {
                             $('#messageAlertPost').attr('class', 'btn btn-lg btn-block btn-outline-danger');
                             $('.alert-post').prop('hidden', false);
                             $('#messageAlertPost').text(data.msg);
@@ -34,11 +32,9 @@
             });
         });
 </script>
-
 @endpush
 
 @section('content')
-
 <form action="{{ url('requestPost') }}" method="POST" id="post_form">
     @csrf
 
@@ -67,6 +63,7 @@
             <span class="text-danger">{{ $errors->first('last_name') }}</span>
         </div>
     </div>
+
     <div class="flex justify-center">
         <div class="col-md-6">
             <button type="submit" class="btn btn-primary">Submit (POST)</button>

@@ -14,12 +14,12 @@ class UserResource extends JsonResource
      */
     public function toArray($request)
     {
-        /* NOTE that `$this->resource->name` is equal to `$this->name` */
+        // NOTE: `$this->resource->name` is equal to `$this->name`
+
         return [
             'name' => $this->resource->name,
             'email' => $this->resource->email,
-            /* aslo we can call the relationship */
-            'comments' => $this->resource->comments,
+            'comments' => $this->resource->comments,     // you can call the relationship
             'posts' => $this->when($this->posts->first()->id == 1, $this->posts->first()),
             // 'posts' => $this->whenAppended($this->posts->first()->id == 1, $this->posts->first()),
             // 'posts' => $this->whenLoaded($this->posts->first()->id == 1, $this->posts->first()),

@@ -46,7 +46,7 @@ require __DIR__.'/../vendor/autoload.php';
 
 $app = require_once __DIR__.'/../bootstrap/app.php';
 
-/* the kernel is the core router of every Laravel application, responsible for taking in a user request, processing it through middleware, handling exceptions and passing it to the page router and then returning the final response. ACTUALLY, there are two kernels, but only one is used for each page request, one of the routers handles web requests(he HTTP kernel) and the other handles console, cron and Artisan requests (the console kernel)
+/* the kernel is the core router of every Laravel application, responsible for taking in a user request, processing it through middleware, handling exceptions and passing it to the page router and then returning the final response. ACTUALLY, there are two kernels, but only one is used for each page request, one of the routers handles web requests (the HTTP kernel) and the other handles console, cron and artisan requests (the console kernel)
 
 The kernel runs all of the bootstraps that need to run before every request, including determining which environment the current request is running in (staging, local, production. etc) */
 

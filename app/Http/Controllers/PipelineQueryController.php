@@ -7,11 +7,17 @@ use Illuminate\Pipeline\Pipeline;
 
 class PipelineQueryController extends Controller
 {
-    /* `pipeline` as a defination NOT exists in Laravel BUT Laravel use it in `app\Kernel` and from its name we can guess that there a pipe gives another pipe something */
+    /* `pipeline` as a definition not exists in Laravel BUT Laravel use it in `app\Kernel` and from its name we can guess that there a pipe gives another pipe something */
+
+    /**
+     * Filter the coming request data.
+     *
+     * @return mixed
+     */
     public function searchQuery()
     {
-        /* `query` method allows us to create a query builder */
-        $pipeline = app(Pipeline::class)
+        // `query` method allows us to create a query builder
+        return app(Pipeline::class)
             ->send(User::query())
             ->through([
                 \App\Pipelines\ProductFilter::class,
@@ -19,7 +25,5 @@ class PipelineQueryController extends Controller
             ])
             ->thenReturn()
             ->get();
-
-        return $pipeline;
     }
 }

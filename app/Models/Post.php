@@ -32,7 +32,7 @@ class Post extends Model
         return "Accessor {$value}";
     }
 
-    /* Also you can use accessor when a column not exists in the database */
+    // You can use an accessor when a column not exists in the database
     public function getUserWithBodyAttribute()
     {
         return "{$this->name} {$this->email}";

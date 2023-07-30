@@ -15,13 +15,12 @@
     <tbody>
         @foreach ($posts as $post)
         <tr>
-            <td><a href="{{ route('posts.show', $post->id) }}" target="_blanck">{{ $post->id }}</a></td>
-            @if ($post->user)
-            <td>{{ $post->user->name }}</td>
-            @else
-            <td>None</td>
-            @endif
-
+            <td>
+                <a href="{{ route('posts.show', $post->id) }}" target="_blanck">
+                    {{ $post->id }}
+                </a>
+            </td>
+            <td>{{ $post->user ? $post->user->name : "NONE" }}</td>
             <td>{{ $post->body }}</td>
             <td>
                 <form action="{{ route('posts.destroy', $post->id) }}" method="POST">

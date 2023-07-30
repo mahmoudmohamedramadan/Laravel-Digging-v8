@@ -37,8 +37,9 @@
             {{-- count of nested loop if you have two nested for will print 2 --}}
             <li>depth: {{ $loop->depth }}</li>
 
-            {{-- `parent` will point to parent foreach in case you have two nested foreach, NOTE in case nested loop you will print the object of the outer/first loop so, you can access all upper keys from `parent` like
-                    $loop->parent->index --}}
+            {{-- `parent` will point to parent foreach in case you have two nested foreach, NOTE in case nested loop you
+            will print the object of the outer/first loop so, you can access all upper keys from `parent` like
+            $loop->parent->index --}}
             <li>parent: {{ $loop->parent }}</li>
             <li>---------------------</li>
             @endforeach
@@ -71,6 +72,7 @@
 <script>
     console.log('Children');
 </script>
-{{-- parent directive used to show script in parent section, NOTE where you call `parent` directive before or after `section` directive body --}}
+{{-- parent directive used to show script in parent section, NOTE where you call `parent` directive before or after
+`section` directive body --}}
 @parent
 @endsection

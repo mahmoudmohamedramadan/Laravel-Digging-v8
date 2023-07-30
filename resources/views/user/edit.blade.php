@@ -51,7 +51,7 @@
     @endcan
 
     @cannot('update-user', $user)
-    <h3>You are NOT allow to update users</h3>
+    <h3>You are not allow to update this user</h3>
     @endcannot
 </form>
 @endsection

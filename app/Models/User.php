@@ -10,7 +10,7 @@ class User extends Authenticatable implements HasLocalePreference
 {
     use HasFactory, Notifiable, SoftDeletes, HasApiTokens;
 
-    /* use `HasLocalePreference` when you want to deal WITH multiple language */
+    /* use `HasLocalePreference` when you want to deal with multiple language */
 
     /**
      * The attributes that are mass assignable.
@@ -96,7 +96,7 @@ class User extends Authenticatable implements HasLocalePreference
         /* `ofMany` method accepts the sortable column as its first argument and which aggregate function (min or max) to apply when querying for the related mode */
         // return $this->hasOne(Dog::class, 'user_id', 'id')->ofMany('id', 'max');
 
-        /* you can also check more than one column and you can pass a closure as a second argument for ceching whatever you want */
+        /* You can also check more than one column and you can pass a closure as a second argument for ceching whatever you want */
         // return $this->hasOne(Dog::class, 'user_id', 'id')->ofMany([
         //     'id' => 'max',
         //     'user_id' => 'max',
@@ -105,7 +105,7 @@ class User extends Authenticatable implements HasLocalePreference
         // });
     }
 
-    /* Get the preffered language of the currently authenticated user via `locale` column */
+    // Get the preferred language of the currently authenticated user via `locale` column
     public function preferredLocale()
     {
         return $this->locale;

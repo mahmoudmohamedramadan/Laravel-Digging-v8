@@ -20,7 +20,7 @@ cd Laravel_Digging_v8
 composer install
 ```
 
-> This project is compatible WITH less or equal version 8
+> This project is compatible with less or equal version 8
 
 ## Covered Topics 🚀
 

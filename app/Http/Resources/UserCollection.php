@@ -16,7 +16,7 @@ class UserCollection extends ResourceCollection
     {
         return [
             'users' => $this->collection,
-            /* another way to get the relationship */
+            // Another way to get the relationship
             // 'comments' => $this->collection->map(function ($user) {
             //     return $user->comments;
             // })

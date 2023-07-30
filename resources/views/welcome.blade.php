@@ -563,9 +563,9 @@
                 </div>
 
                 <div class="m-b-md">
-                    {{-- guest directive check if current user is authenticated or NOT and you can pass the guard like web --}}
+                    {{-- guest directive check if current user is authenticated or not and you can pass the guard like web --}}
                     @guest('web')
-                    <strong style="color: white">You are NOT authenticated using guest directive</strong>
+                    <strong style="color: white">You are not authenticated using guest directive</strong>
                     @else
                     <strong style="color: white">You are authenticated using guest directive</strong>
                     @endguest

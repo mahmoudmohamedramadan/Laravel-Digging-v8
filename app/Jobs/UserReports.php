@@ -9,7 +9,10 @@ use Illuminate\Queue\{SerializesModels, InteractsWithQueue};
 
 class UserReports implements ShouldQueue
 {
-    /* `Dispatchable` gives its methods to dispatch itself; `Queueable` allows you to specify how Laravel should push this job to the queue; `InteractsWithQueue` allows each job, while being handled, to control its relationship WITH the queue including deleting or requeueing itself; and `SerializesModels` gives the job the ability to serialize and deserialize Eloquent models */
+    /* `Dispatchable` gives its methods to dispatch itself; `Queueable` allows you to specify how Laravel should push this job to the queue; `InteractsWithQueue` allows each job, while being handled, to control its relationship with the queue including deleting or requeueing itself; and `SerializesModels` gives the job the ability to serialize and deserialize Eloquent models */
+
+    /* There are multiple methods by which you can dispatch a job, including some methods available to every controller and a global `dispatch` helper. BUT since Laravel 5.5, we've had a simpler and preferred methods: caling the `dispacth` method on the job itself */
+
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     private $user;
@@ -34,8 +37,6 @@ class UserReports implements ShouldQueue
         if ($this->attempts() == 1) {
             return $this->user;
         }
-
-        /* there are multiple methods by which you can dispatch a job, including some methods available to every controller and a global `dispatch` helper. BUT since Laravel 5.5, we've had a simpler and preferred methods: caling the `dispacth` method on the job itself */
     }
 
     public function failed()

@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class ExampleTest_3 extends TestCase
 {
-    /* there are 40 assertions available on the `$response` object, Let's dig into them */
+    /* There are 40 assertions available on the `$response` object, Let's dig into them */
 
     /**
      * A basic feature test example.
@@ -17,13 +17,13 @@ class ExampleTest_3 extends TestCase
     {
         $response = $this->get('/');
 
-        /* `assertOk` assert that response's status code is 200 */
+        // `assertOk` assert that response's status code is 200
         $response->assertOk();
 
-        /* `assertStatus` assert that response's code is equal to provided `$status` */
+        // `assertStatus` assert that response's code is equal to provided `$status`
         $response->assertStatus(505);
 
-        /* `assertSee`, `assertDontSee` assert that response contains the provided `$text` or NOT */
+        // `assertSee`, `assertDontSee` assert that response contains the provided `$text`
         $response->assertSee('welcome');
         $response->assertDontSee('hi');
 
@@ -49,20 +49,20 @@ class ExampleTest_3 extends TestCase
             '<p>:message</p>'
         ]);
 
-        /* `assertCookie` assert that the response contains a cookie with name `$name`, and optionally checks that itsn value is `$value` */
+        /* `assertCookie` assert that the response contains a cookie with name `$name`, and optionally checks that its value is `$value` */
         $response->assertCookie('password', 'admin');
 
         /* `assertCookieExpired` assert that the response contains a cookie with name `$name`, and that it is expired */
         $response->assertCookieExpired('password');
 
-        /* `assertCookieNotExpired` assert that the response contains a cookie with name `$name`, and that it is NOT expired */
+        /* `assertCookieNotExpired` assert that the response contains a cookie with name `$name`, and that it is not expired */
         $response->assertCookieNotExpired('password');
         $this->post('/posts/store', [
             'user_id' => 1,
             'body' => 'welcome from test'
         ]);
 
-        /* `assertRedirect` assert that requested route returns a redirect to the give URI */
+        // `assertRedirect` assert that requested route returns a redirect to the give URI
         $response->assertRedirect('/posts/create');
     }
 }

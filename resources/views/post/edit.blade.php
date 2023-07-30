@@ -15,7 +15,8 @@
             <label>User Name</label>
             <select class="custom-select" name="user_id">
                 @foreach ($users as $user)
-                <option value="{{ $user->id }}" @if ($user->id == $post->user_id) selected @endif>{{ $user->name }}
+                <option value="{{ $user->id }}" @if ($user->id == $post->user_id) selected @endif>
+                    {{ $user->name }}
                 </option>
                 @endforeach
             </select>

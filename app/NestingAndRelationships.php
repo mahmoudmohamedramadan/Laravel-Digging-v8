@@ -15,6 +15,7 @@ class NestingAndRelationships
     public function toArray()
     {
         $append = [];
+
         if (!in_array('comments', $append)) {
             $append['comments'] = $this->user->comments->map(function ($comment) {
                 return $comment->toArray();
@@ -23,11 +24,7 @@ class NestingAndRelationships
 
         return array_merge([
             'id' => $this->user->id,
-            'name' => sprintf(
-                '%s %s',
-                $this->user->name,
-                $this->user->email
-            ),
+            'name' => sprintf('%s %s', $this->user->name, $this->user->email),
             'commentsCount' => $this->user->comments->count(),
             'comments' => $append,
         ], $append);

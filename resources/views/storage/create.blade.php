@@ -1,9 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Storage & Retrieval | Laravel Digging')
+@section('title', 'Storage & Retrieval')
 
 @section('content')
-
 <div class="flex justify-content-center">
     <div class="col-md-8">
         <form action="{{ url('storagePutUploadedFiles') }}" method="POST" enctype="multipart/form-data">
@@ -39,5 +38,4 @@
         </form>
     </div>
 </div>
-
 @endsection

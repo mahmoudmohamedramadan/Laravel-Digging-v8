@@ -12,7 +12,7 @@ class ExampleTest_2 extends TestCase
 
     /* `RefreshDatabase` takes two steps to ensure that your database tables are correctly migrated at the start of each test First, it runs your migrations on your test database once at the beginning of each test run and Second, it wraps each individual test method in a database transaction and rolles back the transaction at the end of the test, this means you have your database migrated for your tests and cleared out fresh after each test runs */
 
-    /* `WithoutMiddleware` it'll disable all middleware for any test in that class, This measns that you won't have to worry about he authentication middleware or CSRF protection or anything else */
+    /* `WithoutMiddleware` it'll disable all middleware for any test in that class, This measns that you won't have to worry about the authentication middleware or CSRF protection or anything else */
 
     /**
      * A basic feature test example.
@@ -21,7 +21,7 @@ class ExampleTest_2 extends TestCase
      */
     public function test_example()
     {
-        /* here will disable middleware for just this function */
+        // Disables the middleware for just this function
         $this->withoutMiddleware();
 
         $response = $this->get('/');
@@ -39,11 +39,11 @@ class ExampleTest_2 extends TestCase
 
     public function test_user_package()
     {
-        /* here we'll use make `instead` of create so the object is `created` and evaluated in memory without every hitting the database */
+        /* Here we'll use make `instead` of create so the object is `created` and evaluated in memory without every hitting the database */
         $user = User::make(['name' => 'Mahmoud Ramadan', 'email' => 'admin@gmail.com']);
         $user2 = User::make(['name' => 'Mahmoud Ramadan', 'email' => 'admin@gmail.com']);
 
-        /* to check if the two parameters from same type/instance */
+        // To check if the two parameters from same type/instance
         $this->assertInstanceOf($user, $user2);
         $this->assertTrue($user->exists(), $user2->exists());
     }

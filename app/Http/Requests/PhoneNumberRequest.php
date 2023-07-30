@@ -13,7 +13,7 @@ class PhoneNumberRequest extends FormRequest
      */
     protected function prepareForValidation()
     {
-        /* `prepareForValidation` is visited before the authorize method */
+        // `prepareForValidation` is visited before the authorize method
         if ($this->isMethod('post')) {
             if ($this->has('number')) {
                 if (is_numeric($this->get('number'))) {

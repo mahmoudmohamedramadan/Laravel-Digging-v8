@@ -25,8 +25,7 @@
     </div>
 </div>
 
-
-<div style="overflow-y: scroll; max-height: 300px">
+<div style="overflow-y: scroll;max-height: 300px">
     <form action="{{ route('comments.store', $post->id) }}" method="POST">
         @csrf
 
@@ -47,7 +46,7 @@
         <div class="flex justify-content-center" style="margin-top: 10px">
             <div class="col-md-6 form-group">
                 <label>New Comment</label>
-                <textarea placeholder="Type comment here" name="body"
+                <textarea placeholder="Type your comment here" name="body"
                     style="height: 100px;min-height: 100px;max-height: 150px"
                     class="form-control">{{ old('body') }}</textarea>
                 @error('body')

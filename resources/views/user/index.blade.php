@@ -13,8 +13,7 @@ the header the first time the component is rendered --}}
 @endpush
 
 @prepend('scripts')
-{{-- code which written into `prepend` directive always be in the top of code which written into push directive (or
-JavaScript code generally) --}}
+{{-- code which written into `prepend` directive always be in the top of your code which written into push directive --}}
 <script>
     console.log('welcome from `user.index` view using prepend directive');
 </script>
@@ -38,22 +37,25 @@ JavaScript code generally) --}}
             <td>{{ $user->name }}</td>
             <td>{{ $user->email }}</td>
             <td>
-                ## `include` is used to include a view and in case it NOT exists will trigger an issue, and you can pass
+                ## `include` is used to include a view and in case it not exists will trigger an issue, and you can pass
                 data to view that will be included
-                @include('includes.form_delete',['buttonText' => 'Delete'])
+                @include('includes.form_delete', ['buttonWarningText' => 'Edit', 'buttonDangerText' => 'Delete'])
 
                 ## `includeWhen` used to include a view in a specific condition
-                @includeWhen(auth()->user()->email == 'admin@gmail.com','includes.form_delete')
+                @includeWhen(auth()->user()->email == 'admin@gmail.com', 'includes.form_delete', ['buttonWarningText' =>
+                'Edit', 'buttonDangerText' => 'Delete'])
 
-                ## `includeIf` will include the file if exists and in case NOT exist will NOT trigger any issues
+                ## `includeIf` will include the file if exists and in case not exist will not trigger any issues
                 @includeIf('includes.form_delete')
 
                 ## `includeUnless` is the opposite of the `includeWhen`
-                @includeUnless(auth()->user()->email =='admin@gmail.com','includes.form_delete')
+                @includeUnless(auth()->user()->email =='admin@gmail.com', 'includes.form_delete', ['buttonWarningText'
+                => 'Edit', 'buttonDangerText' => 'Delete'])
 
                 ## `includeFirst` directive take array of views as a first parameter and this directive take the first
                 view you can pass data also
-                @includeFirst(['includes.form_delete','test'],['buttonText' => 'Delete'])
+                @includeFirst(['includes.form_delete','test'], ['buttonWarningText' => 'Edit', 'buttonDangerText' =>
+                'Delete'])
             </td>
         </tr>
         @endforeach --}}
@@ -68,7 +70,7 @@ JavaScript code generally) --}}
         @each('includes.table_rows', $users, 'user', 'includes.none')
 
         <div class="mb-3">
-            {{-- the below line to specify that you want to work WITH `Bootstrap` instead of `TailwinCSS`, also the
+            {{-- the below line to specify that you want to work with `Bootstrap` instead of `TailwinCSS`, also the
             below line keeps you away from writing `Paginator::useBootstrap` in `AppServiceProvider` --}}
             {{-- {{ $users->links('pagination::bootstrap-4') }} --}}
             {{ $users->onEachSide(2)->links() }}
