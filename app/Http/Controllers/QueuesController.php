@@ -32,7 +32,7 @@ class QueuesController extends Controller
         $delay = now()->addMinutes(5);
         UserReports::dispatch()->delay($delay);
 
-        // NOTE that amazon SQS does not allow delays longer than 15 minutes
+        // NOTE amazon SQS does not allow delays longer than 15 minutes
 
         /* php artisan queue:work >> this command to run all queue workers, every time there are jobs on the queue, it will pull down the first job, handle it, delete it, and move on to the NEXT */
 
@@ -48,7 +48,7 @@ class QueuesController extends Controller
         /* Once a job has exceeded its allowable number of retries, it's considered a failed job, before you do anything else, even if all you want to do is limit the number of times a job can be tried- you'll need to create the `failed jobs` database table. */
         // `php artisan queue:failed-table`, `php artisan migrate`
 
-        /* Any job that has surpassed its maximum number of allowed attempts will be dumped there, BUT there are quite a few things you can do with your failed jobs. First, you can define a `failed` method on the job itself, which will run when that job fails */
+        /* Any job that has surpassed its maximum number of allowed attempts will be dumped there, but there are quite a few things you can do with your failed jobs. First, you can define a `failed` method on the job itself, which will run when that job fails */
 
         /* NEXT, you can register a global handler for failed jobs, somewhere in the application's bootstrap- if you do not know where to put it, just put it in the `boot` method of `AppServiceProvider` */
     }

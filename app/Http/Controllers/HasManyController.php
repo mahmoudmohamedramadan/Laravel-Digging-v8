@@ -23,7 +23,7 @@ class HasManyController extends Controller
         // `toggle` method will attach the given `id` if it was not attached yet and vice versa
         // return $product->categories()->toggle($category);
 
-        /* `updateExistingPivot` method pass the `$product` as first parameter and attribute which you want to update as second one, NOTE that laravel search in id of which you passed as first parameter in the pivot table then execute function, here will find the record which `product_id` equals `1` then will update `category_id` */
+        /* `updateExistingPivot` method pass the `$product` as first parameter and attribute which you want to update as second one, NOTE laravel search in id of which you passed as first parameter in the pivot table then execute function, here will find the record which `product_id` equals `1` then will update `category_id` */
         return $product->categories()->updateExistingPivot($product, [
             'category_id' => 2000
         ]);

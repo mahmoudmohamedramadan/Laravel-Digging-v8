@@ -75,7 +75,7 @@ class GeneralController extends Controller
         // `revese` revese the given text
         Str::revese('user');
 
-        /* `substrReplace` method will search for `,` BETWEEN 0 and 5 if the `,` not exists will be appended after first 5 chars BUT if was exist then all text before `,` will be removed */
+        /* `substrReplace` method will search for `,` BETWEEN 0 and 5 if the `,` not exists will be appended after first 5 chars but if was exist then all text before `,` will be removed */
         return Str::substrReplace($string, ',', 0, 5);
     }
 

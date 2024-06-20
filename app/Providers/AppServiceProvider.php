@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
             return new Student;
         });
 
-        /* the difference between `singleton` and `bind` is that `bind` every time I ask for something it will return a new instance, BUT with `singleton` it gives me one instance every time I asked for an instance */
+        /* the difference between `singleton` and `bind` is that `bind` every time I ask for something it will return a new instance, but with `singleton` it gives me one instance every time I asked for an instance */
         // $this->app->singleton('student', function() {
         //     return new Student;
         // });
@@ -74,7 +74,7 @@ class AppServiceProvider extends ServiceProvider
 
         // Blade::component('book-component', 'modal');
 
-        /* You can create your custom directive using `Illuminate\Support\Facades\Blade` and specially you can create your `if` directive as lower example shows as you say: `@if(auth()->guest())` NOTE that when you create your custom directive you must use end{yourDirectiveName} like `endifGuest' to close your custom directive */
+        /* You can create your custom directive using `Illuminate\Support\Facades\Blade` and specially you can create your `if` directive as lower example shows as you say: `@if(auth()->guest())` NOTE when you create your custom directive you must use end{yourDirectiveName} like `endifGuest' to close your custom directive */
         Blade::if('ifGuest', function () {
             return auth()->guest();
         });
@@ -114,7 +114,7 @@ class AppServiceProvider extends ServiceProvider
         //     dump($user);
         // });
 
-        /* Here you can create your custom reponse using macros, Note that: we actually does not have `customJSON` BUT whenever you call `customJSON` this closure will be triggered */
+        /* Here you can create your custom reponse using macros, NOTE: we actually does not have `customJSON` but whenever you call `customJSON` this closure will be triggered */
         Response::macro('customJSON', function ($users) {
             return response(json_encode($users))->withHeaders(['Content-Type' => 'application/json']);
         });

@@ -16,7 +16,7 @@ class QueryBuilderController extends Controller
         // Fluent Interface: is the method chaning provide simpler API to the end user like lower line...
         // return DB::table('users')->select('*')->get();
 
-        /* `statement` method return true if the query was success else will return false, NOTE that some database statements do not return any value */
+        /* `statement` method return true if the query was success else will return false, NOTE some database statements do not return any value */
         // return DB::statement('select * from users');
 
         // DB::unprepared('select * from users');
@@ -146,7 +146,7 @@ class QueryBuilderController extends Controller
         //     ->whereNotNull('name')
         //     ->get();
 
-        /* `whereRaw` method allows you to pass an arbitrary string into a query, NOTE that Raw statements will be injected into the query as strings, so you should be extremely careful to avoid creating SQL injection vulnerabilities */
+        /* `whereRaw` method allows you to pass an arbitrary string into a query, NOTE Raw statements will be injected into the query as strings, so you should be extremely careful to avoid creating SQL injection vulnerabilities */
         // return DB::table('users')
         //     ->whereRaw('name = "admin"')
         //     ->get();
@@ -220,16 +220,16 @@ class QueryBuilderController extends Controller
         //     ->orderBy('name', 'desc')
         //     ->get();
 
-        // NOTE that: you must get all the data then group them not the versa
+        // NOTE: you must get all the data then group them not the versa
         // return DB::table('users')->get()->groupBy('name');
 
-        /* You can group your data, you filter results based on properties using `having` or `havingRow` methods NOTE that also you can not use `having` or `havingRaw` without group */
+        /* You can group your data, you filter results based on properties using `having` or `havingRow` methods NOTE also you can not use `having` or `havingRaw` without group */
         // return DB::table('users')
         //     ->groupBy('id')
         //     ->having('created_at', '<', date('Y-m-d h:i:s'))
         //     ->get();
 
-        // NOTE that you can not use `skip` individually without `take` method
+        // NOTE you can not use `skip` individually without `take` method
         // return DB::table('users')
         //     ->skip(5)
         //     ->take(5)
@@ -333,7 +333,7 @@ class QueryBuilderController extends Controller
      */
     public function transactionsSQL()
     {
-        /* User transactions to ensure that all or not all, BUT not some of a series of related quires are performed here if there is user with id equal `12` and `1000` the transaction will implemented successfully else not thing will implemented */
+        /* User transactions to ensure that all or not all, but not some of a series of related quires are performed here if there is user with id equal `12` and `1000` the transaction will implemented successfully else not thing will implemented */
         // DB::transaction(function () {
         //     DB::table('users')
         //         ->where('id', 12)

@@ -28,7 +28,7 @@ class Department extends Model
         return $this->morphTo();
     }
 
-    /* The below relationship used in `ManyToMany` polymorphic and, this means that a `user` belongs to many `deprtments` and the `department` belongs to many models, NOTE that the `morphedByMany` must be in the child model and then define `morphToMany` relationship in the parent model */
+    /* The below relationship used in `ManyToMany` polymorphic and, this means that a `user` belongs to many `deprtments` and the `department` belongs to many models, NOTE the `morphedByMany` must be in the child model and then define `morphToMany` relationship in the parent model */
     // public function user()
     // {
     //     return $this->morphedByMany(User::class, 'departmentable');

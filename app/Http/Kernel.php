@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
 {
-    /* NOTE that: every request passes through the `$middleware` array also, not all pass through the `$middleware Groups`, and to passes, the route must be under any key on this array such as [web, api] */
+    /* NOTE: every request passes through the `$middleware` array also, not all pass through the `$middleware Groups`, and to passes, the route must be under any key on this array such as [web, api] */
 
     /**
      * The application's global HTTP middleware stack.
@@ -24,7 +24,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-        /* Here: we registered our middleware globally or we can register it for a specific route that can be added as middleware in `$routeMiddleware`, NOTE that: to pass your parameters write `middlewareName: param_1, param_2` also, NOTE that: if you registered your custom middleware here you will have to pass all new parameters [$role, $view], so you should register it into the `$routeMiddleware` */
+        /* Here: we registered our middleware globally or we can register it for a specific route that can be added as middleware in `$routeMiddleware`, NOTE: to pass your parameters write `middlewareName: param_1, param_2` also, NOTE: if you registered your custom middleware here you will have to pass all new parameters [$role, $view], so you should register it into the `$routeMiddleware` */
 
         // \App\Http\Middleware\CustomMiddleware::class,
     ];

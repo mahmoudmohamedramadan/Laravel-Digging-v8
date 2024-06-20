@@ -62,7 +62,7 @@ class CollectionController extends Controller
 
         print_r($collect_tap);
 
-        // NOTE that: the `filter` and `map` iterate over the array BUT the `tap` iterate over the collection
+        // NOTE: the `filter` and `map` iterate over the array but the `tap` iterate over the collection
 
         dump('pipe');
         $collect_pipe = collect($items)
@@ -72,9 +72,9 @@ class CollectionController extends Controller
 
         print_r($collect_pipe);
 
-        /* NOTE: the difference between `tap` and `pipe` that despite of we ask to get the `name` ONLY of all users using `pluck` in the `tap` we got all the data(name, member, active) again so, we can check if the user was a `member` or not BUT in case of `pipe` when we ask to get the `name` ONLY using `pluck` we got the `name` ONLY without rest of data(member, active) like `tap` */
+        /* NOTE: the difference between `tap` and `pipe` that despite of we ask to get the `name` only of all users using `pluck` in the `tap` we got all the data(name, member, active) again so, we can check if the user was a `member` or not but in case of `pipe` when we ask to get the `name` only using `pluck` we got the `name` only without rest of data(member, active) like `tap` */
 
-        /* here will reurn even numbers ONLY then multiply each number in 10 and finally get sum of all numbers */
+        /* here will reurn even numbers only then multiply each number in 10 and finally get sum of all numbers */
         // return $collection
         //     ->filter(function ($num) {
         //         return $num % 2 === 0;

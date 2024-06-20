@@ -7,13 +7,17 @@ Route::get('relationships', function () {
     $user = User::find(1);
     $phoneNumberQuery = PhoneNumber::query();
 
-    /* In the new version in Laravel, instead of typing `PhoneNumber::where('user_id', $user->id)->get()` you can use the next line */
+    // $phoneNumbers = PhoneNumber::where('user_id', $user->id)->get();
+
+    // You can replace the below line with the above one in the new Laravel version
     $phoneNumberQuery->whereBelongsTo($user)->get();
 
-    /* NOTE that we called the `phoneNumbers` as a property not a method, if we called it as a property it will return a full eloquent instance and the method will return a collection instead of model instance...So when we called as a method instead of processing relationship, it will return a pre-scoped query builder */
+    /* NOTE: We called the `phoneNumbers` as a property not a method, if we called it as a property it will return a collection and the method will return a query builder */
     // return $user->phoneNumbers;
 
-    /* We save a `PhoneNumber` instance through a `user`, NOTE that you are not forced to pass the `user_id` becuase we already save a `phoneNumber` instance through a `user` */
+    // We save a `PhoneNumber` instance through a `user`
+    /* NOTE: you are not forced to pass the `user_id` becuase we already save a `phoneNumber` instance through a `user` */
+
     // $phone = new PhoneNumber();
     // $phone->phone_number = '22222';
     // $user->phoneNumbers()->save($phone);
@@ -40,20 +44,20 @@ Route::get('relationships', function () {
 
     // return $user->phoneNumbers;
 
-    /* NOTE that: You save an eloquent instance model when using the `save` method, whereas in case you use `create` or `createMany` you can pass an array */
+    /* NOTE: When you use the `save` method you save an eloquent instance model, whereas with the `create` or `createMany` you can pass an array */
 
     ##################################
 
-    /* NOTE that: all the previous saving data was through the parent table to the child table, BUT what if we want to save data from child to parent...let's take a look at the next example */
+    /* NOTE: All the previous saving data was from the parent to the child, but what if we want to do the reverse...Let's take a look at the next example */
 
-    /* Save a `user` through a `phoneNumbers`, NOTE that you should give right data about the user that you want to associate with a `phoneNumbers` like `user_id`, logically you want to associate a `user` to a `phoneNumber` so, we will prepare the `phone_number` column and find the user that we want to associate to the `phoneNumber` */
+    // Saving a `user` through the `phoneNumbers`...
     // $phone = new PhoneNumber;
     // $user = User::find(1);
     // $phone->phone_number = '000000000';
     // $phone->user()->associate($user);
     // $phone->save();
 
-    /* We set the `user_id` NULL in the `phone_numbers` table using `phone_numbers.id` and `phone_numbers.user_id` */
+    // We sets the `user_id` to NULL in the `phone_numbers` table
     // $user = User::find(2);
     // $phone->user()->dissociate();
     // $phone->save();
@@ -93,7 +97,7 @@ Route::get('relationships', function () {
 
     ##################################
 
-    /* You can access the `pivot_table` (category_product) using `pivot` keyword, NOTE that you can access `pivot` even if `categories` relationship not has a `withPivot` method */
+    /* You can access the `pivot_table` (category_product) using `pivot` keyword, NOTE you can access `pivot` even if `categories` relationship not has a `withPivot` method */
     // foreach (\App\Models\Product::find(1)->categories as $category) {
     //     dd($category->category_product_pivot_table->category_id);
     // }
@@ -109,12 +113,13 @@ Route::get('relationships', function () {
     // Get the count of the items in each relationships
     // $usersCount = User::withCount('phoneNumbers')->get();
 
-    /* `withMax`, `withMin`, ..., `withExists` all of them accepts the relation name as a first argument and the column that you want to get the max as a second argument */
+    /* The `with*` methods all of them accepts the relation name as a first argument and the column that you want to get the max as a second argument */
     // $usersMax = User::withMax('phoneNumbers', 'user_id')->get();
     // $usersMin = User::withMin('phoneNumbers', 'user_id')->get();
     // $usersAvg = User::withAvg('phoneNumbers', 'user_id')->get();
 
-    /* To get the result of any of `withSum`, `withMax`, ...etc. Type {relation}_{function}_{columnName}. NOTE that: when your relation was in camel case you must access it in snake case such as 'phoneNumber` must be 'phone_numbers` */
+    // To get the result of any of `with*`. Write `{relation}_{function}_{columnName}`
+    /* NOTE: When your relation was in camel case you must access it in snake case such as 'phoneNumber` must be 'phone_numbers` */
     // $usersSum = User::withSum('phoneNumbers', 'user_id')->get();
     // $usersSum->first()->phone_numbers_sum_user_id;
 
@@ -131,7 +136,7 @@ Route::get('relationships', function () {
     //     ->where('departmentable_id', $user->getKey())
     //     ->get();
 
-    /* In a new version of Laravel you can use the following awesome syntax. here you can pass `departmentable` without passing the `type` and `id` */
+    /* In a new Laravel version you can use the following awesome syntax. here you can pass `departmentable` without passing the `type` and `id` */
     return \App\Models\Department::query()
         ->whereMorphedTo('departmentable', $user)
         ->get();

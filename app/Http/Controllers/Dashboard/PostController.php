@@ -121,7 +121,7 @@ class PostController extends Controller
         // $post->fill(['title' => 'Save Title Using `fill` method']);
 
         /* To solve that problem of relationship replication use: `bkwld/cloner` package
-        > NOTE that in case of `belongsTo` relationship, the relationship will be replicated also, otherwise you need to add `cloneable_relations` attribute */
+        > NOTE in case of `belongsTo` relationship, the relationship will be replicated also, otherwise you need to add `cloneable_relations` attribute */
 
         return view('post.show', ['post' => $post, 'users' =>  User::get(), 'comments' => $post->comments]);
     }
@@ -156,7 +156,7 @@ class PostController extends Controller
         /* `authorize` method allows you to check user authorization by passed the key which custom added with custom condition in `AuthServiceProvider` also there is another way to check authorization */
         // $this->authorize('update-post', $post);
 
-        /* The difference between `authorize` and `authorizeForUser` that `authorizeForUser` we passed any user we want BUT `authorize` always check for authenticated user */
+        /* The difference between `authorize` and `authorizeForUser` that `authorizeForUser` we passed any user we want but `authorize` always check for authenticated user */
         $this->authorizeForUser(auth()->user(), 'update-post', $post);
         $validate = $this->validateInput($request);
         $post->update($validate);

@@ -21,7 +21,7 @@ Route::get('newRoutes/{user}', function (User $user) {
 
     return $user;
 })
-    /* NOTE that middleware `web` very important in route model binding, because the `web middleware group` has `SubstituteBindings` that used in binding */
+    /* NOTE middleware `web` very important in route model binding, because the `web middleware group` has `SubstituteBindings` that used in binding */
     ->middleware('web')
     ->name('newLaravel')
     ->where('id', '[0-9]+')
@@ -53,7 +53,7 @@ Route::resource('user-new-features', NewFeaturesController::class)
         'user_feature' => 'email',
     ]);
 
-/* Often, it is not entirely necessary to have both the parent and the child IDs within a URI since the child ID is already a unique identifier. When using unique identifiers such as auto-incrementing primary keys to identify your models in URI segments, you may choose to use "shallow nesting" So, here we must specify the parent(post) ID in `index`, `create`, and `store` to specify that comment must belongs to that post -in case of `create`, and `store`- BUT in case of updating or deleting we need not to specify the post ID because the comment ID is a unique identifier */
+/* Often, it is not entirely necessary to have both the parent and the child IDs within a URI since the child ID is already a unique identifier. When using unique identifiers such as auto-incrementing primary keys to identify your models in URI segments, you may choose to use "shallow nesting" So, here we must specify the parent(post) ID in `index`, `create`, and `store` to specify that comment must belongs to that post -in case of `create`, and `store`- but in case of updating or deleting we need not to specify the post ID because the comment ID is a unique identifier */
 // Route::resource('posts.comments', Dashboard\CommentController::class)->shallow();
 
 Route::get('newRequest/{name?}', function ($name = 'null') {

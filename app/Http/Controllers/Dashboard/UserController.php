@@ -20,7 +20,7 @@ class UserController extends Controller
         // when you try to get all users, the global scope will be called automatically
         // $users = User::get();
 
-        /* here we can return only these columns, NOTE that when you pass two parameters to pluck method will return an array with a key of second parameter and value of first one like this 1 => "Mahmoud Mohamed Ramadan" */
+        /* here we can return only these columns, NOTE when you pass two parameters to pluck method will return an array with a key of second parameter and value of first one like this 1 => "Mahmoud Mohamed Ramadan" */
         // $users = User::all()->pluck('name', 'id');
 
         // we can pass columns name which we need only
@@ -84,7 +84,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        /* `firstOrCreate` method will attempt to find record using given key/value pairs, if this user not found a record will be inserted, NOTE that: this method is look like `firstOrNew` but the difference that `firstOrNew` has not persisted yet in database and you should save it manually using `save` method */
+        /* `firstOrCreate` method will attempt to find record using given key/value pairs, if this user not found a record will be inserted, NOTE: this method is look like `firstOrNew` but the difference that `firstOrNew` has not persisted yet in database and you should save it manually using `save` method */
         // $user = User::firstOrCreate($this->getUserData($request));
 
         // $user = User::firstOrNew(
@@ -122,7 +122,7 @@ class UserController extends Controller
 
         // $bag = new MessageBag($validator);
 
-        /* or you can send error messages ONLY */
+        /* or you can send error messages only */
         $bag = new MessageBag($validator->errors()->messages());
 
         if ($validator->fails()) {
@@ -163,7 +163,7 @@ class UserController extends Controller
     {
         return view('user.edit', ['user' => $user]);
 
-        // `secure` method like `redirect()->to()` BUT in HTTPS connection
+        // `secure` method like `redirect()->to()` but in HTTPS connection
         // return redirect()->secure('home');
 
         // `home` method redirects you to route named `home`
@@ -246,7 +246,7 @@ class UserController extends Controller
      */
     public function restoreUser(Request $request)
     {
-        /* NOTE that we could not use route binding with `get` method because user is already deleted and we can not find him So, we used the `onlyTrashed` method to search in deleted users */
+        /* NOTE we could not use route binding with `get` method because user is already deleted and we can not find him So, we used the `onlyTrashed` method to search in deleted users */
         $user = User::onlyTrashed()->get()->find($request->route()->parameter('user'));
 
         // now when we want to see the soft delete users write `withTrashed`

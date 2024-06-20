@@ -6,7 +6,7 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class DogCollection extends ResourceCollection
 {
-    /* NOTE that: when you write `php artisan make:resource DogCollection` the type of this class will be a collection because the end of the resource name ends with `Collection` or we can do this `php artisan make:resource Dog --collection` */
+    /* NOTE: when you write `php artisan make:resource DogCollection` the type of this class will be a collection because the end of the resource name ends with `Collection` or we can do this `php artisan make:resource Dog --collection` */
 
     /**
      * Transform the resource collection into an array.

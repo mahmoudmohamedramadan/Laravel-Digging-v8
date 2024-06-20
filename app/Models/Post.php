@@ -13,7 +13,7 @@ class Post extends Model
     /* The foreign key value represents the column in the current model that refer/belongs to the second model like `user_id` exists in this model [`Post`] and refer/belongs to the other model [`User`] */
     public function user()
     {
-        /* `withDefault` function will return its array in case of there is no user for a specific post, NOTE that in `belongsTo` we add the foreign key of the related table in this model like `user_id` */
+        /* `withDefault` function will return its array in case of there is no user for a specific post, NOTE in `belongsTo` we add the foreign key of the related table in this model like `user_id` */
         return $this->belongsTo(User::class, 'user_id', 'id', 'posts')->withDefault([
             'id' => '0',
             'name' => 'NULL',

@@ -18,7 +18,7 @@ class GlobalController extends Controller
 
         $users = User::get();
 
-        /* `first` will take the first value in the passed array, and if you have an array that have multiple arrays inside it, `first` will return the first array and you can make a change on it, NOTE that: `$key` carries the index of the current item */
+        /* `first` will take the first value in the passed array, and if you have an array that have multiple arrays inside it, `first` will return the first array and you can make a change on it, NOTE: `$key` carries the index of the current item */
         Arr::first($users, function ($user, $key) {
             return $user['name'] = 'Ali';
         });
@@ -49,7 +49,7 @@ class GlobalController extends Controller
         /* `random` method returns a random item from the provided array. if you provide the second param, it'll pull an array of that any results */
         Arr::random($owners);
 
-        /* `e` method an allias to `htmlentities()`; prepares a string for safe echoing on an HTML page, NOTE that you should echo out it */
+        /* `e` method an allias to `htmlentities()`; prepares a string for safe echoing on an HTML page, NOTE you should echo out it */
         // echo e('<script>alert("Welcome");</script>');
 
         // `dot` method represents the array into this form `level.level2.level3`
@@ -94,13 +94,13 @@ class GlobalController extends Controller
         /* `action` method will assuming a controller method has a single URL mapped to it, returns the correct URL given a controller and method name pair (separated by @) or using tuple notation */
         '<a href="{{ action("UserController@index") }}">All Users</a>';
 
-        // same result of the upper line BUT in tuple notation
+        // same result of the upper line but in tuple notation
         '<a href="{{ action([UserController::class, "index"]) }}">All Users</a>';
 
         // If you want to pass some paramters do like so
         '<a href="{{ action("UserController@index", ["id" => 1]) }}">All Users</a>';
 
-        /* Using `route` helper, BUT at the first you should add name for any route to access it, in `web.php` >> Route::get('welcomeRoute/{id}', function() {})->name('test'); */
+        /* Using `route` helper, but at the first you should add name for any route to access it, in `web.php` >> Route::get('welcomeRoute/{id}', function() {})->name('test'); */
         '<a href="{{ route("test", 50) }}">All Users</a>';
 
         // In case of there are multiple segments pass them as array
@@ -128,10 +128,10 @@ class GlobalController extends Controller
         // `abort` method always aborts the user
         // abort(403, 'you shall not pass');
 
-        // `abort_unless` method will aborts the user ONLY if not the `token` filled with value
+        // `abort_unless` method will aborts the user only if not the `token` filled with value
         abort_unless(request()->filled('token'), 403, 'you shall not pass the token');
 
-        // `abort_if` method will aborts the user ONLY if the `token` filled with value
+        // `abort_if` method will aborts the user only if the `token` filled with value
         abort_if(!request()->filled('token'), 403, 'you shall not pass the token');
 
         // Check if the current user is authenticated or not

@@ -7,7 +7,7 @@ use App\{Models\User, Mail\WelcomeNewUser as WelcomeNewUserMail};
 
 class WelcomeNewUser extends Command
 {
-    // If you want to write a signature while creating the command class pass the next option `--command=your_signature`
+    /* If you want to write a signature while creating the command class pass the next option `--command=your_signature` */
 
     /**
      * The name and signature of the console command.
@@ -22,16 +22,6 @@ class WelcomeNewUser extends Command
      * @var string
      */
     protected $description = 'Greeting the new user with the given id via email';
-
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
 
     /**
      * Execute the console command.

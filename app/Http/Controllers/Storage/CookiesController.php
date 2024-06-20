@@ -15,7 +15,7 @@ class CookiesController extends Controller
         // `get` method to pull the value of a cookie that came in with the request
         Cookie::get('$key');
 
-        // You can check wheter a cookie came in with the request using `has` method
+        // You can check whethera cookie came in with the request using `has` method
         Cookie::has('$key');
 
         // If you want make a cookie without queueing it anywhere, you can use the `make` method

@@ -84,7 +84,7 @@ class User extends Authenticatable implements HasLocalePreference
         return $this->morphOne(Department::class, 'departmentable');
     }
 
-    /* NOTE that in `hasOne` relationship Eloquent determines the foreign key of the relationship based on the parent model name. In this case, the `Dog` model is automatically assumed to have a `user_id` foreign key */
+    /* NOTE in `hasOne` relationship Eloquent determines the foreign key of the relationship based on the parent model name. In this case, the `Dog` model is automatically assumed to have a `user_id` foreign key */
     public function dog()
     {
         /* `oldestOfMany` function returns the oldest/maximum one from lots of data */
@@ -125,7 +125,7 @@ class User extends Authenticatable implements HasLocalePreference
     /* Mutators work the same way as accessors work, except the mutators how to setting ot getting the data */
     public function setPasswordAttribute($value)
     {
-        /* NOTE that when you hash the password while creating a new user then, get here to hash the `$value` again, this will hash the hashed value so, when you try to login the `invalid credentails` will be show to you */
+        /* NOTE when you hash the password while creating a new user then, get here to hash the `$value` again, this will hash the hashed value so, when you try to login the `invalid credentails` will be show to you */
         $this->attributes['password'] = $value;
     }
 

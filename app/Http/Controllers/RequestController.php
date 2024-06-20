@@ -32,7 +32,7 @@ class RequestController extends Controller
         // `all` method to get all the keys in the request
         $request->all();
 
-        // `only` method to get ONLY specified key(s)
+        // `only` method to get only specified key(s)
         $request->only('_token');
         $request->only(['_token' . 'first_name']);
 
@@ -144,7 +144,7 @@ class RequestController extends Controller
         }
 
         $response = 'not INITIALIZED';
-        // `is` method return boolean indicating wheter or not, NOTE that the `*` means anything
+        // `is` method return boolean indicating whetheror not, NOTE the `*` means anything
         $response = $request->is('*com') ?: 'INVALID'; // This is good way to check about something
         $response ??= $request->is('*com');           // But this is better way to check about something
 
@@ -160,14 +160,14 @@ class RequestController extends Controller
         /* `secure` method check if current HTTP protocol is secure[HTTPS] or not */
         dump($request->secure());
 
-        // `pjax` method returns a boolean indicating wheter this page was loaded using Pjax for
+        // `pjax` method returns a boolean indicating whetherthis page was loaded using Pjax for
         // https://clarle.github.io/yui3/yui/docs/pjax/#:~:text=Pjax%20is%20a%20technique%20that,avoiding%20a%20full%20page%20load.
         dump($request->pjax());
 
-        // `wantsJson` method returns a boolean indicating wheter this page request has any json content
+        // `wantsJson` method returns a boolean indicating whetherthis page request has any json content
         dump($request->wantsJson());
 
-        /* `accepts` or `acceptsHtml` methods returns a boolean indicating wheter this page request accepts a given content type */
+        /* `accepts` or `acceptsHtml` methods returns a boolean indicating whetherthis page request accepts a given content type */
         dump($request->accepts('html'), $request->acceptsHtml());
     }
 
@@ -176,10 +176,10 @@ class RequestController extends Controller
         /* `flash` method used to flash the current request's user input to the session to be retrieved later */
         // $request->flash();
 
-        // `flashOnly` method work same as flash, BUT with `flashOnly` you specifiy the keys which you want to be flashed
+        // `flashOnly` method work same as flash, but with `flashOnly` you specifiy the keys which you want to be flashed
         $request->flashOnly(['first_name']);
 
-        /* `flashExcept` method also work same as flash, BUT `flashExcept` method flash all user's inputs except the keys which you want */
+        /* `flashExcept` method also work same as flash, but `flashExcept` method flash all user's inputs except the keys which you want */
         $request->flashExcept(['first_name']);
 
         // `old` method returns an array of all prevoiusly flashed user input

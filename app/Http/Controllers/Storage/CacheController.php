@@ -26,13 +26,13 @@ class CacheController extends Controller
         /* `get` method makes it easy to retrieve the value for any given key, `pull` method is the same as the `get` method except it remove the cached value after retrieving it */
         // cache()->pull('$key', '$fallbackValue');
 
-        /* `add` method is similar to the `put` method, except if the value is already exists, it won't set it. Also, the method returns a Boolean indicating wheter or not the value was actually added */
+        /* `add` method is similar to the `put` method, except if the value is already exists, it won't set it. Also, the method returns a Boolean indicating whetheror not the value was actually added */
         // cache()->add('$key', '$value');
 
         /* `forever` method saves a value to the cache for a specfic key; it's the same the `put` method, except the value will never expire (until they're removed with `forget` method) */
         // cache()->forever('$key', '$value');
 
-        // `has` method returns a Booleans indicating wheter or not there's a value set the provided key
+        // `has` method returns a Booleans indicating whetheror not there's a value set the provided key
         // cache()->has('$key');
 
         /* `remember` method check a value exists in the cache for a certain key; and if does not, get that value somehow, save it to the cache, and return it, also it provide the number of seconds to leave and, a closure to define how to look it up, in case the key has no value set. The `rememberForever` method is the same, except it does not need you to set the number of seconds to leave */

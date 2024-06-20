@@ -21,7 +21,7 @@ class NotificationsController extends Controller
         $delayUntil = now()->addMinutes(3);
         $user->notify((new NotificationsGuide)->delay($delayUntil));
 
-        /* This email is automatically sent to the email property on the notifiable, BUT you can customize this behavior by adding a method to your notifiable class named `routeNotificationForMail` that returns the email address you'd like email notifications sent to */
+        /* This email is automatically sent to the email property on the notifiable, but you can customize this behavior by adding a method to your notifiable class named `routeNotificationForMail` that returns the email address you'd like email notifications sent to */
 
         // If you want to modify the templates, publish them and edit to your views
         // php artisan vendor:publish --tag=laravel-notifications

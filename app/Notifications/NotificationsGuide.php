@@ -9,7 +9,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 
 class NotificationsGuide extends Notification implements ShouldQueue
 {
-    /* To begin with, we're going to pass the relevant data to the constructor. In addition, there is a `via` method that allows us to define which notification channels should be used [$notifiable represents whatever entities you want to notify in your system], NOTE that: every model will extends from `Authenticatable` will represents a `notifiable` instance, NOTE that also: `Notifiable` trait not allows you to deal with `$notifiable` but allows you to use some methods like `notify`, `markAsRead`,...etc. The thing that allows you to deal with `$notifiable` is to extends the `Authenticatable` parent class */
+    /* To begin with, we're going to pass the relevant data to the constructor. In addition, there is a `via` method that allows us to define which notification channels should be used [$notifiable represents whatever entities you want to notify in your system], NOTE: every model will extends from `Authenticatable` will represents a `notifiable` instance, NOTE also: `Notifiable` trait not allows you to deal with `$notifiable` but allows you to use some methods like `notify`, `markAsRead`,...etc. The thing that allows you to deal with `$notifiable` is to extends the `Authenticatable` parent class */
 
     use Queueable;
 
@@ -34,7 +34,7 @@ class NotificationsGuide extends Notification implements ShouldQueue
         // Here you can return an array directly
         // return ['mail'];
 
-        /* You can use the methods in you notifiable model, NOTE that: this method exists in a `User` model */
+        /* You can use the methods in you notifiable model, NOTE: this method exists in a `User` model */
         return $notifiable->notifiableMethods();
 
         // You can use `pascal` case Or `snake` case

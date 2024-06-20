@@ -7,7 +7,7 @@ use App\{Models\User, Mail\GettingStarted};
 
 class MailController extends Controller
 {
-    /* There are two different syntaxes in Laravel for sending mail: `classic` and `mailable`. NOTE that the `mailable` syntax is the preferred */
+    /* There are two different syntaxes in Laravel for sending mail: `classic` and `mailable`. NOTE the `mailable` syntax is the preferred */
 
     public function index()
     {

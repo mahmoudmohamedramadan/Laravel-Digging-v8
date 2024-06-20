@@ -49,10 +49,10 @@ class SessionController extends Controller
         // `pull` method is the same as `get` method, except that it deletes the value from the session after pulling it
         session()->pull('$key', '$value');
 
-        // It's not common, BUT if you need to regenerate your session ID, this method is there for you
+        // It's not common, but if you need to regenerate your session ID, this method is there for you
         session()->regenerate();
 
-        /* one very common pattern for session storage is to set a value that you only want available for the NEXT page load, exe: you might want to store a message like `user updated`. you could manually get that message and then wipe it on the NEXT page load, BUT if you use this pattern a lot it can be wastful */
+        /* one very common pattern for session storage is to set a value that you only want available for the NEXT page load, exe: you might want to store a message like `user updated`. you could manually get that message and then wipe it on the NEXT page load, but if you use this pattern a lot it can be wastful */
 
         // `flash` method sets the session key to the provided value for just the NEXT page request
         session()->flash('$key', '$value');

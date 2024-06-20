@@ -6,13 +6,13 @@ use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\{Auth, Http, Route};
 use App\Http\Controllers\Dashboard\{PostController, UserController, CommentController, UserCommentsController};
 
-/* `verify` that passed to `routes` method of the `Auth` used to enable Laravel's email verification service, which requires new users to verify email address to have access to dashboard, NOTE that there is a verified middleware in `\App\Http\Kernel.php` to check if the email is verified or not also in the routes method you can prevent user from `registration` and/or `password resetting ` */
+/* `verify` that passed to `routes` method of the `Auth` used to enable Laravel's email verification service, which requires new users to verify email address to have access to dashboard, NOTE there is a verified middleware in `\App\Http\Kernel.php` to check if the email is verified or not also in the routes method you can prevent user from `registration` and/or `password resetting ` */
 
 Auth::routes(['verify' => false, 'register' => true, 'reset' => false]);
 
 Route::get('logout', [LoginController::class, 'logout']);
 Route::get('logoutOtherDevices', function () {
-    /* `logoutOtherDevices` method log the user out from all devices which he used to login and this method takes two parameters the first one the password of current user and second the attribute which you want to use it to pass attribute's value NOTE that after pass your password it'll be hashed again */
+    /* `logoutOtherDevices` method log the user out from all devices which he used to login and this method takes two parameters the first one the password of current user and second the attribute which you want to use it to pass attribute's value NOTE after pass your password it'll be hashed again */
     auth()->logoutOtherDevices('admin');
 
     return redirect('/user/login');
@@ -46,8 +46,8 @@ Route::middleware('auth')->group(function () {
     Route::group(['prefix' => 'posts/{post}/comments'], function () {
         Route::post('/', [CommentController::class, 'store'])->name('comments.store');
 
-        /* NOTE that: we can pass to custom gate parameter like comment [`bounded route model`] after comma
-        BUT what if not required to pass a model instance like `create` So, you can pass a model like `Comment` */
+        /* NOTE: we can pass to custom gate parameter like comment [`bounded route model`] after comma
+        but what if not required to pass a model instance like `create` So, you can pass a model like `Comment` */
         Route::get('create', function () {
             dd('create comment route');
         })->middleware('can:create-comment,App\\Models\\Comment');
@@ -68,7 +68,7 @@ Route::middleware('auth')->group(function () {
 
 /* `/redirect` route must be in the consumer website(any website provides its users a way for authorization using Laravel-Digging) it will redirect to the service provider(Laravel-Digging) for authorization and finally will return to the `redirect_url` */
 Route::get('/redirect', function () {
-    /* `redirect_uri` should match `redirect` column in `oauth_clients` table of the service provider (Laravel-Digging), NOTE that Once a user choose to accept or reject the authorization, Passport will redirect that user back to the `redirect_uri` */
+    /* `redirect_uri` should match `redirect` column in `oauth_clients` table of the service provider (Laravel-Digging), NOTE Once a user choose to accept or reject the authorization, Passport will redirect that user back to the `redirect_uri` */
     $query = http_build_query([
         'client_id' => '1',
         'redirect_uri' => 'http://localhost:8000/passport/callback',
@@ -76,7 +76,7 @@ Route::get('/redirect', function () {
         'scope' => '',
     ]);
 
-    /* NOTE that the url in the `redirect` was belongs to the service provider(http://laravel-digging.com/oauth/autorize) BUT not all websites uses passport package to redirect to `oauth/authorize` So you should always redirect client to your project which actually uses passport package */
+    /* NOTE the url in the `redirect` was belongs to the service provider(http://laravel-digging.com/oauth/autorize) but not all websites uses passport package to redirect to `oauth/authorize` So you should always redirect client to your project which actually uses passport package */
     return redirect('http://laravel-digging.com/oauth/authorize?' . $query);
 });
 
@@ -97,7 +97,7 @@ Route::get('dogCollection', function () {
     // here we will call `DogResource` directly
     // return new DogResource(\App\Models\Dog::find(1));
 
-    /* here we will call `DogResource` directly, and the difference BETWEEN the below and the upper line is that in case we call `collection` we must pass an array BUT the upper line we must pass a model instance */
+    /* here we will call `DogResource` directly, and the difference BETWEEN the below and the upper line is that in case we call `collection` we must pass an array but the upper line we must pass a model instance */
     return DogResource::collection(\App\Models\Dog::get());
 
     // You can use the below line, and in that case the pagination data will be printed

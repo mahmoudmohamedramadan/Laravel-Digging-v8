@@ -61,7 +61,7 @@ class StorageController extends Controller
 
     public function storagePutUploadedFiles()
     {
-        /* NOTE that `exists` method will always passes the request's file because this method check for passed file name and when you use `putFile` laravel will hash file name then save it So, every time will come with new hash value So will passes from `exists` method */
+        /* NOTE `exists` method will always passes the request's file because this method check for passed file name and when you use `putFile` laravel will hash file name then save it So, every time will come with new hash value So will passes from `exists` method */
         if (!Storage::disk('public')->exists(request()->img)) {
             Storage::putFile('movedFiles', request()->file('img'));
 

@@ -26,7 +26,7 @@ class Product extends Model
 
     public function categories()
     {
-        /* `withTimestamps` used with the`belongsToMany` relationship not with the `hasMany` and it will show the timestamps of the pivot table and the `withPivot` will return the pivot table data of the specific product, via `as` method you can change the intermediate table name NOTE that also the default name of the intermediate table name is `pivot` */
+        /* `withTimestamps` used with the`belongsToMany` relationship not with the `hasMany` and it will show the timestamps of the pivot table and the `withPivot` will return the pivot table data of the specific product, via `as` method you can change the intermediate table name NOTE also the default name of the intermediate table name is `pivot` */
         return $this->belongsToMany(Category::class, 'category_product', 'product_id', 'category_id')
             ->as('category_product_pivot_table')
             ->withTimestamps()
@@ -38,7 +38,7 @@ class Product extends Model
         // return $this->belongsToMany(Category::class)->using(CusomtPivotTable::class);
     }
 
-    /* NOTE that always we add the id of child table in the parent table as `{parentTableSingularName}_{id} */
+    /* NOTE always we add the id of child table in the parent table as `{parentTableSingularName}_{id} */
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');

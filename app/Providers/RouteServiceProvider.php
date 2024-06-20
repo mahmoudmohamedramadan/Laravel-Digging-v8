@@ -35,7 +35,7 @@ class RouteServiceProvider extends ServiceProvider
         /* `model` method works as you say that, every `comment` segement name will be binded to the `Comment` model  */
         // Route::model('comment', Comment::class);
 
-        /* `bind` method will bind the given segment name with whatever returned value from the closure, NOTE that the argument in the closure will equals the value that you pass in url */
+        /* `bind` method will bind the given segment name with whatever returned value from the closure, NOTE the argument in the closure will equals the value that you pass in url */
         // Route::bind('comment', function($comment) {
         //     return Comment::find($comment);
         // });

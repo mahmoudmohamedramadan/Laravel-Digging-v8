@@ -35,7 +35,7 @@ class CommentController extends Controller
      */
     public function create()
     {
-        /* `allows` method check if the current user has ability to createa comment, NOTE that you are not required to pass the currently authenticated user because Laravel do that automatically */
+        /* `allows` method check if the current user has ability to createa comment, NOTE you are not required to pass the currently authenticated user because Laravel do that automatically */
         if (Gate::allows('create-comment')) {
             dd('welcome authorized user!');
         }

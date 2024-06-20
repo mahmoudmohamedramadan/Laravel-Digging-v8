@@ -22,7 +22,7 @@ class ExampleTest_13 extends TestCase
         // You can also make assertions against he response code you get from Artisan
         $code = $this->artisan('do:thing', ['--flagOfSomeSort' => true]);
 
-        /* `0` means no errors were returned, NOTE that: you can also chain three new methods onto your `$this->artisan()` which calls: `expectsQuestion`, `expectsOutput` and `assertExitCode` */
+        /* `0` means no errors were returned, NOTE: you can also chain three new methods onto your `$this->artisan()` which calls: `expectsQuestion`, `expectsOutput` and `assertExitCode` */
         $this->assertEquals(0, $code);
     }
 

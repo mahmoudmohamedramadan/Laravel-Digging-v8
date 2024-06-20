@@ -41,7 +41,7 @@ token_type: the type of token you're getting back, which will be Bearer; this me
 
 /* ### If you'd like to force users to reauthenticate more often, you need to set a shorter refresh time on the tokens, and then you can use the refresh_token to request a new `access_token` when needed */
 
-/* There's one final way for your users to get tokens to access you API, and it's another convenience method that Passport adds BUT normal OAUTH servers do not provide. This method is for when your users are already authenticated because they've logged in to your Laravel app like normal, and you want your app's JavaScript to be able to access the API, It'd be a pain to have to reauthenticate the users with the authorization code or password grant flow. So Laravel provides a helper for that
+/* There's one final way for your users to get tokens to access you API, and it's another convenience method that Passport adds but normal OAUTH servers do not provide. This method is for when your users are already authenticated because they've logged in to your Laravel app like normal, and you want your app's JavaScript to be able to access the API, It'd be a pain to have to reauthenticate the users with the authorization code or password grant flow. So Laravel provides a helper for that
 
 If you add the `Laravel\Passport\Http\Middleware\CreateFreshApiToken` middleware to your we middleware group in app\Http\Kernel.php, every response Laravel sends to your authenticated users will have a cookie named laravel_token attached to it, This cookie is a JSON Web Token [JWT] that contains encoded information about the CSRF token */
 

@@ -74,7 +74,7 @@ class ResponseController extends Controller
         // `jsonp` method takes a callback as a header and data is the body of this header
         // return response()->jsonp('save message', ['success' => true]);
 
-        /* `setCallback` method used to categorize[set header to returned data] returned data, NOTE that `Callback` name must not contains whitespace */
+        /* `setCallback` method used to categorize[set header to returned data] returned data, NOTE `Callback` name must not contains whitespace */
         return response()->json(User::get(['name', 'email']))->setCallback('JSON');
     }
 

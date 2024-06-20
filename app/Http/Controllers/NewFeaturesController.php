@@ -14,7 +14,7 @@ class NewFeaturesController extends Controller
      */
     public function index()
     {
-        /* The `retry` method attempts to execute the given callback until the given maximum attempt threshold is met. If the callback does not throw an exception, its return value will be returned. If the callback throws an exception, it will automatically be retried. If the maximum attempt count is exceeded, the exception will be thrown, NOTE that you can pass in the third paramter a closure  to manually calculate the number of milliseconds to sleep in between attempts and optionally pass a closure in the fourth parameter and accept the `$exception` */
+        /* The `retry` method attempts to execute the given callback until the given maximum attempt threshold is met. If the callback does not throw an exception, its return value will be returned. If the callback throws an exception, it will automatically be retried. If the maximum attempt count is exceeded, the exception will be thrown, NOTE you can pass in the third paramter a closure  to manually calculate the number of milliseconds to sleep in between attempts and optionally pass a closure in the fourth parameter and accept the `$exception` */
         return retry(5, function () {
             // Attempt 5 times while resting 100ms in between attempts...
             return User::get();
