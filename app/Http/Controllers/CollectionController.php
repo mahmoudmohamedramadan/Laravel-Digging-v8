@@ -32,7 +32,7 @@ class CollectionController extends Controller
         print_r($collect_reject);
 
         dump('filter');
-        /* `filter` method will return the results depending on the condition,  which means this will return the member where the `member` equlas to 1 */
+        /* `filter` method will return the results depending on the condition,  which means this will return the member where the `member` equals to 1 */
         $collect_filter = collect($items)->filter(function ($item) {
             return $item['member'] === 1;
         });

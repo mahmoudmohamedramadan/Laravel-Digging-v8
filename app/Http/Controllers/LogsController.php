@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Log;
 
 class LogsController extends Controller
 {
-    /* The purpose of logs is to increase "discoverability", or your ability to understand what's going on at any given moment in your application. WITHOUT any modifications, your app will write any log statements to a file located at `storage/logs/laravel.log` */
+    /* The purpose of logs is to increase "discoverability", or your ability to understand what's going on at any given moment in your application. without any modifications, your app will write any log statements to a file located at `storage/logs/laravel.log` */
 
     /* The most common use case for logs is to act as a semi-disposable record of things that have happend that you may care about later, but to which you do not definitively need programmatic access, The logs are more about learning what's going on in the app and less about creating structured data your app can consume */
 

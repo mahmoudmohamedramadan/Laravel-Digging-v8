@@ -138,7 +138,7 @@ class RequestController extends Controller
             dd('An error has occured, token does not sent');
         }
 
-        /* `path` method get url without domain EX: if you in `http://127.0.0.1:8000/users/3`, `path` method will return `users/3`, `url` method returns the url WITHOUT the query string, and `fullUrl` method return the url with a query string */
+        /* `path` method get url without domain EX: if you in `http://127.0.0.1:8000/users/3`, `path` method will return `users/3`, `url` method returns the url without the query string, and `fullUrl` method return the url with a query string */
         if (!str_contains($request->path(), 'requestMethods') and !str_contains($request->url(), 'requestMethods')) {
             return false;
         }
