@@ -39,27 +39,7 @@ class NewFeaturesController extends Controller
      */
     public function store(Request $request)
     {
-        /* If you want check something in the request, instead of using multiple `if` you can use any scenairo of these */
-
-        $model = '';
-
-        // First you can use switch case
-        switch($request->url()) {
-            case '/users/create': $model = '\\App\\Models\\User';
-            case '/dogs/create': $model = '\\App\\Models\\Dog';
-        }
-
-        $model::create([
-            // insert your data here...
-        ]);
-
-        // Second is a new syntax in PHP
-        match($request->url()) {
-            '/users/create' => '\\App\\Models\\User',
-            '/dogs/create' => '\\App\\Models\\Dog',
-        };
-
-        // for more info visit: https://www.stitcher.io/blog/php-8-match-or-switch
+        // https://www.stitcher.io/blog/php-8-match-or-switch
     }
 
     /**
@@ -71,39 +51,5 @@ class NewFeaturesController extends Controller
     public function show(User $user)
     {
         return $user;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(User $user)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, User $user)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
-    {
-        //
     }
 }

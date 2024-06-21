@@ -48,7 +48,7 @@ Route::resource('user-new-features', NewFeaturesController::class)
     ->parameters([
         'user_new_feature' => 'user_feature',
     ])
-    /* `scoped` method used to specify that segement name `user_feature` -we use `user_feature` becuase we have changed the parameter name using `parameters` method-, will be returned with an `email` instead of `id` */
+    /* `scoped` method used to specify that segement name `user_feature` -we use `user_feature` because we have changed the parameter name using `parameters` method-, will be returned with an `email` instead of `id` */
     ->scoped([
         'user_feature' => 'email',
     ]);

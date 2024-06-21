@@ -97,7 +97,7 @@ Route::get('dogCollection', function () {
     // here we will call `DogResource` directly
     // return new DogResource(\App\Models\Dog::find(1));
 
-    /* here we will call `DogResource` directly, and the difference BETWEEN the below and the upper line is that in case we call `collection` we must pass an array but the upper line we must pass a model instance */
+    /* here we will call `DogResource` directly, and the difference between the below and the upper line is that in case we call `collection` we must pass an array but the upper line we must pass a model instance */
     return DogResource::collection(\App\Models\Dog::get());
 
     // You can use the below line, and in that case the pagination data will be printed

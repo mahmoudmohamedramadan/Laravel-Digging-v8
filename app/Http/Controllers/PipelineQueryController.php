@@ -7,7 +7,8 @@ use Illuminate\Pipeline\Pipeline;
 
 class PipelineQueryController extends Controller
 {
-    /* `pipeline` as a definition not exists in Laravel but Laravel use it in `app\Kernel` and from its name we can guess that there a pipe gives another pipe something */
+    /* `pipeline` as a definition does not exist in the Laravel documentation but Laravel uses it under the hood */
+    // NOTE: Laravel recently added the `pipeline` in its documentation
 
     /**
      * Filter the coming request data.
@@ -16,7 +17,7 @@ class PipelineQueryController extends Controller
      */
     public function searchQuery()
     {
-        // `query` method allows us to create a query builder
+        // The `query` method allows us to create a query builder
         return app(Pipeline::class)
             ->send(User::query())
             ->through([

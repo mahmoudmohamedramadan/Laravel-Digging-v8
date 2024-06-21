@@ -53,7 +53,7 @@ Route::get('filterAPI', function (Request $request) {
 });
 
 Route::get('transformer/users/{userId}', function ($userId) {
-    /* Transformers are helpful becuase they give you more control, isolate API-specific login away from the model itself */
+    /* Transformers are helpful because they give you more control, isolate API-specific login away from the model itself */
     return new \App\UserTransfomer(User::findOrFail($userId));
 });
 

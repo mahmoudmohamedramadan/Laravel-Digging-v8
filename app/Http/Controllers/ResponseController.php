@@ -36,13 +36,13 @@ class ResponseController extends Controller
     {
         file_put_contents('D:\\indexDownload.txt', 'Welcome from indexDownload function');
 
-        /* `download` method used to download specific exists file where first paramtere you choose path for downloading file and second one some data you want to pass to the file */
+        /* The `download` method used to download specific exists file where first paramtere you choose path for downloading file and second one some data you want to pass to the file */
         // return response()->download('D:\\indexDownload.txt');
 
         // If you want to delete original file after downloading use the `deleteFileAfterSend` method
         return response()->download('D:\\indexDownload.txt')->deleteFileAfterSend();
 
-        // `streamDownload` method makes some content from an external service without having to write it directly
+        /* The `streamDownload` method makes some content from an external service without having to write it directly */
         return response()->streamDownload(function () {
             // do something here...
         });
@@ -57,7 +57,7 @@ class ResponseController extends Controller
     {
         file_put_contents('D:\\indexDownload.txt', 'Welcome from indexDownload function');
 
-        /* `file` method response acts as download except it allows the browser to display the file insead of forcing a download */
+        /* The `file` method response acts as download except it allows the browser to display the file insead of forcing a download */
         return response()->file('D:\\indexDownload.txt');
     }
 
@@ -68,13 +68,14 @@ class ResponseController extends Controller
      */
     public function indexJSON()
     {
-        // `json` method used to convert passed data to JSON and set Content-Type header to application/json
+        /* The `json` method used to convert passed data to JSON and set Content-Type header to application/json */
         // return response()->json(User::get(['name', 'email']));
 
         // `jsonp` method takes a callback as a header and data is the body of this header
         // return response()->jsonp('save message', ['success' => true]);
 
-        /* `setCallback` method used to categorize[set header to returned data] returned data, NOTE `Callback` name must not contains whitespace */
+        // The `setCallback` method used to categorize the returned data
+        // NOTE: The `setCallback` name must not contains whitespace
         return response()->json(User::get(['name', 'email']))->setCallback('JSON');
     }
 
@@ -89,7 +90,6 @@ class ResponseController extends Controller
 
         redirect()->to('');
 
-        // `back` method to prevoius page, this is useful when handling and validating user input
         redirect()->back('');
 
         redirect()->action('');
@@ -100,10 +100,10 @@ class ResponseController extends Controller
 
         redirect()->route('');
 
-        // `withInput` method used in case of the validation fails and we want return the values of inputs again
+        /* The `withInput` method used in case of the validation fails and we want return the values of inputs again */
         back()->withInput();
 
-        // `with` method redirect and flash data to the session
+        // The `with` method redirect and flash data to the session
         return redirect()->with('key', 'value');
     }
 

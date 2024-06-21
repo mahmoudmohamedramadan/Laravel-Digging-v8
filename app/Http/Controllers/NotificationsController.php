@@ -14,7 +14,7 @@ class NotificationsController extends Controller
 
         // $user->notify(new NotificationsGuide);
 
-        // You can also send using the facades
+        // You can also use the `Notification` facade to send notifications
         // Notification::send($user, new NotificationsGuide);
 
         /* In some cases you may need to send thousands of notifications that may be slow down the user experience, so probably want to queue your notifications. All notifications import the Queuable trait by default, so all you need to do is add implements `ShouldQueue` to your notification and Laravel will instantly move it to a queue */

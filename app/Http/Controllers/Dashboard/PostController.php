@@ -146,7 +146,7 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        /* So we do not need to use `Gate` class to check if user is authorize to do some actions becuase parent Controller has `AuthorizesRequests` trait which contains three methods for user authorization So we can replace this way with next one */
+        /* So we do not need to use `Gate` class to check if user is authorize to do some actions because parent Controller has `AuthorizesRequests` trait which contains three methods for user authorization So we can replace this way with next one */
         // Gate::cannot('update-posts', function ($post) {
         //     if($post->id == 1) {
         //         return abort(403);

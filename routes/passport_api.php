@@ -75,7 +75,7 @@ Then open resources/js/app.js and finally call these compoenents into home.blade
 */
 
 ### Passport Scopes
-/* In OAuth, scopes are defines sets of privileges that are something other tha, you might've noticed that some app want apps access just to your name and email address, some want access to all of your repos [in GitHub], you can define the scopes for your application in boot() method of your AuthServiceProvider then use it as NEXT request */
+/* In OAuth, scopes are defines sets of privileges that are something other tha, you might've noticed that some app want apps access just to your name and email address, some want access to all of your repos [in GitHub], you can define the scopes for your application in boot() method of your AuthServiceProvider then use it as next request */
 Route::get('twitter/redirect', function () {
     $query = http_build_query([
         'client_id' => 1,

@@ -9,8 +9,6 @@ use function App\Helpers\json_response;
 
 class RequestController extends Controller
 {
-    /* In the new Laravel version we can pass the `-R` option while creating the model to create a Request file */
-
     public function requestView()
     {
         return view('request');
@@ -19,7 +17,7 @@ class RequestController extends Controller
     /* PHP 8.1 adds support for `intersection types`. It’s similar to `union types` introduced in PHP 8.0, but their intended usage is the exact opposite, Essentially, you can add type declarations to function arguments, return values, and class properties. This assignment is called `type hinting` and ensures that the value is of the correct type at call time. Otherwise, it throws up a TypeError right away. In turn, this helps you debug code better */
 
     ## Intersection type: requires a value to satisfy multiple type constraints instead of a single one
-    /* Note the usage of `& (AND)` operator to declare `intersection types`. In contrast, we use the `| (OR)` operator to declare `union types` */
+    /* NOTE: The usage of `& (AND)` operator to declare `intersection types`. In contrast, we use the `| (OR)` operator to declare `union types` */
     public function indexPost(Request|FacadesRequest $request)
     {
         /* The below line has a very awesome feature (Named Parameter) that not force you to pass a parameter that you not want to pass */
@@ -29,24 +27,24 @@ class RequestController extends Controller
             return false;
         }
 
-        // `all` method to get all the keys in the request
+        // The `all` method to get all the keys in the request
         $request->all();
 
-        // `only` method to get only specified key(s)
+        // The `only` method to get only specified key(s)
         $request->only('_token');
         $request->only(['_token' . 'first_name']);
 
-        // `except` method to get all the keys excepts specific key(s)
+        // The `except` method to get all the keys excepts specific key(s)
         $request->except('_token');
         $request->except(['_token', 'last_name']);
 
-        // `query` method will only retrieve values from the query string:
+        // The `query` method will only retrieve values from the query string
         $request->query('_token');
 
         /* When dealing with HTML elements like checkboxes, your application may receive "truthy" values that are actually strings. For example, "true" or "on". For convenience, you may use the `boolean` method to retrieve these values as booleans */
         $request->boolean('_token');
 
-        /* `has` method used to check for if the request has this key and not mandatory to be filled and `filled` method check if this key is empty or not */
+        /* The `has` method used to check for if the request has this key and not mandatory to be filled and `filled` method check if this key is empty or not */
         if (!$request->has('first_name')) {
             return json_response(false, 'The request must has first_name key');
         } else if (!$request->has('last_name')) {
@@ -57,8 +55,11 @@ class RequestController extends Controller
             return json_response(false, 'The Last Name must be filled');
         }
 
-        // `input` method used to key the value of the input's name
-        return json_response(true, "Your name is {$request->input('first_name')} {$request->get('last_name')}");
+        // The `input` method used to key the value of the input's name
+        return json_response(
+            true,
+            "Your name is {$request->input('first_name')} {$request->get('last_name')}"
+        );
     }
 
     public function indexGet(Request $request)
@@ -66,7 +67,7 @@ class RequestController extends Controller
         /* `segments` method used to get all url segment >> EX: http://127.0.0.1:8000/requestGet/Mahmoud/Osama?first=&last= segments will return `requestGet` and `Mahmoud` and `Osama` */
         // $request->segments();
 
-        // `segment` method used to return a segment with the index of 1
+        // The `segment` method used to return a segment with the index of 1
         return $request->segment(2);
     }
 
@@ -80,34 +81,34 @@ class RequestController extends Controller
             'file' => 'image|mimes:png,jpg|max:2500'
         ]);
 
-        // `isValid` method check if the file uploaded successfully or not
+        // The `isValid` method check if the file uploaded successfully or not
         if (!$request->file('file')->isValid()) {
             return false;
         }
 
-        // `hasfile` method check if this request has specific key or not
+        // The `hasfile` method check if this request has specific key or not
         if ($request->hasFile('file')) {
             return $request->file('file')->getError();
         }
 
-        // `file` method to get the uploaded file with the name of input's file
+        // The `file` method to get the uploaded file with the name of input's file
         $request->file('file');
 
-        // `allFiles` method returns an array with all uploaded files
+        // The `allFiles` method returns an array with all uploaded files
         $request->allFiles();
 
         $request->file->guessExtension();
 
-        /* `store` method will save files inside new storage folder(app/storage) and if you want this file saved inside another folder put the folder's name in first parameter */
+        /* The `store` method will save files inside new storage folder(app/storage) and if you want this file saved inside another folder put the folder's name in first parameter */
         // $request->file->store('', 'local');
 
         /* When you link the storage, the main `storage` in app folder will be binded with `storage` in public folder and do not try to delete file in binded folder (app/storage) because this will lead to ERROR */
         // $request->file->store('', 'public');
 
-        /* `store` will save files inside created `users` disk (created in filesystems.php) inside another folder called newFolder */
+        /* The `store` will save files inside created `users` disk (created in filesystems.php) inside another folder called newFolder */
         // $request->file->store('/newFolder', 'users');
 
-        /* `storeAs` accepts three parameters, The first one the folder and the second is the new name for the file (do not forget the extension) and the third is the disk name */
+        /* The `storeAs` accepts three parameters, The first one the folder and the second is the new name for the file (do not forget the extension) and the third is the disk name */
         // $request->file->storeAs('/newFolder', 'newName.png', 'users');
 
         // $request->file->storePublicly('publiclyFolder', 'users');
@@ -121,11 +122,11 @@ class RequestController extends Controller
 
     public function userRequestAndState(Request $request)
     {
-        // `capture` method used to get more info about the server request
+        // The `capture` method used to get more info about the server request
         // dd($request->capture());
         // dd(request()->capture());
 
-        // `all` method used to get all the data sent with the request
+        // The `all` method used to get all the data sent with the request
         // dd($request->all());
         // dd(request()->all());
 
@@ -133,41 +134,41 @@ class RequestController extends Controller
         // dd(app(Request::class));
         // dd(app('request'));
 
-        // `exists` method check if the passed key exists in the coming request or not
+        // The `exists` method check if the passed key exists in the coming request or not
         if (!$request->exists('email')) {
             dd('An error has occured, token does not sent');
         }
 
-        /* `path` method get url without domain EX: if you in `http://127.0.0.1:8000/users/3`, `path` method will return `users/3`, `url` method returns the url without the query string, and `fullUrl` method return the url with a query string */
+        /* The `path` method get url without domain EX: if you in `http://127.0.0.1:8000/users/3`, `path` method will return `users/3`, `url` method returns the url without the query string, and `fullUrl` method return the url with a query string */
         if (!str_contains($request->path(), 'requestMethods') and !str_contains($request->url(), 'requestMethods')) {
             return false;
         }
 
         $response = 'not INITIALIZED';
-        // `is` method return boolean indicating whetheror not, NOTE the `*` means anything
+        // The `is` method return boolean indicating whetheror not, NOTE the `*` means anything
         $response = $request->is('*com') ?: 'INVALID'; // This is good way to check about something
-        $response ??= $request->is('*com');           // But this is better way to check about something
+        $response ??= $request->is('*com'); // But this is better way to check about something
 
-        // `ip` method returns the user's IP address like 127.0.0.1
+        // The `ip` method returns the user's IP address like 127.0.0.1
         dump('Dear ' . $request->ip() . ', please enter valid url');
 
-        // `header` method returns an array of headers like [host, connection, cookie, ....]
+        // The `header` method returns an array of headers like [host, connection, cookie, ....]
         dump($request->header());
 
-        // `server` method returns an array of variables traditionally stored in $_SERVER
+        // The `server` method returns an array of variables traditionally stored in the `$_SERVER`
         dump($request->server());
 
-        /* `secure` method check if current HTTP protocol is secure[HTTPS] or not */
+        // The `secure` method check if current HTTP protocol is secure [HTTPS] or not
         dump($request->secure());
 
-        // `pjax` method returns a boolean indicating whetherthis page was loaded using Pjax for
-        // https://clarle.github.io/yui3/yui/docs/pjax/#:~:text=Pjax%20is%20a%20technique%20that,avoiding%20a%20full%20page%20load.
+        // The `pjax` method returns a boolean indicating whetherthis page was loaded using Pjax
+        /* For more info: https://clarle.github.io/yui3/yui/docs/pjax/#:~:text=Pjax%20is%20a%20technique%20that,avoiding%20a%20full%20page%20load */
         dump($request->pjax());
 
-        // `wantsJson` method returns a boolean indicating whetherthis page request has any json content
+        /* The `wantsJson` method returns a boolean indicating whetherthis page request has any json content */
         dump($request->wantsJson());
 
-        /* `accepts` or `acceptsHtml` methods returns a boolean indicating whetherthis page request accepts a given content type */
+        /* The `accepts` or `acceptsHtml` methods returns a boolean indicating whetherthis page request accepts a given content type */
         dump($request->accepts('html'), $request->acceptsHtml());
     }
 

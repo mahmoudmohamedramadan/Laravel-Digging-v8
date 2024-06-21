@@ -41,7 +41,6 @@ class Kernel extends ConsoleKernel
         // You can run any shell commands that you could run with PHP `exec` method
         $schedule->exec('/bin/build.sh')->everyMinute();
 
-        /* Laravel keeps track of time passing and evaluates whether it's time for any given task to run */
         // Note: `0` refers to sunday
         $schedule->call(function () {
             // do something here...
@@ -56,21 +55,21 @@ class Kernel extends ConsoleKernel
             return date('H') >= 8 && date("H") <= 17;
         });
 
-        // Run every 30 minutes except when directed not to by the SkipDetector
+        // Run every 30 minutes except when directed not to by the `SkipDetector`
         $schedule->command('do:thing')->everyThirtyMinutes()->skip(function () {
             return app('SkipDetector')->shouldSkip();
         });
 
-        // You can define the time zone on a specific scheduled command, using the `timezone` method
+        // You can define the timezone on a specific scheduled command, using the `timezone` method
         $schedule->command('do:thing')->weeklyOn(0, '23:50')->timezone('America/Chicago');
 
-        /* If you want to avoid your tasks overlapping each other, if you have a task running every minute that may sometimes take longer than a minute to run, `withoutOverLapping` This method skips a task if the previous instance of that task is still running */
+        /* If you want to avoid your tasks overlapping each other, use the `withoutOverLapping` method to skip the task if the previous instance is still running */
         $schedule->command('do:thing')->everyMinute()->withoutOverlapping();
 
         /* Sometimes the output from your scheduled task is important, whether for logging, notifications, or just ensuring that the task ran */
         $schedule->command('do:thing')->daily()->sendOutputTo('folder/filePATH');
 
-        // If you want to append it to a file instead, use this
+        // If you want to append it to a file instead, use the `appendOutputTo`
         $schedule->command('do:thing')->daily()->appendOutputTo('folder/filePATH');
 
         /* If you want to email the output to a designated recipient, write it to a file first and then add `emailOutputTo` */

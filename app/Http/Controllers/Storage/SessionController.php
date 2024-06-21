@@ -52,15 +52,15 @@ class SessionController extends Controller
         // It's not common, but if you need to regenerate your session ID, this method is there for you
         session()->regenerate();
 
-        /* one very common pattern for session storage is to set a value that you only want available for the NEXT page load, exe: you might want to store a message like `user updated`. you could manually get that message and then wipe it on the NEXT page load, but if you use this pattern a lot it can be wastful */
+        /* one very common pattern for session storage is to set a value that you only want available for the next page load, exe: you might want to store a message like `user updated`. you could manually get that message and then wipe it on the next page load, but if you use this pattern a lot it can be wastful */
 
-        // `flash` method sets the session key to the provided value for just the NEXT page request
+        // `flash` method sets the session key to the provided value for just the next page request
         session()->flash('$key', '$value');
 
-        /* If you need the previous page's flash session data to stick around for one more request use `reflash` method to restore all of it for the NEXT request */
+        /* If you need the previous page's flash session data to stick around for one more request use `reflash` method to restore all of it for the next request */
         session()->reflash('$key', '$value');
 
-        // restore a single flash value for the NEXT request, `keep` method can also accept an array
+        // restore a single flash value for the next request, `keep` method can also accept an array
         session()->keep('$key');
     }
 }

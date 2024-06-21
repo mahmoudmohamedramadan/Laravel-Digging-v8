@@ -16,7 +16,7 @@ Route::get('relationships', function () {
     // return $user->phoneNumbers;
 
     // We save a `PhoneNumber` instance through a `user`
-    /* NOTE: you are not forced to pass the `user_id` becuase we already save a `phoneNumber` instance through a `user` */
+    /* NOTE: you are not forced to pass the `user_id` because we already save a `phoneNumber` instance through a `user` */
 
     // $phone = new PhoneNumber();
     // $phone->phone_number = '22222';
