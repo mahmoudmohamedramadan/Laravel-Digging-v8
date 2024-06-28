@@ -35,12 +35,13 @@ class CommentController extends Controller
      */
     public function create()
     {
-        /* `allows` method check if the current user has ability to createa comment, NOTE you are not required to pass the currently authenticated user because Laravel do that automatically */
+        // The `allows` method check if the current user has ability to create a comment
+        /* NOTE: You are not required to pass the currently authenticated user because Laravel do that automatically */
         if (Gate::allows('create-comment')) {
             dd('welcome authorized user!');
         }
 
-        // Laravel allows you to perform these types of "inline" authorization checks via the `allowIf` and `denyIf`
+        /* Laravel allows you to perform these types of "inline" authorization checks via the `allowIf` and `denyIf` */
         // Gate::allowIf(fn () => auth()->id() == 1);
 
         // `denies` method check if the current user has not ability to update the user
@@ -115,6 +116,8 @@ class CommentController extends Controller
      */
     private function validateInputs($request)
     {
-        return $request->validate(['post_id' => 'required', 'user_id' => 'required', 'body' => 'required|max:255']);
+        return $request->validate([
+            'post_id' => 'required', 'user_id' => 'required', 'body' => 'required|max:255'
+        ]);
     }
 }

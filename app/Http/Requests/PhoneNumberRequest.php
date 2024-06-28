@@ -14,14 +14,12 @@ class PhoneNumberRequest extends FormRequest
     protected function prepareForValidation()
     {
         // The `prepareForValidation` is visited before the `authorize` method
-        if ($this->isMethod('post')) {
-            if ($this->has('number')) {
-                if (is_numeric($this->get('number'))) {
-                    return true;
-                }
-
-                return 'The phone number must be a correct number';
+        if ($this->isMethod('post') && $this->has('number')) {
+            if (is_numeric($this->get('number'))) {
+                return true;
             }
+
+            return 'The phone number must be a correct number';
 
             return 'The request should have a number';
         }

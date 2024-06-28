@@ -7,11 +7,11 @@ use Illuminate\Support\Facades\{Http, Route};
 
 /* Via this route you can create token for first user to use it in login process, you must create a personal token using `php artisan passport:install` this command creates a two keys in the `storage` folder, also creates a two records into database one is `Laravel Personal Access Client` and the other is `Laravel Password Grant Client`, or you can run `php artisan passport:client --personal`  */
 Route::get('passport/createToken', function () {
-    /* `API Token` the name of token that used in `oauth_access_tokens` table */
+    // `API Token` the name of token that used in `oauth_access_tokens` table
     return User::first()->createToken('API Token')->accessToken;
 });
 
-/* This route will return the token of the first user */
+// This route will return the token of the first user
 Route::get('passport/getToken', function () {
     return User::first()->token();
 });
@@ -39,7 +39,7 @@ expires_in: the number of seconds until an `access_token` expires [needs to be r
 
 token_type: the type of token you're getting back, which will be Bearer; this means you pass a header with all future requests with the name of Authorization and the value of Bearer `YOURTOKENHERE` */
 
-/* ### If you'd like to force users to reauthenticate more often, you need to set a shorter refresh time on the tokens, and then you can use the refresh_token to request a new `access_token` when needed */
+/* If you'd like to force users to reauthenticate more often, you need to set a shorter refresh time on the tokens, and then you can use the refresh_token to request a new `access_token` when needed */
 
 /* There's one final way for your users to get tokens to access you API, and it's another convenience method that Passport adds but normal OAUTH servers do not provide. This method is for when your users are already authenticated because they've logged in to your Laravel app like normal, and you want your app's JavaScript to be able to access the API, It'd be a pain to have to reauthenticate the users with the authorization code or password grant flow. So Laravel provides a helper for that
 
@@ -81,18 +81,19 @@ Route::get('twitter/redirect', function () {
         'client_id' => 1,
         'redirect_url' => 'test/test',
         'response_type' => 'code',
-        'scope' => 'list-clips add-delete-clips' /* You can add mutliple scopes */
+        'scope' => 'list-clips add-delete-clips' // You can add mutliple scopes
     ]);
 
     return redirect('http://bla/bla?' . $query);
 });
 
-/* You can check for scope using middleware or on the user instance */
+// You can check for scope using middleware or on the user instance
 Route::get('/events', function () {
     if (auth()->user()->tokenCan('add-delete-clips')) {
+        // Do something here...
     }
 });
 
 Route::get('clips', function () {
-    // do something here...
+    // Do something here...
 })->middleware('scopes:list-clips, add-delete-clips');

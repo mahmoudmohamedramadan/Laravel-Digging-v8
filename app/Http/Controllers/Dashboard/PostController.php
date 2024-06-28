@@ -22,7 +22,7 @@ class PostController extends Controller
     {
         $posts = Post::get();
 
-        // `valueOrFail` method gets a single column's value from the first result of a query or throws an exception
+        /* The `valueOrFail` method gets a single column's value from the first result of a query or throws an exception */
         // return Post::where('id', 1)->valueOrFail('title');
 
         // You can call your accessor in pascal case
@@ -62,13 +62,13 @@ class PostController extends Controller
     {
         $users = User::get();
 
-        // `exists` method check if the given view exists or not
+        // The `exists` method check if the given view exists or not
         if (View::exists('post.create')) {
             // the below line is equivalent to the `view` helper method
             return View::make('post.create', ['users' => $users]);
         }
 
-        // You can also pass an array in the first argument of the `first` method and that means give me the first view
+        /* You can also pass an array in the first argument of the `first` method and that means give me the first view */
         return View::first(['post.create'], ['users' => $users]);
 
         return view('post.create', ['users' => $users]);
@@ -104,7 +104,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        /* When you replicate (duplicate) the post, you do not replicate the relationship, NOTE also that the replication problem does when you replicates the parent instance then access its child relation */
+        // When you replicate (duplicate) the post, you do not replicate its relationships
+        /* NOTE: The replication problem does when you replicates the parent instance then access its child relation */
         // $clonedPost = $post->replicate();
         // $clonedPost->title = 'title_value';
 
@@ -117,11 +118,11 @@ class PostController extends Controller
         // You should save the replicated post
         // $clonedPost->save();
 
-        // If you already have a model instance, you may use the `fill` method to populate it with an array of attributes
+        /* If you already have a model instance, you may use the `fill` method to populate it with an array of attributes */
         // $post->fill(['title' => 'Save Title Using `fill` method']);
 
-        /* To solve that problem of relationship replication use: `bkwld/cloner` package
-        > NOTE in case of `belongsTo` relationship, the relationship will be replicated also, otherwise you need to add `cloneable_relations` attribute */
+        // To solve that problem of relationship replication use: `bkwld/cloner` package
+        /* NOTE: in case of `belongsTo` relationship, the relationship will be replicated also, otherwise you need to add `cloneable_relations` attribute */
 
         return view('post.show', ['post' => $post, 'users' =>  User::get(), 'comments' => $post->comments]);
     }
@@ -153,7 +154,7 @@ class PostController extends Controller
         //     }
         // });
 
-        /* `authorize` method allows you to check user authorization by passed the key which custom added with custom condition in `AuthServiceProvider` also there is another way to check authorization */
+        /* The `authorize` method allows you to check user authorization by passed the key which custom added with custom condition in `AuthServiceProvider` also there is another way to check authorization */
         // $this->authorize('update-post', $post);
 
         /* The difference between `authorize` and `authorizeForUser` that `authorizeForUser` we passed any user we want but `authorize` always check for authenticated user */

@@ -50,13 +50,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        /* In Laravel, you can actually prevent lazy loading. This feature is incredibly useful because it can help you to ensure that the relationships are eager loaded. As a result of this, it can improve performance and reduce the number of queries that are made to the database. It's super simple to prevent lazy loading. All we need to do is add the */
+        /* You can actually prevent lazy loading. This feature is incredibly useful because it can help you to ensure that the relationships are eager loaded. As a result of this, it can improve performance and reduce the number of queries that are made to the database. It's super simple to prevent lazy loading. All we need to do is add the */
         // User::preventsLazyLoading();
 
-        /* Share method used to share value with key to all views which you have and to use it */
+        // The `share` method used to share value with key to all views which you have and to use it
         // View::share('users', User::get());
 
-        /* Composer method do what share method do but composer you specify the view whcih you want to share this value */
+        /* The `composer` method do what share method do but composer you specify the view whcih you want to share this value */
         // View::composer('home', function ($view) {
         //     $view->with('users', User::get());
         // });
@@ -64,7 +64,7 @@ class AppServiceProvider extends ServiceProvider
         // You can also use a class instead of a closure
         // View::composer('home', UserComposer::class);
 
-        /* The difference between `creators` are very similar to view `composers`; however, they are executed immediately after the view is instantiated instead of waiting until the view is about to render */
+        /* The `creator` is very similar to the `composers`; however, they are executed immediately after the view is instantiated instead of waiting until the view is about to render */
         // View::creator('home', function($view) {
         //     return $view->share('users', User::get());
         // });
@@ -74,7 +74,8 @@ class AppServiceProvider extends ServiceProvider
 
         // Blade::component('book-component', 'modal');
 
-        /* You can create your custom directive using `Illuminate\Support\Facades\Blade` and specially you can create your `if` directive as lower example shows as you say: `@if(auth()->guest())` NOTE when you create your custom directive you must use end{yourDirectiveName} like `endifGuest' to close your custom directive */
+        /* You can create your custom directive using `Illuminate\Support\Facades\Blade` and specially you can create your `if` directive as lower example shows as you say: `@if(auth()->guest())` */
+        /* NOTE: When you create your custom directive you must use end{yourDirectiveName} like `endifGuest' to close your custom directive */
         Blade::if('ifGuest', function () {
             return auth()->guest();
         });
@@ -109,12 +110,13 @@ class AppServiceProvider extends ServiceProvider
         //     dump('user is restored successfully');
         // });
 
-        // when you retrieved eloquent instance this function will be triggered
+        // When you retrieved eloquent instance this function will be triggered
         // \App\Models\User::retrieved(function ($user) {
         //     dump($user);
         // });
 
-        /* Here you can create your custom reponse using macros, NOTE: we actually does not have `customJSON` but whenever you call `customJSON` this closure will be triggered */
+        // Here you can create your custom reponse using macros
+        /* NOTE: We actually does not have `customJSON` but whenever you call `customJSON` this closure will be triggered */
         Response::macro('customJSON', function ($users) {
             return response(json_encode($users))->withHeaders(['Content-Type' => 'application/json']);
         });

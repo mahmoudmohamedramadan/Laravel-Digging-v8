@@ -16,10 +16,9 @@ class Comment extends Model
         return $this->find($value);
     }
 
-    /* NOTE always we add the id of the parent table in the child table as `{parentTableSingularName}_{id}` */
     public function user()
     {
-        /* `withDefault` function will return its closure data in case of there is no user for a specific comment, NOTE in `belongsTo` relationship we have added the foreign key of the related table in this model like `user_id` */
+        /* The `withDefault` method will return its closure data in case of there is no user for a specific comment */
         return $this->belongsTo(User::class, 'user_id', 'id')->withDefault(function($user, $comment) {
             $user->id = '0';
             $user->name = 'NULL';

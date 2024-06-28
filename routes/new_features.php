@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewFeaturesController;
 
 Route::any('/anyRequest', function () {
-    // `any` method makes the URL familiar with any HTTP verb
+    // The `any` method makes the URL familiar with any HTTP verb
     dd('welcome');
 });
 
@@ -21,7 +21,7 @@ Route::get('newRoutes/{user}', function (User $user) {
 
     return $user;
 })
-    /* NOTE middleware `web` very important in route model binding, because the `web middleware group` has `SubstituteBindings` that used in binding */
+    /* NOTE: The middleware `web` very important in route model binding, because it has the `SubstituteBindings` that used in binding */
     ->middleware('web')
     ->name('newLaravel')
     ->where('id', '[0-9]+')
@@ -37,7 +37,7 @@ Route::resource('user-new-features', NewFeaturesController::class)
     ->middleware('web')
     // You can exclude some resource functions from your route using `except`
     ->except(['edit', 'update', 'destroy'])
-    /* `name` method allows you to change the route's name of any route, EX: to access create route name you will not use `route('newControllers.create)` but you will use `route('user_new_features.user_new_feature)` */
+    /* The `name` method allows you to change the route's name of any route, EX: to access create route name you will not use `route('newControllers.create)` but you will use `route('user_new_features.user_new_feature)` */
     ->name('create', 'user_new_features.newCreate')
     ->names([
         'index' => 'user_new_features.newIndex',
@@ -57,7 +57,7 @@ Route::resource('user-new-features', NewFeaturesController::class)
 // Route::resource('posts.comments', Dashboard\CommentController::class)->shallow();
 
 Route::get('newRequest/{name?}', function ($name = 'null') {
-    /* `has` method used to check if the request this input name, `hasAny` used to check if the request any key from the passed arrays of keys, `missing` used to check if the request missing the given input name, `whenHas` used to exceute a closure in case of the request has the input key, `whenFilled` used to execute a closure if the request has the input name with a value */
+    /* The `has` method used to check if the request this input name, `hasAny` used to check if the request any key from the passed arrays of keys, `missing` used to check if the request missing the given input name, `whenHas` used to exceute a closure in case of the request has the input key, `whenFilled` used to execute a closure if the request has the input name with a value */
     if (request()->has('name')) {
         echo "your name is {$name} using `has` function";
     } elseif (request()->filled('name')) {
@@ -83,7 +83,7 @@ Route::redirect('from', 'to', 301);
 Route::permanentRedirect('from', 'to');
 
 Route::get('update-multi-users', function () {
-    // instead of looping through all users using `for` or `foreach` you can use `toQuery` method
+    // Instead of looping through all users using `for` or `foreach` you can use `toQuery` method
     \App\Models\User::get()->toQuery()->update([
         'name' => 'Updated!'
     ]);

@@ -7,7 +7,7 @@ use App\Http\Controllers\Storage\CacheController;
 
 /* Because of the way that Laravel runs, it boots up the framework and parses the routes file on each request that is made. This requires reading the file, parsing its contents, and then holding it in a way that your application can use and understand. So, Laravel provides a command that you can use which creates a single routes file that can be parsed much faster: >> `php artisan route:cache` */
 
-/* Please note though that if you use this command and change your routes, you’ll need to make sure to run >> `php artisan route:clear`, This will remove the cached routes file so that your newer routes can be registered */
+/* NOTE: If you use this command and change your routes, you’ll need to make sure to run >> `php artisan route:clear`, This will remove the cached routes file so that your newer routes can be registered */
 
 ## Config Caching
 

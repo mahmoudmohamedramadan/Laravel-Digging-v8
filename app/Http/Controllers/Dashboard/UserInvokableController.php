@@ -14,6 +14,6 @@ class UserInvokableController extends Controller
      */
     public function __invoke()
     {
-        return 'welcome from invokabel controller';
+        return 'Welcome from `__invokable` Controller';
     }
 }

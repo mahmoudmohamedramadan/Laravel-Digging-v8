@@ -19,7 +19,6 @@ class Kernel extends HttpKernel
         // \App\Http\Middleware\TrustHosts::class,
         /* Trust Proxies[load balancer], Laravel detects whether the current request was via HTTP or HTTPS and in order to make, Laravel correctly treat proxied HTTPS calls like secure calls, and in order for Laravel to process oher headers from proxied requests, You likely do not just want o alow any proxy to send traffic to your app */
         \App\Http\Middleware\TrustProxies::class,
-        \Fruitcake\Cors\HandleCors::class,
         \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,

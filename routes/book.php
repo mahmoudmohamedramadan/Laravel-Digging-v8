@@ -38,7 +38,7 @@ Route::post('requestGet/{first}/{last}', [RequestController::class, 'indexGet'])
 Route::post('requestMethods', [RequestController::class, 'userRequestAndState']);
 Route::post('persistenceRequest', [RequestController::class, 'persistenceRequest']);
 
-// you can pass a parameter to the middleware like `custom-middleware`
+// You can pass a parameter to the middleware like `custom-middleware`
 Route::middleware('custom-middleware:admin, home.blade.php')->group(function () {
     Route::get('response', [ResponseController::class, 'index']);
     Route::get('responseView/{user}', [ResponseController::class, 'indexView']);

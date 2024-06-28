@@ -32,8 +32,8 @@ class CommentFactory extends Factory
         ];
     }
 
-    /* State manipulation methods allow you to define discrete modifications that can be applied to your model factories in any combination, for example here the `body` key in the below method will override the same key that exists in `defination` method. You can use this function later like so : `Comment::factory(10)->CommentVIP()->create();` */
-    public function CommentVIP()
+    /* The `state` manipulation methods allows you to define discrete modifications that can be applied to your model factories in any combination, for example here the `body` key in the below method will override the same key that exists in `defination` method. You can use this function later like so : `Comment::factory(10)->commentVIP()->create();` */
+    public function commentVIP()
     {
         return $this->state(function (array $attributes) {
             return [

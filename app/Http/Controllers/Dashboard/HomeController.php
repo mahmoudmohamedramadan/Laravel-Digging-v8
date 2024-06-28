@@ -20,7 +20,7 @@ class HomeController extends Controller
         /* `except` method allows you to specify the methods that you want to exclude them from this middleware */
         // $this->middleware('auth')->except('methodName');
 
-        /* You can also pass a closure for `middleware` method */
+        // You can also pass a closure for `middleware` method
         $this->middleware(function($request, $next) {
             return $next($request);
         });

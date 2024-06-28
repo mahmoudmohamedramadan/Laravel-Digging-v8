@@ -10,8 +10,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('sendHeader', function () {
-    /* Any request to GitHub's API will return headrs detailing the current user's rate limiting status
-    `x-ratelimit-limit: 5000` */
+    /* Any request to GitHub's API will return headrs detailing the current user's rate limiting status like `x-ratelimit-limit: 5000` */
     return response(Dog::get())->header('X-Greatness-Index', '12');
 });
 

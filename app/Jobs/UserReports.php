@@ -20,6 +20,7 @@ class UserReports implements ShouldQueue
     /**
      * Create a new job instance.
      *
+     * @param  \App\Models\User  $user
      * @return void
      */
     public function __construct($user)
@@ -41,6 +42,6 @@ class UserReports implements ShouldQueue
 
     public function failed()
     {
-        // do something here that will be run when the queue is failed...
+        // Do something here that will be run when the queue is failed...
     }
 }

@@ -38,7 +38,6 @@ class Product extends Model
         // return $this->belongsToMany(Category::class)->using(CusomtPivotTable::class);
     }
 
-    /* NOTE always we add the id of child table in the parent table as `{parentTableSingularName}_{id} */
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
