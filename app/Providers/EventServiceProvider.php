@@ -26,7 +26,8 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        /* you should register the model observer to triggere some actions after we've done some updates to the model, NOTE that to create a policy while creating the model you can pass `-p` argument or as option `--policy`, you can pass `--all` option and in this case will create a new `migration`, `factory`, `seeder`, `controller`, and `policy` */
+        /* You should register the model observer to triggere some actions after we've done some updates to the model */
+        /* NOTE: To create a policy while creating the model you can pass `-p` argument or as option `--policy`, you can also pass `--all` option and in this case will create a new `migration`, `factory`, `seeder`, `controller`, and `policy` */
         User::observe(UserObserver::class);
     }
 }

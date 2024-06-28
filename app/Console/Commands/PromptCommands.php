@@ -21,16 +21,6 @@ class PromptCommands extends Command
     protected $description = 'This command for prompting the user actions';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
      *
      * @return int
@@ -45,7 +35,7 @@ class PromptCommands extends Command
 
         dump('Your Name is ' . $name);
 
-        /* `secret` method does NOT show what you are typing */
+        // The `secret` method does not show what you are typing
         $password = $this->secret('Please Enter Password');
 
         if (!empty($password)) {
@@ -68,7 +58,7 @@ class PromptCommands extends Command
                 dd('Command Finished');
             }
 
-            /* `anticipate` allows the user to enter freeform from text and provides autocomplete suggestions */
+            /* The `anticipate` method allows the user to enter freeform from text and provides autocomplete suggestions */
             $this->anticipate(
                 'So What do you want now?',
                 ['Continue With System', 'I Was Launghing and i want to exit really', 'Nothing']

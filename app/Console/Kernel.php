@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // You can use `model:prune` or `model:prun`, for more info: https://github.com/laravel/framework/discussions/38900
+        /* You can use `model:prune` or `model:prun`, for more info: https://github.com/laravel/framework/discussions/38900 */
         $schedule->command('model:prune', [
             '--model' => [\App\Models\Dog::class],
         ])->everyMinute();
@@ -35,18 +35,17 @@ class Kernel extends ConsoleKernel
             UserReports::dispatch();
         })->everyMinute();
 
-        /* The lower line is equivalent to the upper line */
+        // The lower line is equivalent to the upper line
         $schedule->job(UserReports::class)->everyMinute();
 
-        /* You can run any shell commands that you could run with PHP `exec` method */
+        // You can run any shell commands that you could run with PHP `exec` method
         $schedule->exec('/bin/build.sh')->everyMinute();
 
-        /* Laravel keeps track of time passing and evaluates wheter it's time for any given task to run, NOTE that both run weekly on sunday at `23:50` */
+        // Note: `0` refers to sunday
         $schedule->call(function () {
             // do something here...
         })->weeklyOn(0, '20:50');
 
-        // Note: `0` refers to sunday
         $schedule->call(function () {
             // do something here...
         })->weekly()->sundays()->at('20:50');
@@ -56,24 +55,24 @@ class Kernel extends ConsoleKernel
             return date('H') >= 8 && date("H") <= 17;
         });
 
-        // Run every 30 minutes except when directed not to by the SkipDetector
+        // Run every 30 minutes except when directed not to by the `SkipDetector`
         $schedule->command('do:thing')->everyThirtyMinutes()->skip(function () {
             return app('SkipDetector')->shouldSkip();
         });
 
-        // You can define the time zone on a specific scheduled command, using the `timezone` method
+        // You can define the timezone on a specific scheduled command, using the `timezone` method
         $schedule->command('do:thing')->weeklyOn(0, '23:50')->timezone('America/Chicago');
 
-        /* If you want to avoid your tasks overlapping each other, if you've a task running every minute that may sometimes take longer than a minute to run, `withoutOverLapping` This method skips a task if the prevois instance of that task is still running */
+        /* If you want to avoid your tasks overlapping each other, use the `withoutOverLapping` method to skip the task if the previous instance is still running */
         $schedule->command('do:thing')->everyMinute()->withoutOverlapping();
 
-        /* Sometimes the output from your scheduled task is important, wheter for logging, notifications, or just ensuring that the task ran */
+        /* Sometimes the output from your scheduled task is important, whether for logging, notifications, or just ensuring that the task ran */
         $schedule->command('do:thing')->daily()->sendOutputTo('folder/filePATH');
 
-        // If you want to append it to a file instead, use this
+        // If you want to append it to a file instead, use the `appendOutputTo`
         $schedule->command('do:thing')->daily()->appendOutputTo('folder/filePATH');
 
-        /* and if you want to eamil the output to a designated recipient, write it to a file first and then add `emailOutputTo` */
+        /* If you want to email the output to a designated recipient, write it to a file first and then add `emailOutputTo` */
         $schedule->command('test:one')
             ->daily()
             ->sendOutputTo('folder/filePATH')
@@ -92,7 +91,7 @@ class Kernel extends ConsoleKernel
         require base_path('routes/console.php');
     }
 
-    // You can set a default timezone using `scheduleTimezone`
+    // You can set a default timezone using the `scheduleTimezone` method
     protected function scheduleTimezone()
     {
         return 'America/Chicago';

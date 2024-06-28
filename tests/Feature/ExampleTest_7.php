@@ -19,7 +19,7 @@ class ExampleTest_7 extends TestCase
         This is one reason for faking certain aspects of Laravel in our test */
         Event::fake();
 
-        /* Once we've run the `fake` method, we can also call special assertions on the Event facade: `assertDispatched` and `assertNotdispatched`, NOTE that: the [optional] closure we're passing to `assertDispatched` makes it so we're noy just asserting that the even was dispatched, but also that dispatched event contains certain data, NOTE that: `fake` method aslo disable eloquent model events. So if you have any important code, for example, in a model's creating event, make sure to create your models before `Event::fake()` */
+        /* Once we've run the `fake` method, we can also call special assertions on the Event facade: `assertDispatched` and `assertNotdispatched`, NOTE: the [optional] closure we're passing to `assertDispatched` makes it so we're noy just asserting that the even was dispatched, but also that dispatched event contains certain data, NOTE: `fake` method aslo disable eloquent model events. So if you have any important code, for example, in a model's creating event, make sure to create your models before `Event::fake()` */
         Event::assertDispatched(new SayWelcomeToNewUserEvent(auth()->id), function($event) {
             return $event->userId == 1;
         });

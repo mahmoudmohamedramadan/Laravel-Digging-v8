@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class QueryBuilderController extends Controller
 {
@@ -13,26 +14,27 @@ class QueryBuilderController extends Controller
      */
     public function index()
     {
-        // Fluent Interface: is the method chaning provide simpler API to the end user like lower line...
         // return DB::table('users')->select('*')->get();
 
-        /* `statement` method return true if the query was success else will return false, NOTE that some database statements do not return any value */
+        // The `statement` method return true if the query was success else will return false
+        // NOTE: Some database statements do not return any value
         // return DB::statement('select * from users');
 
         // DB::unprepared('select * from users');
 
-        /* Since `unprepared` statements do not bind parameters, they may be vulnerable to SQL injection. You should never allow user controlled values within an unprepared statement. */
+        /* Since the `unprepared` statements do not bind parameters, they may be vulnerable to SQL injection */
+        /* NOTE: It would be best if you did not allow user-controlled values within an unprepared statement */
 
-        /* When using the DB facade's `statement` and `unprepared` methods within transactions you must be careful to avoid statements that cause implicit commits. more info: https://answers.sap.com/answers/5625146/view.html */
+        /* When using the DB facade's `statement` and `unprepared` methods within transactions you must be careful to avoid statements that cause implicit commits */
 
-        /* If your application defines multiple connections in your `config/database.php` configuration file, you may access each connection via the `connection` method provided by the `DB` facade */
+        /* If your application defines multiple connections in your `config/database.php` configuration file, you may access each connection via the `connection` method */
         // DB::connection('sqlite')->select('');
 
         // return DB::select('select * from users where id = ? and name = ?', [ 1, 'Willow Rau']);
 
         // return DB::table('users')->get();
 
-        /* You can name the parameters for clarity */
+        // You can name the parameters for clarity
         // return DB::select('select * from users where id = :id', ['id' => 1]);
 
         // return DB::insert(
@@ -51,19 +53,28 @@ class QueryBuilderController extends Controller
         // You can also add multiple rows
         // return DB::table('users')
         //     ->insert([
-        //         ['name' => 'Mahmoud Ramadan', 'email' => 'mr@gmail.com', 'password' => Hash::make('admin')],
-        //         ['name' => 'Mahmoud Ali', 'email' => 'ma@gmail.com', 'password' => Hash::make('admin')],
+        //         [
+        //             'name' => 'Mahmoud Ramadan',
+        //             'email' => 'mr@gmail.com', 'password' => Hash::make('admin')
+        //         ],
+        //         [
+        //             'name' => 'Mahmoud Ali',
+        //             'email' => 'ma@gmail.com',
+        //             'password' => Hash::make('admin')
+        //         ],
         //     ]);
 
         // Insert one row then give me its id
         // return DB::table('users')
         //     ->insertGetId([
-        //         'name' => 'Osama Updated', 'email' => 'ou@gmail.com', 'password' => Hash::make('admin'),
+        //         'name' => 'Osama Updated',
+        //         'email' => 'ou@gmail.com',
+        //         'password' => Hash::make('admin'),
         //     ]);
 
         // The `insertOrIgnore` method will ignore errors while inserting records into the database:
         // return DB::table('users')->insertOrIgnore([
-        //     'name' => 'Osama Updated', 'email' => 'ou@gmail.com', 'password' => Hash::make('admin'),
+        //     'name' => 'Osama Updated', 'email' => 'ou@gmail.com', 'password' => Hash::make('admin')
         // ]);
 
         /* Sometimes you may want to update an existing record in the database or create it if no matching record exists. In this scenario, the `updateOrInsert` method may be used. The `updateOrInsert` method accepts two arguments: an array of conditions by which to find the record, and an array of column and value pairs indicating the columns to be updated. The `updateOrInsert` method will attempt to locate a matching database record using the first argument's column and value pairs. If the record exists, it will be updated with the values in the second argument. If the record can not be found, a new record will be inserted with the merged attributes of both arguments */
@@ -81,7 +92,7 @@ class QueryBuilderController extends Controller
      */
     public function conditionsSQL()
     {
-        // Second parameter of `where` method is comparison operator, if comparison operator is `=` you can drop it.
+        /* Second parameter of `where` method is comparison operator, if comparison operator is `=` you can drop it */
         // return DB::table('users')
         //     ->where('created_at', '<', date('Y-m-d h:i:s'))
         //     ->get();
@@ -146,12 +157,12 @@ class QueryBuilderController extends Controller
         //     ->whereNotNull('name')
         //     ->get();
 
-        /* `whereRaw` method allows you to pass an arbitrary string into a query, NOTE that Raw statements will be injected into the query as strings, so you should be extremely careful to avoid creating SQL injection vulnerabilities */
+        /* The `whereRaw` method allows you to pass an arbitrary string into a query, NOTE Raw statements will be injected into the query as strings, so you should be extremely careful to avoid creating SQL injection vulnerabilities */
         // return DB::table('users')
         //     ->whereRaw('name = "admin"')
         //     ->get();
 
-        // When you pass the third parameter as `true` in `whereExists` method you'll feel as if you use `whereNotExists`
+        /* When you pass the third parameter as `true` in `whereExists` method you'll feel as if you use `whereNotExists` */
         // return DB::table('users')
         //     ->whereExists(function ($q) {
         //         return $q->where('id', 'admin');
@@ -163,21 +174,21 @@ class QueryBuilderController extends Controller
         //     ->distinct()
         //     ->get();
 
-        /* The first parameter of the `when` method is a condition, and will execute the colsure if the condition was true else will skip this whole method. */
+        /* The first parameter of the `when` method is a condition, and will execute the colsure if the condition was true else will skip this whole method */
         // return DB::table('users')
         //     ->when(true, function ($q) {
         //         return $q->where('id', 1);
         //     })
         //     ->get();
 
-        // `unless` method is the opposite of `when` method
+        // The `unless` method is the opposite of `when` method
         // return DB::table('users')
         //     ->unless(true, function ($q) {
         //         return $q->where('id', 1);
         //     })
         //     ->get();
 
-        // get only the first row in array
+        // get only the first row
         // return DB::table('users')
         //     ->where('email', 'like', '%.org%')
         //     ->first();
@@ -189,13 +200,12 @@ class QueryBuilderController extends Controller
         //     ->whereId(12)
         //     ->update(['name' => 'Name Updated']);
 
-        // to use union the two tables must have the number of column
         // return DB::table('posts')
         //     ->whereNotNull('body')
         //     ->select('id')
         //     ->addSelect('body');
 
-        // Laravel also supports querying JSON column types on databases that provide support for JSON column types
+        /* Laravel also supports querying JSON column types on databases that provide support for JSON column types */
         // return DB::table('users')
         //     ->whereJsonContains('options->languages', 'en')
         //     ->get();
@@ -220,16 +230,17 @@ class QueryBuilderController extends Controller
         //     ->orderBy('name', 'desc')
         //     ->get();
 
-        // NOTE that: you must get all the data then group them not the versa
+        // NOTE: You must get all the data then group them not the versa
         // return DB::table('users')->get()->groupBy('name');
 
-        /* You can group your data, you filter results based on properties using `having` or `havingRow` methods NOTE that also you can not use `having` or `havingRaw` without group */
+        /* You can group your data then filter the results based on properties using `having` or `havingRow` methods */
+        // NOTE: You can not use `having` or `havingRaw` without group
         // return DB::table('users')
         //     ->groupBy('id')
         //     ->having('created_at', '<', date('Y-m-d h:i:s'))
         //     ->get();
 
-        // NOTE that you can not use `skip` individually without `take` method
+        // NOTE: You can not use `skip` individually without `take` method
         // return DB::table('users')
         //     ->skip(5)
         //     ->take(5)
@@ -241,12 +252,12 @@ class QueryBuilderController extends Controller
         //     ->limit(5)
         //     ->get();
 
-        // `oldest` method means order by ascending
+        // The `oldest` method means order by ascending
         // return DB::table('users')
         //     ->oldest()
         //     ->get();
 
-        // `latest` method is the opposite of `oldest`
+        // The `latest` method is the opposite of `oldest`
         // return DB::table('users')
         //     ->latest()
         //     ->get();
@@ -255,7 +266,7 @@ class QueryBuilderController extends Controller
         //     ->inRandomOrder()
         //     ->get();
 
-        // `increment` method increments a specific column, also you can specify the number that you want to increment
+        /* The `increment` method increments a specific column, also you can specify the number that you want to increment */
         // return DB::table('users')
         //     ->where('id', 16)
         //     ->increment('id', 2);
@@ -267,10 +278,10 @@ class QueryBuilderController extends Controller
         // You may also specify additional columns to update during the operation
         // return DB::table('users')->increment('id', 1, ['name' => 'John']);
 
-        /* `find` method used to find the row BY its `id` */
+        // The `find` method used to find the row by its `id`
         // return DB::table('users')->find(5);
 
-        // `find` method used to find the row BY its `id` and if the given id not exist it will fail
+        /* The `findOrFail` method is used to find the row by its `id` and if the given id does not exist it will fail */
         // return User::findOrFail(50);
 
         // Get the value of a specific column in first one
@@ -310,12 +321,12 @@ class QueryBuilderController extends Controller
         //     })
         //     ->get();
 
-        // You can use the left join BETWEEN two tables which satisfy a given condition.
+        // You can use the left join between two tables which satisfy a given condition.
         // return DB::table('users')
         //     ->leftJoin('posts', 'users.id', '=', 'posts.user_id')
         //     ->get();
 
-        // You can use the right join BETWEEN two tables whcih satisfy a given condition.
+        // You can use the right join between two tables whcih satisfy a given condition.
         // return DB::table('users')
         //     ->rightJoin('posts', 'users.id', '=', 'posts.user_id')
         //     ->get();
@@ -333,7 +344,7 @@ class QueryBuilderController extends Controller
      */
     public function transactionsSQL()
     {
-        /* User transactions to ensure that all or not all, BUT not some of a series of related quires are performed here if there is user with id equal `12` and `1000` the transaction will implemented successfully else not thing will implemented */
+        /* User transactions to ensure that all or not all, but not some of a series of related quires are performed here if there is user with id equal `12` and `1000` the transaction will implemented successfully else not thing will implemented */
         // DB::transaction(function () {
         //     DB::table('users')
         //         ->where('id', 12)

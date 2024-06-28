@@ -22,30 +22,21 @@ class OutputCommand extends Command
     protected $description = 'This command for showing the output to the user';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
      *
      * @return int
      */
     public function handle()
     {
-        /* Here will return all users with two columns only are `name` and `email` */
+        // The below line will return all users with two columns only which are `name` and `email`
         $users = User::all(['name', 'email'])->toArray();
 
-        /* `table` method produced data/result in a table */
+        // The `table` method produced the data in a table
         $this->table(['name', 'email'], $users);
 
         /* If you want to see the command-line progress bar do this...
-         `progressSart` to begin or prepare your command-line to the progress bar and `progressAdvance` to add the value to the bar, you can pass the value that you want to sum to the bar value and `progressFinish` to finish your work, NOTE that the `progressStart` method accepts the maximum of progress bar */
+         `progressSart` to begin or prepare your command line to the progress bar and `progressAdvance` to add the value to the bar, you can pass the value that you want to sum to the bar value and `progressFinish` to finish your work */
+        // NOTE: The `progressStart` method accepts the maximum of progress bar
         $this->output->progressStart(count($users));
         for ($i = 0; $i < count($users); $i++) {
             sleep(1);

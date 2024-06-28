@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class ExampleTest_1 extends TestCase
 {
-    /* To run a specific test method in class run the next command >> `.\vendor\bin\phpunit tests\Feature\ExampleTest_1.php --filter test_it_names_things_well`, NOTE that: you can ignore passing the method name and in this case will run a test on all of the class's methods */
+    /* To run a specific test method in class run the next command >> `.\vendor\bin\phpunit tests\Feature\ExampleTest_1.php --filter test_it_names_things_well`, NOTE: you can ignore passing the method name and in this case will run a test on all of the class's methods */
 
     /* Automatically, Laravel's testing system will run any files in the test directory whose names end with the word TEST */
 

@@ -10,8 +10,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('sendHeader', function () {
-    /* Any request to GitHub's API will return headrs detailing the current user's rate limiting status
-    `x-ratelimit-limit: 5000` */
+    /* Any request to GitHub's API will return headrs detailing the current user's rate limiting status like `x-ratelimit-limit: 5000` */
     return response(Dog::get())->header('X-Greatness-Index', '12');
 });
 
@@ -53,7 +52,7 @@ Route::get('filterAPI', function (Request $request) {
 });
 
 Route::get('transformer/users/{userId}', function ($userId) {
-    /* Transformers are helpful becuase they give you more control, isolate API-specific login away from the model itself */
+    /* Transformers are helpful because they give you more control, isolate API-specific login away from the model itself */
     return new \App\UserTransfomer(User::findOrFail($userId));
 });
 

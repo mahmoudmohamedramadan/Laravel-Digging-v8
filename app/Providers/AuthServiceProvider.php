@@ -42,14 +42,14 @@ class AuthServiceProvider extends ServiceProvider
         //     return User::where('id', 1)->get();
         // });
 
-        /* `before` method runs before all the defined closures and you can optionally override them */
+        // `before` method runs before all the defined closures and you can optionally override them
         Gate::before(function ($user, $ability) {
-            // do some conditions here...
+            // Do some conditions here...
         });
 
-        /* here we can define the authorization rule is called an ability and is comprised of two things: a string key and closure
-        ## First to define the ability you're providing to a user as {verb}-{modelName}: `update-user` and `create-phone`
-        ## Second the closure in first parameter the currently authenticated user and all parameters after that will be the object(s) you're checking for access */
+        /* We can define the authorization rule that is called an ability and is comprised of two things: a string key and closure */
+        /* First: To define the ability you're providing to a user as {verb}-{modelName}: `update-user` and `create-phone` */
+        /* Second: The closure in first parameter the currently authenticated user and all parameters after that will be the object(s) you're checking for access */
         Gate::define('update-user', function ($user) {
             if ($user->id == auth()->id()) {
                 return true;
@@ -58,10 +58,8 @@ class AuthServiceProvider extends ServiceProvider
             return false;
         });
 
-        /* you can also define your gate without closure */
+        // You can also define your gate without closure
         Gate::define('delete-user', 'App\\Models\\User@checkAbility');
-
-        /* you can also pass the closure to point to specific method in the `CommentPolicy`(actually not exists) */
         // Gate::define('delete-user', [\App\Policies\CommentPolicy::class, 'create']);
 
         Gate::define('create-comment', function ($user, $comment) {
@@ -96,15 +94,15 @@ class AuthServiceProvider extends ServiceProvider
             return false;
         });
 
-        /* the most common use to ACL(Access Control List) to define access to resources
-        the resource method makes it possible to apply the most common gates, view, create, update, delete
-        Gate::resource('photos', 'App\\Polices\\PhotoPolicy');
+        /* The most common use to ACL (Access Control List) to define access to resources.
+        The `resource` method makes it possible to apply the most common actions `view`, `create`, `update`, `delete` */
+        // Gate::resource('photos', 'App\\Polices\\PhotoPolicy');
 
-        ### this is equivalent defining the following
-        Gate::define('photos.view', 'App\Policies\\PhotoPolicy@view');
-        Gate::define('photos.viewAny', 'App\Policies\\PhotoPolicy@viewAny');
-        Gate::define('photos.create', 'App\Policies\\PhotoPolicy@create');
-        Gate::define('photos.update', 'App\Policies\\PhotoPolicy@update');
-        Gate::define('photos.delete', 'App\Policies\\PhotoPolicy@delete'); */
+        // The below lines are equal to the single upper one
+        // Gate::define('photos.view', 'App\Policies\\PhotoPolicy@view');
+        // Gate::define('photos.viewAny', 'App\Policies\\PhotoPolicy@viewAny');
+        // Gate::define('photos.create', 'App\Policies\\PhotoPolicy@create');
+        // Gate::define('photos.update', 'App\Policies\\PhotoPolicy@update');
+        // Gate::define('photos.delete', 'App\Policies\\PhotoPolicy@delete');
     }
 }

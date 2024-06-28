@@ -10,7 +10,7 @@ class User extends Authenticatable implements HasLocalePreference
 {
     use HasFactory, Notifiable, SoftDeletes, HasApiTokens;
 
-    /* use `HasLocalePreference` when you want to deal with multiple language */
+    // use `HasLocalePreference` when you want to deal with multiple language
 
     /**
      * The attributes that are mass assignable.
@@ -57,7 +57,7 @@ class User extends Authenticatable implements HasLocalePreference
         'updated_at',
     ];
 
-    /* put here some columns to mutated as timestamps, by default this array contains `created_at` and `updated_at` */
+    /* Put here some columns to mutated as timestamps, by default this array contains `created_at` and `updated_at` */
     protected $dates = [
         'created_at',
     ];
@@ -84,16 +84,16 @@ class User extends Authenticatable implements HasLocalePreference
         return $this->morphOne(Department::class, 'departmentable');
     }
 
-    /* NOTE that in `hasOne` relationship Eloquent determines the foreign key of the relationship based on the parent model name. In this case, the `Dog` model is automatically assumed to have a `user_id` foreign key */
+    /* NOTE: In the `hasOne` relationship Eloquent determines the foreign key of the relationship based on the parent model name. In this case, the `Dog` model is automatically assumed to have a `user_id` foreign key */
     public function dog()
     {
-        /* `oldestOfMany` function returns the oldest/maximum one from lots of data */
+        // The `oldestOfMany` method returns the oldest/maximum one from lots of data
         return $this->hasOne(Dog::class, 'user_id', 'id')->oldestOfMany();
 
-        /* `latestOfMany` function returns the latest/minimum one from lots of data */
+        // The `latestOfMany` method returns the latest/minimum one from lots of data
         // return $this->hasOne(Dog::class, 'user_id', 'id')->latestOfMany();
 
-        /* `ofMany` method accepts the sortable column as its first argument and which aggregate function (min or max) to apply when querying for the related mode */
+        /* The `ofMany` method accepts the sortable column as its first argument and which aggregate function (min or max) to apply when querying for the related mode */
         // return $this->hasOne(Dog::class, 'user_id', 'id')->ofMany('id', 'max');
 
         /* You can also check more than one column and you can pass a closure as a second argument for ceching whatever you want */
@@ -125,11 +125,11 @@ class User extends Authenticatable implements HasLocalePreference
     /* Mutators work the same way as accessors work, except the mutators how to setting ot getting the data */
     public function setPasswordAttribute($value)
     {
-        /* NOTE that when you hash the password while creating a new user then, get here to hash the `$value` again, this will hash the hashed value so, when you try to login the `invalid credentails` will be show to you */
+        /* NOTE: When you hash the password while creating a new user then, get here to hash the `$value` again, this will hash the hashed value so, when you try to login the `invalid credentails` will be show to you */
         $this->attributes['password'] = $value;
     }
 
-    /* by default the first parameter is the currently authenticated user passed automatically with Laravel from `AuthServiceProvider` in `delete-user` key */
+    /* By default the first parameter is the currently authenticated user passed automatically with Laravel from `AuthServiceProvider` in `delete-user` key */
     public function checkAbility($user)
     {
         if ($user->id == auth()->id()) {
@@ -143,11 +143,11 @@ class User extends Authenticatable implements HasLocalePreference
     {
         return [
             'mail',
-            // 'nexmo', /* you can specify the channel to send the notification like `nexmo` to send SMS message */
+            // 'nexmo',
         ];
     }
 
-    /* in case you want to send a URL for resetting the password in a new Laravel version you can override the `resetUrl`in `ResetPassword` class */
+    /* In case you want to send a URL for resetting the password in a new Laravel version you can override the `resetUrl`in `ResetPassword` class */
 
     /**
      * Get the reset URL for the given notifiable.

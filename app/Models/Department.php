@@ -28,13 +28,14 @@ class Department extends Model
         return $this->morphTo();
     }
 
-    /* The below relationship used in `ManyToMany` polymorphic and, this means that a `user` belongs to many `deprtments` and the `department` belongs to many models, NOTE that the `morphedByMany` must be in the child model and then define `morphToMany` relationship in the parent model */
+    /* The below relationship used in `ManyToMany` polymorphic and, this means that a `user` belongs to many `deprtments` and the `department` belongs to many models */
+    /* NOTE: The `morphedByMany` must be in the child model and then define `morphToMany` relationship in the parent model */
     // public function user()
     // {
     //     return $this->morphedByMany(User::class, 'departmentable');
     // }
 
-    /* `newCollection` is a method in a `Model` class that allows you to create your own collection method */
+    /* The `newCollection` is a method in a `Model` class that allows you to create your own collection method */
     public function newCollection(array $models = [])
     {
         return new DepartmentCollection($models);

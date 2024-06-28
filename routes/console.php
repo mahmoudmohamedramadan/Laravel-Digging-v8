@@ -7,7 +7,9 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
 
-/* If you found the command class is complex, you can use a simpler type of a command by writing the commands here, NOTE: if you have a `bla:bla` command and you tried to write this command again here it will be overridden because this file is called after the commands classes according to `commands` method in the `\App\Console\Kernel.php`, also NOTE: that the changes in the arguments and options not considered overriding and if you want to make override, you can change the action itself */
+/* If you found the command class is complex, you can use a simpler type of a command by writing the commands here */
+/* NOTE: If you have a Command class with a `bla:bla` signature and you tried to write this command again here it will be overridden because this file is called after the commands classes after have been loaded, according to the `commands` method in the `\App\Console\Kernel.php` */
+/* NOTE: The changes in the arguments and options not considered overriding and if you want to make override, you can change the action itself */
 Artisan::command('new-user:welcome {userId}', function ($userId) {
     $userId = $this->argument('userId');
 

@@ -81,7 +81,7 @@ the header the first time the component is rendered --}}
 
         {{-- In this example, the `@` symbol will be removed by Blade; however, {{ $users->first()->name }} expression
         will remain untouched by the Blade engine, and if you remove this symbol the name of the first user will be
-        printed, NOTE that The `@` symbol may also be used to escape Blade directives: `@@json($users)` --}}
+        printed, NOTE: The `@` symbol may also be used to escape Blade directives: `@@json($users)` --}}
         {{-- @{{ $users->first()->name }} --}}
 
         {{-- If you are displaying JavaScript variables in a large portion of your template, you may wrap the HTML in

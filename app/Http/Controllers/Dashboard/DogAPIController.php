@@ -57,7 +57,7 @@ class DogAPIController extends Controller
         $dog->refresh();
         $dog->name; // test_was_changed_method
 
-        // for more info. about `fresh` and `refresh` visit: https://stackoverflow.com/a/27748794/11019205
+        // For more info: https://stackoverflow.com/a/27748794/11019205
     }
 
     /**
@@ -88,12 +88,14 @@ class DogAPIController extends Controller
     public function update(Request $request, Dog $dog)
     {
         /* Similar to the `lazy` method, the `cursor` method may be used to significantly reduce your application's memory consumption when iterating through tens of thousands of Eloquent model records, The `cursor` method will only
-        execute a single database query, NOTE that Since the `cursor` method only ever holds a single Eloquent model in memory at a time, it cannot eager load relationships */
+        execute a single database query */
+        /* NOTE: Since the `cursor` method only ever holds a single Eloquent model in memory at a time, it cannot eager load relationships */
 
-        /* Occasionally, you may need to update an existing model or create a new model if no matching model exists. Like the `firstOrCreate` method, the `updateOrCreate` method persists the model, so there's no need to manually call the save method NOTE that if there is a dog with the passing `name` from the request `updateOrCreate` method will updates the `tame` attribute according to the second parameter BUT if the passing name not exists the method will merge the two parameters to insert a new model instance */
+        /* Occasionally, you may need to update an existing model or create a new model if no matching model exists. Like the `firstOrCreate` method, the `updateOrCreate` method persists the model, so there's no need to manually call the save method */
+        /* NOTE: If there is a dog with the passing `name` from the request `updateOrCreate` method will updates the `tame` attribute according to the second parameter but if the passing name not exists the method will merge the two parameters to insert a new model instance */
         // return $dog->cursor()->updateOrCreate($request->only(['name']), ['tame' => 1]);
 
-        /* If you would like to perform multiple "upserts" in a single query, then you should use the `upsert` method instead. The method's first argument consists of the values to insert or update, while the second argument lists the column(s) that uniquely identify records within the associated table. The method's third and final argument is an array of the columns that should be updated if a matching record already exists in the database. The upsert method will automatically set the `created_at` and `updated_at` timestamps if timestamps are enabled on the model: */
+        /* If you would like to perform multiple "upserts" in a single query, then you should use the `upsert` method instead. The method's first argument consists of the values to insert or update, while the second argument lists the column(s) that uniquely identify records within the associated table. The method's third and final argument is an array of the columns that should be updated if a matching record already exists in the database. The upsert method will automatically set the `created_at` and `updated_at` timestamps if timestamps are enabled on the model */
         return Dog::where('id', $dog->id)->upsert([
             ['name' => $request->get('name'), 'tame' => $request->input('tame')],
             ['name' => $request->get('name'), 'tame' => $request->input('tame')],

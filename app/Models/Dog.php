@@ -12,10 +12,10 @@ class Dog extends Model
 
     protected $guarded = [];
 
-    /* NOTE that in `belongsTo` relationship Eloquent determines the foreign key name by examining the name of the relationship method and suffixing the method name with `_id` So, in this case, Eloquent assumes that the `Dog` model has a `user_id` column */
+    /* NOTE: In `belongsTo` relationship Eloquent determines the foreign key name by examining the name of the relationship method and suffixing the method name with `_id` So, in this case, Eloquent assumes that the `Dog` model has a `user_id` column */
     public function user()
     {
-        /* in `belongsTo` we add the foreign key of the related table in this model like `user_id` */
+        // in `belongsTo` we add the foreign key of the related table in this model like `user_id`
         return $this->belongsTo(User::class, 'user_id', 'id', 'dog');
     }
 

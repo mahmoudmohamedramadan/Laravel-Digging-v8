@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\{Model, Factories\HasFactory};
 
 class Admin extends Model
 {
-    /* Each method in the `CheckAuthenticatedUser` trait and its name was `boot{TraitName}` will be auto-called as a `boot` */
+    /* each method in the `CheckAuthenticatedUser` trait and its name was `boot{TraitName}` will be auto-called as a `boot` */
     use HasFactory, CheckAuthenticatedUser;
 
     protected $guarded = [];

@@ -15,11 +15,11 @@ class CookiesController extends Controller
         // `get` method to pull the value of a cookie that came in with the request
         Cookie::get('$key');
 
-        // You can check wheter a cookie came in with the request using `has` method
+        // You can check whethera cookie came in with the request using `has` method
         Cookie::has('$key');
 
-        // If you want make a cookie WITHOUT queueing it anywhere, you can use the `make` method
-        Cookie::make('$cookieName', '$cookieValue', '$minutesToLeave', '$cookiePath', '$cookieDomain', '$cookieSecureOverHTTPS', '$cookieHTTPOnly', '$cookie_Raw_Which_Indicates_The_Cookie_Should_Be_Sent_WITHOUT_URL_Encoding_', '$cookie_Same_Site_Indicates_Should_BE_Available_For_Cross_Site_Request');
+        // If you want make a cookie without queueing it anywhere, you can use the `make` method
+        Cookie::make('$cookieName', '$cookieValue', '$minutesToLeave', '$cookiePath', '$cookieDomain', '$cookieSecureOverHTTPS', '$cookieHTTPOnly', '$cookie_Raw_Which_Indicates_The_Cookie_Should_Be_Sent_without_URL_Encoding_', '$cookie_Same_Site_Indicates_Should_BE_Available_For_Cross_Site_Request');
 
         /* If you use the `make` method, you will still need to attach the cookie to your response, which we'll cover shortly. The `queue` method has same syntax as the `make` method but it enqueues the created cookie to be automatically attached to the response by middleware. If you'd like, you can also just pass a cookie you've created yourself into `queue` method */
         Cookie::queue('...$params');

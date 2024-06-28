@@ -26,7 +26,7 @@ class CreateDogsTable extends Migration
             /* The `char` method creates a CHAR equivalent column with of a given length */
             // $table->char('is_admin', 1);
 
-            /* the difference BETWEEN JSON and JSONB >> https://www.quora.com/Which-is-better-to-use-json-jsonb-or-string-to-store-additional-data-which-is-not-used-frequently-in-PostgreSQL-What-would-be-the-reason-for-this */
+            /* the difference between JSON and JSONB >> https://www.quora.com/Which-is-better-to-use-json-jsonb-or-string-to-store-additional-data-which-is-not-used-frequently-in-PostgreSQL-What-would-be-the-reason-for-this */
             // $table->jsonb('test_jsonb');
         });
     }

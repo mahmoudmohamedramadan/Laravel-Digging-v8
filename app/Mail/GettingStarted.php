@@ -48,7 +48,7 @@ class GettingStarted extends Mailable implements ShouldQueue
 
         `pirority` set the email's pirority, where 1 is the highest and 5 is the lowest.
 
-        `withSwiftMessage` if you want to perform any manual modifications on the underlying swift message, NOTE that this function accepts a closure with a parameter to edit your email before sending it */
+        `withSwiftMessage` if you want to perform any manual modifications on the underlying swift message, NOTE this function accepts a closure with a parameter to edit your email before sending it */
 
         /* the difference between `cc` and `bcc` that,
         When you CC people on an email, the CC list is visible to all other recipients. For example, if you CC bob@example.com and jake@example.com on an email, Bob and Jake will both know that the other received the email, as well.
