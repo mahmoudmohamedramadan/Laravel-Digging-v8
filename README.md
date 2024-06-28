@@ -4,7 +4,7 @@
 
 This repo contains recaps for [Laravel Up & Running](https://github.com/mahmoudmohamedramadan/Backend-Roadmap#-books). You'll find these recaps in each file and every topic was explained in one file with a descriptive name such as the [new_features.php](/routes/new_features.php) file, this file contains the methods in `Laravel v8` only and, so on. Also, you'll find some snapshots from the book in the `public` folder.
 
-> [!NOTE]
+> [!IMPORTANT]
 > This project is compatible with less or equal version 8.
 
 ## 📌 Covered Topics
@@ -34,12 +34,15 @@ git clone https://github.com/mahmoudmohamedramadan/Laravel-Digging-v8 laravel_di
 
 ### Go into the project directory
 
-```SHELL
+```NOTHING
 cd laravel_digging_v8
 ```
 
 ### Install the project dependencies
 
-```COMPOSER
+```NOTHING
 composer install
 ```
+
+> [!NOTE]
+> If you need to help me improve the project, you should follow the [#2](https://github.com/mahmoudmohamedramadan/Laravel-Digging-v8/pull/2) instructions.
