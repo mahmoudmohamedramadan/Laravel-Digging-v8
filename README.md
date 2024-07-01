@@ -7,6 +7,9 @@ This repo contains recaps for [Laravel Up & Running](https://github.com/mahmoudm
 > [!IMPORTANT]
 > This project is compatible with less or equal version 8.
 
+> [!NOTE]
+> If you need to help me improve the project, you should follow the [#2](https://github.com/mahmoudmohamedramadan/Laravel-Digging-v8/pull/2) instructions.
+
 ## 📌 Covered Topics
 
 - Routing and Controllers
@@ -47,6 +50,3 @@ composer install
 ## 💳 Support me
 
 - [PayPal](https://www.paypal.com/paypalme/mmramadan496)
-
-> [!NOTE]
-> If you need to help me improve the project, you should follow the [#2](https://github.com/mahmoudmohamedramadan/Laravel-Digging-v8/pull/2) instructions.
