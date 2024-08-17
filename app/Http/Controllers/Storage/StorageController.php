@@ -9,59 +9,59 @@ class StorageController extends Controller
 {
     public function storagePutManualFiles()
     {
-        // `get` method used to retrieve the passed file name from `storage/public`
+        // The `get` method used to retrieve the passed file name from `storage/public`
         // $file = Storage::disk('public')->get('test_02.png');
 
-        // `put` method allows you pass the file name in the first parameter and the content file in the second parameter
+        /* The `put` method allows you pass the file name in the first parameter and the content file in the second parameter */
         $requestFile = request()->file;
 
         return Storage::disk('public')->put(md5($requestFile->getClientOriginalName()) . '.' . $requestFile->getClientOriginalExtension(), file_get_contents($requestFile));
 
         if (Storage::exists('public/test_02.png')) {
-            /* `getVisivbility` method allows you to get a visibility for a specific file in `app/storage` if public or private */
+            /* The `getVisivbility` method allows you to get a visibility for a specific file in `app/storage` if public or private */
             if (Storage::getVisibility('public/test_02.png') == 'private') {
-                /* `setVisibility` method allows you to set specific file in `app/storage` to visibility value (public, private) */
+                /* The `setVisibility` method allows you to set specific file in `app/storage` to visibility value (public, private) */
                 Storage::setVisibility('public/test_02.png', 'public');
             }
         }
 
-        // `copy` method allows you to copy file in `app/storage` into new place in `app/storage`
+        // The `copy` method allows you to copy a file
         // Storage::copy('public/test_02.png', 'copiedFiles/newCopiedFile.png');
 
-        // `move` method allows you to move file in `app/storage` into new place in `app/storage`
+        // The `move` method allows you to move a file
         // Storage::move('public/test_02.png', 'movedFiles/newMovedFile.png');
 
-        // `size` method allows you to get size of file in kilobytes
+        // The `size` method allows you to get size of file in kilobytes
         // Storage::size('movedFiles/newMovedFile.png');
 
-        // `delete` method allows you to delete file in app/storage
+        // The `delete` method allows you to delete file
         // Storage::delete('movedFiles/newMovedFile.png');
 
-        // `files` method allows you to return an array of files in specific folder
+        // The `files` method allows you to return an array of files in a specific path
         // Storage::files('public');
 
-        // `lastModified` allows you to return Unix timestamp when passed file was last modified
+        // The `lastModified` allows you to return Unix timestamp when passed file was last modified
         // Storage::lastModified('copiedFiles/newCopiedFile.png');
 
-        // `allFiles` method allows you to return an array of files in specific folder with it's subfolders
+        // The `allFiles` method allows you to return an array of files in specific folder with it's subfolders
         // Storage::allFiles('public');
 
-        // `directories` method allows you to return an array of folders names in passed directory
+        // The `directories` method allows you to return an array of folders names in passed directory
         // Storage::directories('public');
 
-        // `allDirectories` method allows you to return an array of folders names in passed directory and all sub folders
+        /* The `allDirectories` method allows you to return an array of folders names in passed directory and all sub folders */
         // Storage::allDirectories('public');
 
-        // `makeDirectory` method allows you to create a new directory
+        // The `makeDirectory` method allows you to create a new directory
         // Storage::makeDirectory('newCreatedDirectory');
 
-        // `deleteDirectory` method allows you to delete a directory
+        // The `deleteDirectory` method allows you to delete a directory
         Storage::deleteDirectory('newCreatedDirectory');
     }
 
     public function storagePutUploadedFiles()
     {
-        /* NOTE `exists` method will always passes the request's file because this method check for passed file name and when you use `putFile` laravel will hash file name then save it So, every time will come with new hash value So will passes from `exists` method */
+        /* NOTE: The `exists` method will always pass the request's file because this method checks for passed file name and when you use `putFile` Laravel will hash the file name and then save it so, every time, it will come with a new hash value */
         if (!Storage::disk('public')->exists(request()->img)) {
             Storage::putFile('movedFiles', request()->file('img'));
 
@@ -75,14 +75,14 @@ class StorageController extends Controller
 
     public function updatePicture()
     {
-        /* We use `put` method to put a file named `user_1` (do not forget THE extension), and we grab our contents from the uploaded file. Every uploaded file is a descendant of the `SplFileInfo` class, which provides a `getRealPath` method that returns the tmp file path like so `C:\xampp\tmp\phpD91C.tmp` */
-        // Storage::put('user_1.png', file_get_contents(request()->file('img')->getRealPath()));
+        /* We use `put` method to put a file named `user_1` (do not forget the extension), and grab our contents from the uploaded file. Every uploaded file is a descendant of the `SplFileInfo` class, which provides a `getRealPath` method that returns the tmp file path like so `C:\xampp\tmp\phpD91C.tmp` */
+        Storage::put('user_1.png', file_get_contents(request()->file('img')->getRealPath()));
     }
 
     public function downloadImageFile()
     {
         if (request()->hasFile('img')) {
-            // `download` method does not exists
+            // NOTE: The `download` method does not exists
             return Storage::download(request()->file('img'), 'welcome');
         }
 

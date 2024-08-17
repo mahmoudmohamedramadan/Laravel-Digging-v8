@@ -7,8 +7,9 @@ This repo contains recaps for [Laravel Up & Running](https://github.com/mahmoudm
 > [!IMPORTANT]
 > This project is compatible with less or equal version 8.
 
-> [!NOTE]
-> If you need to help me improve the project, you should follow the [#2](https://github.com/mahmoudmohamedramadan/Laravel-Digging-v8/pull/2) instructions.
+## Contributing
+
+Thanks for considering contributing to the repository! The contribution guide can be found in the [Contributions File](https://github.com/mahmoudmohamedramadan/Laravel-Digging-v8/blob/main/CONTRIBUTIONS.md).
 
 ## 📌 Covered Topics
 
